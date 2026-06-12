@@ -1329,57 +1329,341 @@
       letter-spacing: 1px;
     }
 
-    /* ── RESPONSIVE ── */
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      background: rgba(8, 15, 32, 0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem 1.5rem;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: var(--textMuted);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      display: block;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active {
+      color: var(--orange);
+    }
+
+    .mobile-menu .mob-cta {
+      margin-top: 1rem;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+    }
+
+    /* ── RESPONSIVE 768px ── */
     @media(max-width:768px) {
+      nav {
+        padding: 0 1.2rem;
+      }
+
       .nav-links {
         display: none;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero {
+        padding: 3rem 1.2rem 2rem;
+        min-height: auto;
+      }
+
+      .hero-inner {
+        padding-top: 1rem;
+      }
+
+      .hero-title {
+        font-size: 2.6rem;
+        letter-spacing: -1px;
+      }
+
+      .hero-sub {
+        font-size: 0.9rem;
+      }
+
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-btns button {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+
+      .hero-stats {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+
+      .stat-num {
+        font-size: 1.4rem;
+      }
+
+      .section {
+        padding: 3rem 1.2rem;
+      }
+
+      .sec-title {
+        font-size: 1.8rem;
+      }
+
+      .sec-sub {
+        font-size: 0.88rem;
+      }
+
+      .vehicle-row {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .feat-grid {
         grid-template-columns: 1fr;
       }
 
+      /* Features page */
+      .features-hero,
+      .platform-hero,
+      .team-hero {
+        padding: 3rem 1.2rem 1.5rem;
+      }
+
+      .feat-section {
+        padding: 2rem 1.2rem;
+      }
+
       .feat-block {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
       }
 
       .feat-block.rev {
         direction: ltr;
       }
 
+      .feat-block-visual {
+        aspect-ratio: auto;
+        min-height: 200px;
+        padding: 1.5rem;
+      }
+
+      .mock-phone {
+        width: 140px;
+        height: 240px;
+      }
+
+      .mock-alerts {
+        width: 100%;
+      }
+
+      .mock-engine {
+        width: 140px;
+      }
+
+      /* Platform page */
       .portal-grid {
         grid-template-columns: 1fr;
+        padding: 0 1.2rem;
+      }
+
+      .portal-card {
+        grid-column: span 1 !important;
+      }
+
+      .tech-section {
+        padding: 2rem 1.2rem 3rem;
       }
 
       .tech-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .device-grid,
+      .device-section {
+        padding: 0 1.2rem 3rem;
+      }
+
+      .device-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Team page */
+      .founder-section {
+        padding: 0 1.2rem 2rem;
+      }
+
+      .founder-card {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .founder-info h2 {
+        font-size: 1.3rem;
+      }
+
+      .dev-team-section {
+        padding: 0 1.2rem 3rem;
+      }
+
       .dev-grid {
         grid-template-columns: 1fr;
       }
 
-      .vehicle-row {
-        grid-template-columns: repeat(2, 1fr);
+      .vision-section {
+        padding: 0 1.2rem 3rem;
       }
 
-      .hero-title {
-        font-size: 3rem;
+      .vision-card {
+        padding: 2rem 1.5rem;
       }
 
-      .hero-stats {
-        gap: 1.5rem;
+      .vision-card blockquote {
+        font-size: 1rem;
       }
     }
 
+    /* ── RESPONSIVE 480px ── */
     @media(max-width:480px) {
+      nav {
+        padding: 0 1rem;
+      }
+
+      .nav-logo-text {
+        font-size: 0.95rem;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.62rem;
+      }
+
+      .hero-stats {
+        justify-content: space-around;
+      }
+
       .vehicle-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .v-ico {
+        width: 30px;
+        height: 30px;
+      }
+
+      .v-lbl {
+        font-size: 0.72rem;
+      }
+
+      .v-cell {
+        padding: 0.9rem 0.5rem;
+      }
+
+      .feat-grid {
         grid-template-columns: 1fr;
       }
 
       .tech-grid {
         grid-template-columns: 1fr;
+      }
+
+      .dev-card {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .dev-av {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+      }
+
+      .feat-block-content h2 {
+        font-size: 1.4rem;
+      }
+
+      footer {
+        padding: 1.5rem 1rem;
+      }
+
+      .footer-sub {
+        font-size: 0.62rem;
+        letter-spacing: 0.5px;
       }
     }
   </style>
@@ -1403,7 +1687,18 @@
       <li><a onclick="showPage('team')" id="nav-team">Team</a></li>
     </ul>
     <button class="nav-cta" onclick="showPage('features')">Explore Features →</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a onclick="showPage('home');closeMenu()" id="mob-home" class="active">Home</a>
+    <a onclick="showPage('features');closeMenu()" id="mob-features">Features</a>
+    <a onclick="showPage('platform');closeMenu()" id="mob-platform">Platform</a>
+    <a onclick="showPage('team');closeMenu()" id="mob-team">Team</a>
+    <button class="mob-cta" onclick="showPage('features');closeMenu()">Explore Features →</button>
+  </div>
 
   <!-- ══════════════════════════════════════
      PAGE 1 — HOME
@@ -2037,11 +2332,23 @@
   <script>
     function showPage(id) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       const navEl = document.getElementById('nav-' + id);
       if (navEl) navEl.classList.add('active');
+      const mobEl = document.getElementById('mob-' + id);
+      if (mobEl) mobEl.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const ham = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      ham.classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
     }
 
     // Scroll-triggered fade-in
