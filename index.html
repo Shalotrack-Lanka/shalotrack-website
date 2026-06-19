@@ -4,20 +4,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ShaloTrack — Always Connected</title>
+  <title>ShaloTrack Lanka | GPS Vehicle Tracking & Security</title>
+  <meta name="description"
+    content="ShaloTrack — Sri Lanka's smart GPS tracking and vehicle security platform. Real-time tracking, fleet management and alerts. 25,000+ active devices." />
+  <meta name="keywords"
+    content="GPS tracking Sri Lanka, vehicle tracking, fleet management, ShaloTrack, GPS tracker Sri Lanka, vehicle security" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
-    <meta name="description" content="ShaloTrack — Sri Lanka's smart GPS tracking and vehicle security platform. Real-time tracking, fleet management and alerts."/>
-    <meta name="keywords" content="GPS tracking Sri Lanka, vehicle tracking, fleet management, ShaloTrack"/>
-    <meta property="og:title" content="ShaloTrack — Always Connected"/>
-    <meta property="og:description" content="Real-time GPS tracking and fleet management platform built in Sri Lanka."/>
   <style>
     * {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      box-sizing: border-box
     }
 
     :root {
@@ -36,7 +36,7 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: smooth
     }
 
     body {
@@ -44,10 +44,9 @@
       color: var(--text);
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
-      line-height: 1.6;
+      line-height: 1.6
     }
 
-    /* ── NOISE TEXTURE ── */
     body::before {
       content: '';
       position: fixed;
@@ -55,10 +54,9 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
-      opacity: 0.4;
+      opacity: 0.4
     }
 
-    /* ── GRID BG ── */
     .grid-bg {
       position: fixed;
       inset: 0;
@@ -66,7 +64,7 @@
       pointer-events: none;
       background-image: linear-gradient(rgba(244, 121, 32, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(244, 121, 32, 0.03) 1px, transparent 1px);
       background-size: 60px 60px;
-      animation: gridPan 30s linear infinite;
+      animation: gridPan 30s linear infinite
     }
 
     @keyframes gridPan {
@@ -79,18 +77,17 @@
       }
     }
 
-    /* ── SCAN LINE ── */
     .scan {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, var(--orange) 50%, transparent 100%);
-      opacity: 0.25;
+      background: linear-gradient(90deg, transparent, var(--orange) 50%, transparent);
+      opacity: 0.2;
       animation: scanMove 6s ease-in-out infinite;
       z-index: 1;
-      pointer-events: none;
+      pointer-events: none
     }
 
     @keyframes scanMove {
@@ -105,43 +102,42 @@
       }
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
+      z-index: 200;
       padding: 0 2rem;
       height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(8, 15, 32, 0.85);
+      background: rgba(8, 15, 32, 0.92);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s;
+      border-bottom: 1px solid var(--border)
     }
 
     .nav-logo {
       display: flex;
       align-items: center;
       gap: 10px;
-      cursor: pointer;
+      cursor: pointer
     }
 
     .nav-logo img {
       width: 36px;
       height: 36px;
       object-fit: contain;
-      border-radius: 8px;
+      border-radius: 8px
     }
 
     .nav-logo-text {
       font-family: 'Syne', sans-serif;
       font-size: 1.1rem;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1px
     }
 
     .nav-logo-text .s {
@@ -154,23 +150,22 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
-      list-style: none;
+      gap: 1.6rem;
+      list-style: none
     }
 
     .nav-links a {
       color: var(--textMuted);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       font-weight: 500;
-      letter-spacing: 0.5px;
       transition: color 0.2s;
-      cursor: pointer;
+      cursor: pointer
     }
 
     .nav-links a:hover,
     .nav-links a.active {
-      color: var(--orange);
+      color: var(--orange)
     }
 
     .nav-cta {
@@ -183,46 +178,310 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', sans-serif
     }
 
     .nav-cta:hover {
       background: var(--orangeL);
-      transform: translateY(-1px);
+      transform: translateY(-1px)
     }
 
-    /* ── PAGES ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg)
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg)
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      z-index: 199;
+      background: rgba(8, 15, 32, 0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem 1.5rem;
+      flex-direction: column
+    }
+
+    .mobile-menu.open {
+      display: flex
+    }
+
+    .mobile-menu a {
+      color: var(--textMuted);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      display: block;
+      transition: color 0.2s
+    }
+
+    .mobile-menu a.active,
+    .mobile-menu a:hover {
+      color: var(--orange)
+    }
+
+    .mob-cta {
+      margin-top: 1rem;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      font-family: 'Inter', sans-serif
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: rgba(244, 121, 32, 0.07);
+      border-bottom: 1px solid var(--borderO)
+    }
+
+    .stats-bar-inner {
+      display: flex;
+      align-items: stretch;
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    .sbar-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-right: 1px solid var(--borderO)
+    }
+
+    .sbar-item:last-child {
+      border-right: none
+    }
+
+    .sbar-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+      flex-shrink: 0;
+      animation: liveBlink 2s ease-in-out infinite
+    }
+
+    @keyframes liveBlink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.4
+      }
+    }
+
+    .sbar-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff
+    }
+
+    .sbar-num em {
+      color: var(--orange);
+      font-style: normal
+    }
+
+    .sbar-label {
+      font-size: 0.68rem;
+      color: var(--textMuted);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.5px
+    }
+
+    /* PAGES */
     .page {
       display: none;
       min-height: 100vh;
       position: relative;
-      z-index: 2;
+      z-index: 2
     }
 
     .page.active {
-      display: block;
+      display: block
     }
 
-    /* ═══════════════════════════════════════
-   PAGE 1 — HOME
-═══════════════════════════════════════ */
-    #home {
-      padding-top: 64px;
+    /* SHARED */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto
     }
 
-    .hero {
-      min-height: calc(100vh - 64px);
+    .sec-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.8rem
+    }
+
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1rem
+    }
+
+    .sec-title span {
+      color: var(--orange)
+    }
+
+    .sec-sub {
+      font-size: 0.95rem;
+      color: var(--textMuted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 3rem
+    }
+
+    .ping-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange);
+      position: relative;
+      display: inline-block
+    }
+
+    .ping-dot::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid var(--orange);
+      animation: pingRing 2s ease-out infinite
+    }
+
+    @keyframes pingRing {
+      0% {
+        transform: scale(1);
+        opacity: 0.8
+      }
+
+      100% {
+        transform: scale(2.5);
+        opacity: 0
+      }
+    }
+
+    /* FLOATING WHATSAPP */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 300;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 4rem 2rem;
+      box-shadow: 0 4px 24px rgba(37, 211, 102, 0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none
+    }
+
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 32px rgba(37, 211, 102, 0.6)
+    }
+
+    .wa-float svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff
+    }
+
+    .wa-tooltip {
+      position: absolute;
+      right: 70px;
+      background: rgba(8, 15, 32, 0.95);
+      border: 1px solid var(--borderO);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      font-family: 'Inter', sans-serif
+    }
+
+    .wa-float:hover .wa-tooltip {
+      opacity: 1
+    }
+
+    /* ══ HOME ══ */
+    #home {
+      padding-top: 104px
+    }
+
+    .hero {
+      min-height: calc(100vh - 104px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
       text-align: center;
-      position: relative;
+      position: relative
     }
 
     .hero-inner {
       max-width: 760px;
-      animation: fadeUp 0.9s ease both;
+      animation: fadeUp 0.9s ease both
     }
 
     @keyframes fadeUp {
@@ -250,36 +509,7 @@
       font-size: 0.72rem;
       letter-spacing: 2px;
       color: var(--orange);
-      text-transform: uppercase;
-    }
-
-    .ping-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--orange);
-      position: relative;
-    }
-
-    .ping-dot::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      border: 1px solid var(--orange);
-      animation: pingRing 2s ease-out infinite;
-    }
-
-    @keyframes pingRing {
-      0% {
-        transform: scale(1);
-        opacity: 0.8
-      }
-
-      100% {
-        transform: scale(2.5);
-        opacity: 0
-      }
+      text-transform: uppercase
     }
 
     .hero-title {
@@ -288,17 +518,17 @@
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -2px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.5rem
     }
 
     .hero-title .line1 {
       display: block;
-      color: #fff;
+      color: #fff
     }
 
     .hero-title .line2 {
       display: block;
-      color: var(--orange);
+      color: var(--orange)
     }
 
     .hero-sub {
@@ -306,7 +536,7 @@
       color: var(--textMuted);
       max-width: 520px;
       margin: 0 auto 2.5rem;
-      line-height: 1.75;
+      line-height: 1.75
     }
 
     .hero-btns {
@@ -314,7 +544,7 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 3rem;
+      margin-bottom: 3rem
     }
 
     .btn-primary {
@@ -328,15 +558,15 @@
       cursor: pointer;
       transition: all 0.25s;
       font-family: 'Inter', sans-serif;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 8px
     }
 
     .btn-primary:hover {
       background: var(--orangeL);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(244, 121, 32, 0.3);
+      box-shadow: 0 8px 24px rgba(244, 121, 32, 0.3)
     }
 
     .btn-ghost {
@@ -349,24 +579,24 @@
       font-weight: 500;
       cursor: pointer;
       transition: all 0.25s;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', sans-serif
     }
 
     .btn-ghost:hover {
       border-color: var(--borderO);
       background: var(--orangeDim);
-      color: var(--orange);
+      color: var(--orange)
     }
 
     .hero-stats {
       display: flex;
       gap: 2.5rem;
       justify-content: center;
-      flex-wrap: wrap;
+      flex-wrap: wrap
     }
 
     .stat {
-      text-align: center;
+      text-align: center
     }
 
     .stat-num {
@@ -374,11 +604,11 @@
       font-size: 1.8rem;
       font-weight: 800;
       color: #fff;
-      display: block;
+      display: block
     }
 
     .stat-num span {
-      color: var(--orange);
+      color: var(--orange)
     }
 
     .stat-label {
@@ -386,47 +616,10 @@
       color: var(--textDim);
       letter-spacing: 1px;
       text-transform: uppercase;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', monospace
     }
 
-    /* ── SECTION SHARED ── */
-    .section {
-      padding: 5rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .sec-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 0.8rem;
-    }
-
-    .sec-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .sec-title span {
-      color: var(--orange);
-    }
-
-    .sec-sub {
-      font-size: 0.95rem;
-      color: var(--textMuted);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 3rem;
-    }
-
-    /* ── VEHICLE CARDS (HOME) ── */
+    /* VEHICLE ROW */
     .vehicle-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -434,7 +627,7 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
-      margin-bottom: 5rem;
+      margin-bottom: 5rem
     }
 
     .v-cell {
@@ -444,7 +637,7 @@
       transition: all 0.3s;
       cursor: default;
       position: relative;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .v-cell::before {
@@ -453,20 +646,11 @@
       inset: 0;
       background: var(--orangeDim);
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.3s
     }
 
     .v-cell:hover::before {
-      opacity: 1;
-    }
-
-    .v-cell:hover {
-      border-color: var(--borderO);
-    }
-
-    .v-cell:hover .v-ico {
-      filter: invert(65%) sepia(80%) saturate(500%) hue-rotate(340deg);
-      transform: scale(1.1);
+      opacity: 1
     }
 
     .v-ico {
@@ -475,21 +659,25 @@
       display: block;
       margin: 0 auto 12px;
       filter: invert(0.6);
-      transition: all 0.3s;
+      transition: all 0.3s
+    }
+
+    .v-cell:hover .v-ico {
+      filter: invert(65%) sepia(80%) saturate(500%) hue-rotate(340deg);
+      transform: scale(1.1)
     }
 
     .v-lbl {
       font-size: 0.82rem;
       color: var(--textMuted);
       font-weight: 500;
-      position: relative;
+      position: relative
     }
 
-    /* ── FEATURE GRID ── */
     .feat-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 16px
     }
 
     .feat-card {
@@ -498,13 +686,13 @@
       border-radius: 14px;
       padding: 1.5rem;
       transition: all 0.3s;
-      cursor: default;
+      cursor: default
     }
 
     .feat-card:hover {
       border-color: var(--borderO);
       background: rgba(244, 121, 32, 0.06);
-      transform: translateY(-3px);
+      transform: translateY(-3px)
     }
 
     .feat-card-ico {
@@ -515,46 +703,138 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1rem
     }
 
     .feat-card-ico img {
       width: 18px;
       height: 18px;
-      filter: invert(65%) sepia(80%) saturate(500%) hue-rotate(340deg);
+      filter: invert(65%) sepia(80%) saturate(500%) hue-rotate(340deg)
     }
 
     .feat-card h3 {
       font-size: 0.92rem;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 6px;
+      margin-bottom: 6px
     }
 
     .feat-card p {
       font-size: 0.78rem;
       color: var(--textMuted);
-      line-height: 1.6;
+      line-height: 1.6
     }
 
-    /* ═══════════════════════════════════════
-   PAGE 2 — FEATURES
-═══════════════════════════════════════ */
+    /* HOW IT WORKS */
+    .hiw-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      position: relative;
+      margin-top: 3rem;
+      gap: 0
+    }
+
+    .hiw-line {
+      position: absolute;
+      top: 36px;
+      left: calc(16.66% + 24px);
+      right: calc(16.66% + 24px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), rgba(244, 121, 32, 0.2));
+      z-index: 0
+    }
+
+    .hiw-step {
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .hiw-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--orangeDim);
+      border: 2px solid var(--borderO);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      transition: all 0.3s
+    }
+
+    .hiw-step:hover .hiw-num {
+      background: rgba(244, 121, 32, 0.22);
+      border-color: var(--orange);
+      transform: scale(1.08)
+    }
+
+    .hiw-step-icon {
+      font-size: 1.6rem
+    }
+
+    .hiw-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 22px;
+      height: 22px;
+      background: var(--orange);
+      border-radius: 50%;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .hiw-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px
+    }
+
+    .hiw-desc {
+      font-size: 0.8rem;
+      color: var(--textMuted);
+      line-height: 1.65
+    }
+
+    .hiw-tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--orangeDim);
+      border: 1px solid var(--borderO);
+      font-size: 0.65rem;
+      color: var(--orange);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 1px
+    }
+
+    /* ══ FEATURES PAGE ══ */
     #features {
-      padding-top: 64px;
+      padding-top: 64px
     }
 
     .features-hero {
       padding: 4rem 2rem 2rem;
       text-align: center;
       max-width: 700px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .feat-section {
       padding: 4rem 2rem;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .feat-block {
@@ -562,15 +842,15 @@
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: center;
-      margin-bottom: 5rem;
+      margin-bottom: 5rem
     }
 
     .feat-block.rev {
-      direction: rtl;
+      direction: rtl
     }
 
     .feat-block.rev>* {
-      direction: ltr;
+      direction: ltr
     }
 
     .feat-block-visual {
@@ -583,7 +863,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .feat-block-visual::before {
@@ -594,7 +874,7 @@
       width: 180%;
       height: 180%;
       background: radial-gradient(circle, rgba(244, 121, 32, 0.06) 0%, transparent 60%);
-      animation: rotateBg 15s linear infinite;
+      animation: rotateBg 15s linear infinite
     }
 
     @keyframes rotateBg {
@@ -618,7 +898,7 @@
       text-transform: uppercase;
       color: var(--orange);
       font-family: 'JetBrains Mono', monospace;
-      margin-bottom: 1rem;
+      margin-bottom: 1rem
     }
 
     .feat-block-content h2 {
@@ -627,21 +907,21 @@
       font-weight: 800;
       color: #fff;
       margin-bottom: 0.8rem;
-      line-height: 1.15;
+      line-height: 1.15
     }
 
     .feat-block-content p {
       font-size: 0.9rem;
       color: var(--textMuted);
       line-height: 1.7;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.5rem
     }
 
     .feat-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 8px
     }
 
     .feat-list li {
@@ -649,7 +929,7 @@
       align-items: center;
       gap: 10px;
       font-size: 0.85rem;
-      color: var(--textMuted);
+      color: var(--textMuted)
     }
 
     .feat-list li::before {
@@ -658,10 +938,9 @@
       height: 5px;
       border-radius: 50%;
       background: var(--orange);
-      flex-shrink: 0;
+      flex-shrink: 0
     }
 
-    /* ── MOCK PHONE SCREEN ── */
     .mock-phone {
       width: 180px;
       height: 300px;
@@ -672,14 +951,14 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      padding: 12px;
+      padding: 12px
     }
 
     .mock-phone-bar {
       height: 4px;
       background: rgba(255, 255, 255, 0.07);
       border-radius: 2px;
-      margin-bottom: 10px;
+      margin-bottom: 10px
     }
 
     .mock-phone-map {
@@ -687,7 +966,7 @@
       background: linear-gradient(135deg, #0d1b3e 0%, #1a2d5a 100%);
       border-radius: 12px;
       position: relative;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .mock-pin {
@@ -700,7 +979,7 @@
       background: var(--orange);
       border-radius: 50%;
       box-shadow: 0 0 0 4px rgba(244, 121, 32, 0.3);
-      animation: pingRing 2s ease-out infinite;
+      animation: pingRing 2s ease-out infinite
     }
 
     .mock-route {
@@ -709,41 +988,40 @@
       left: 0;
       right: 0;
       height: 60%;
-      background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(244, 121, 32, 0.15) 3px, rgba(244, 121, 32, 0.15) 4px);
+      background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(244, 121, 32, 0.15) 3px, rgba(244, 121, 32, 0.15) 4px)
     }
 
     .mock-info {
       background: rgba(13, 27, 62, 0.95);
       border-radius: 10px;
       padding: 8px;
-      margin-top: 8px;
+      margin-top: 8px
     }
 
     .mock-info-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 3px;
+      margin-bottom: 3px
     }
 
     .mock-info-lbl {
       font-size: 0.55rem;
       color: var(--textDim);
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', monospace
     }
 
     .mock-info-val {
       font-size: 0.6rem;
       color: var(--orange);
       font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
+      font-weight: 500
     }
 
-    /* ── ALERTS MOCK ── */
     .mock-alerts {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 8px
     }
 
     .alert-item {
@@ -753,50 +1031,49 @@
       padding: 10px 14px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 10px
     }
 
     .alert-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      flex-shrink: 0;
+      flex-shrink: 0
     }
 
     .alert-dot.on {
       background: #22c55e;
-      box-shadow: 0 0 6px rgba(34, 197, 94, 0.5);
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.5)
     }
 
     .alert-dot.warn {
       background: var(--orange);
-      box-shadow: 0 0 6px rgba(244, 121, 32, 0.5);
+      box-shadow: 0 0 6px rgba(244, 121, 32, 0.5)
     }
 
     .alert-dot.off {
       background: #ef4444;
-      box-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+      box-shadow: 0 0 6px rgba(239, 68, 68, 0.4)
     }
 
     .alert-text {
       font-size: 0.75rem;
-      color: var(--textMuted);
+      color: var(--textMuted)
     }
 
     .alert-time {
       font-size: 0.65rem;
       color: var(--textDim);
       margin-left: auto;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', monospace
     }
 
-    /* ── ENGINE CUT MOCK ── */
     .mock-engine {
       width: 180px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 12px
     }
 
     .engine-ring {
@@ -807,7 +1084,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+      position: relative
     }
 
     .engine-ring::before {
@@ -816,7 +1093,7 @@
       inset: -8px;
       border-radius: 50%;
       border: 1px dashed rgba(244, 121, 32, 0.2);
-      animation: spin 10s linear infinite;
+      animation: spin 10s linear infinite
     }
 
     @keyframes spin {
@@ -842,17 +1119,12 @@
       color: #fca5a5;
       font-family: 'JetBrains Mono', monospace;
       text-align: center;
-      letter-spacing: 1px;
-    }
-
-    .engine-label {
-      font-size: 0.72rem;
-      color: var(--textMuted);
+      letter-spacing: 1px
     }
 
     .engine-pin {
       display: flex;
-      gap: 6px;
+      gap: 6px
     }
 
     .pin-dot {
@@ -860,26 +1132,24 @@
       height: 10px;
       border-radius: 50%;
       background: var(--navy2);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border)
     }
 
     .pin-dot.filled {
       background: var(--orange);
-      border-color: var(--orange);
+      border-color: var(--orange)
     }
 
-    /* ═══════════════════════════════════════
-   PAGE 3 — PLATFORM
-═══════════════════════════════════════ */
+    /* ══ PLATFORM PAGE ══ */
     #platform {
-      padding-top: 64px;
+      padding-top: 64px
     }
 
     .platform-hero {
       padding: 4rem 2rem 2rem;
       text-align: center;
       max-width: 700px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .portal-grid {
@@ -888,7 +1158,7 @@
       gap: 16px;
       padding: 0 2rem;
       max-width: 1100px;
-      margin: 0 auto 4rem;
+      margin: 0 auto 4rem
     }
 
     .portal-card {
@@ -897,13 +1167,13 @@
       border-radius: 16px;
       padding: 2rem;
       transition: all 0.3s;
-      cursor: default;
+      cursor: default
     }
 
     .portal-card:hover {
       border-color: var(--borderO);
       background: rgba(244, 121, 32, 0.05);
-      transform: translateY(-4px);
+      transform: translateY(-4px)
     }
 
     .portal-ico {
@@ -915,13 +1185,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.2rem
     }
 
     .portal-ico img {
       width: 24px;
       height: 24px;
-      filter: invert(65%) sepia(80%) saturate(500%) hue-rotate(340deg);
+      filter: invert(65%) sepia(80%) saturate(500%) hue-rotate(340deg)
     }
 
     .portal-card h3 {
@@ -929,20 +1199,20 @@
       font-size: 1.1rem;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 8px;
+      margin-bottom: 8px
     }
 
     .portal-card p {
       font-size: 0.8rem;
       color: var(--textMuted);
       line-height: 1.6;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.2rem
     }
 
     .portal-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 6px
     }
 
     .ptag {
@@ -952,27 +1222,26 @@
       font-family: 'JetBrains Mono', monospace;
       background: var(--glass);
       border: 1px solid var(--border);
-      color: var(--textMuted);
+      color: var(--textMuted)
     }
 
-    /* ── TECH STACK ── */
     .tech-section {
       padding: 3rem 2rem 5rem;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .tech-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 12px
     }
 
     .tech-card {
       background: var(--glass);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 1.2rem;
+      padding: 1.2rem
     }
 
     .tech-card-label {
@@ -982,13 +1251,13 @@
       text-transform: uppercase;
       color: var(--orange);
       margin-bottom: 10px;
-      opacity: 0.8;
+      opacity: 0.8
     }
 
     .tech-tags {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 6px
     }
 
     .tech-row {
@@ -999,37 +1268,36 @@
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
-      transition: all 0.2s;
+      transition: all 0.2s
     }
 
     .tech-row:hover {
       border-color: var(--borderO);
-      background: var(--orangeDim);
+      background: var(--orangeDim)
     }
 
     .tech-row img {
       width: 14px;
       height: 14px;
-      object-fit: contain;
+      object-fit: contain
     }
 
     .tech-row span {
       font-size: 0.75rem;
       color: var(--textMuted);
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', monospace
     }
 
-    /* ── DEVICE SUPPORT ── */
     .device-section {
       padding: 0 2rem 5rem;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .device-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 16px
     }
 
     .device-card {
@@ -1039,7 +1307,7 @@
       padding: 1.5rem;
       display: flex;
       gap: 1.2rem;
-      align-items: flex-start;
+      align-items: flex-start
     }
 
     .device-num {
@@ -1050,40 +1318,38 @@
       opacity: 0.3;
       line-height: 1;
       flex-shrink: 0;
-      min-width: 2.5rem;
+      min-width: 2.5rem
     }
 
     .device-card h4 {
       font-size: 0.9rem;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 4px;
+      margin-bottom: 4px
     }
 
     .device-card p {
       font-size: 0.78rem;
       color: var(--textMuted);
-      line-height: 1.5;
+      line-height: 1.5
     }
 
-    /* ═══════════════════════════════════════
-   PAGE 4 — TEAM
-═══════════════════════════════════════ */
+    /* ══ TEAM PAGE ══ */
     #team {
-      padding-top: 64px;
+      padding-top: 64px
     }
 
     .team-hero {
       padding: 4rem 2rem 2rem;
       text-align: center;
       max-width: 700px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .founder-section {
       padding: 0 2rem 3rem;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .founder-card {
@@ -1095,7 +1361,7 @@
       align-items: center;
       gap: 2.5rem;
       position: relative;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .founder-card::before {
@@ -1106,7 +1372,7 @@
       width: 400px;
       height: 400px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(244, 121, 32, 0.06) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(244, 121, 32, 0.06) 0%, transparent 60%)
     }
 
     .founder-avatar {
@@ -1123,7 +1389,7 @@
       font-weight: 800;
       color: var(--orange);
       flex-shrink: 0;
-      animation: pulseLogo 4s ease-in-out infinite;
+      animation: pulseLogo 4s ease-in-out infinite
     }
 
     @keyframes pulseLogo {
@@ -1144,7 +1410,7 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: 6px;
+      margin-bottom: 6px
     }
 
     .founder-info h2 {
@@ -1152,24 +1418,24 @@
       font-size: 1.6rem;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 4px;
+      margin-bottom: 4px
     }
 
     .founder-info p {
       font-size: 0.85rem;
-      color: var(--textMuted);
+      color: var(--textMuted)
     }
 
     .dev-team-section {
       padding: 0 2rem 5rem;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .dev-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 16px
     }
 
     .dev-card {
@@ -1180,13 +1446,13 @@
       display: flex;
       gap: 1.2rem;
       align-items: flex-start;
-      transition: all 0.3s;
+      transition: all 0.3s
     }
 
     .dev-card:hover {
       border-color: var(--borderO);
       background: rgba(244, 121, 32, 0.04);
-      transform: translateY(-3px);
+      transform: translateY(-3px)
     }
 
     .dev-av {
@@ -1200,26 +1466,26 @@
       font-size: 0.9rem;
       font-weight: 800;
       flex-shrink: 0;
-      letter-spacing: 1px;
+      letter-spacing: 1px
     }
 
     .av-o {
       background: rgba(244, 121, 32, 0.15);
       color: var(--orange);
-      border: 1px solid rgba(244, 121, 32, 0.4);
+      border: 1px solid rgba(244, 121, 32, 0.4)
     }
 
     .av-n {
       background: rgba(45, 74, 138, 0.3);
       color: #93aee8;
-      border: 1px solid rgba(45, 74, 138, 0.6);
+      border: 1px solid rgba(45, 74, 138, 0.6)
     }
 
     .dev-info h3 {
       font-size: 0.95rem;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 3px;
+      margin-bottom: 3px
     }
 
     .dev-role {
@@ -1227,13 +1493,13 @@
       color: var(--orange);
       margin-bottom: 8px;
       font-family: 'JetBrains Mono', monospace;
-      opacity: 0.85;
+      opacity: 0.85
     }
 
     .dev-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
+      gap: 5px
     }
 
     .dev-tag {
@@ -1243,14 +1509,13 @@
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
       color: var(--textDim);
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', monospace
     }
 
-    /* ── VISION SECTION ── */
     .vision-section {
       padding: 0 2rem 5rem;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .vision-card {
@@ -1260,7 +1525,7 @@
       padding: 3rem;
       text-align: center;
       position: relative;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .vision-card::before {
@@ -1271,7 +1536,7 @@
       width: 200%;
       height: 200%;
       background: radial-gradient(circle, rgba(244, 121, 32, 0.05) 0%, transparent 55%);
-      animation: rotateBg 20s linear infinite;
+      animation: rotateBg 20s linear infinite
     }
 
     .vision-card blockquote {
@@ -1281,11 +1546,11 @@
       color: #fff;
       line-height: 1.4;
       position: relative;
-      z-index: 1;
+      z-index: 1
     }
 
     .vision-card blockquote span {
-      color: var(--orange);
+      color: var(--orange)
     }
 
     .vision-card cite {
@@ -1297,25 +1562,606 @@
       font-family: 'JetBrains Mono', monospace;
       letter-spacing: 1px;
       position: relative;
-      z-index: 1;
+      z-index: 1
     }
 
-    /* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
+    /* ══ CONTACT PAGE ══ */
+    #contact {
+      padding-top: 64px
+    }
+
+    .contact-hero {
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      padding: 0 2rem 5rem;
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    .contact-form-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem
+    }
+
+    .form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.4rem
+    }
+
+    .form-sub {
+      font-size: 0.82rem;
+      color: var(--textMuted);
+      margin-bottom: 2rem
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--textMuted);
+      margin-bottom: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.5px;
+      text-transform: uppercase
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.2s;
+      outline: none
+    }
+
+    .form-input:focus {
+      border-color: var(--borderO);
+      background: rgba(244, 121, 32, 0.05);
+      box-shadow: 0 0 0 3px rgba(244, 121, 32, 0.08)
+    }
+
+    .form-input::placeholder {
+      color: var(--textDim)
+    }
+
+    select.form-input option {
+      background: #0d1b3e;
+      color: var(--text)
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 90px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .btn-wa-submit {
+      width: 100%;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.25s;
+      margin-top: 0.5rem
+    }
+
+    .btn-wa-submit:hover {
+      background: #22c55e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35)
+    }
+
+    .contact-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px
+    }
+
+    .contact-info-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.3s
+    }
+
+    .contact-info-card:hover {
+      border-color: var(--borderO);
+      transform: translateX(4px)
+    }
+
+    .ci-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--orangeDim);
+      border: 1px solid var(--borderO);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0
+    }
+
+    .ci-label {
+      font-size: 0.65rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--textDim);
+      margin-bottom: 4px
+    }
+
+    .ci-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #fff
+    }
+
+    .ci-sub {
+      font-size: 0.75rem;
+      color: var(--textMuted);
+      margin-top: 2px
+    }
+
+    .wa-direct-btn {
+      background: rgba(37, 211, 102, 0.12);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      color: #4ade80;
+      border-radius: 14px;
+      padding: 1.3rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left
+    }
+
+    .wa-direct-btn:hover {
+      background: rgba(37, 211, 102, 0.2);
+      border-color: rgba(37, 211, 102, 0.5);
+      transform: translateX(4px)
+    }
+
+    .wa-direct-btn .wa-icon {
+      width: 44px;
+      height: 44px;
+      background: #25D366;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .wa-direct-btn .wa-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff
+    }
+
+    .wa-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #4ade80;
+      margin-bottom: 2px
+    }
+
+    .wa-sub {
+      font-size: 0.75rem;
+      color: rgba(74, 222, 128, 0.7)
+    }
+
+    .map-placeholder {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      text-align: center
+    }
+
+    .map-inner {
+      background: rgba(13, 27, 62, 0.6);
+      border-radius: 10px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden
+    }
+
+    .map-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(244, 121, 32, 0.04) 28px, rgba(244, 121, 32, 0.04) 29px), repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(244, 121, 32, 0.04) 28px, rgba(244, 121, 32, 0.04) 29px)
+    }
+
+    .map-pin-center {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 1rem 0
+    }
+
+    /* ══ PRICING ══ */
+    .pricing-section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    .pricing-intro {
+      text-align: center;
+      margin-bottom: 3rem
+    }
+
+    .pricing-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--orangeDim);
+      border: 1px solid var(--borderO);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.75rem;
+      color: var(--orange);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      text-transform: uppercase
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .price-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .price-card.featured {
+      border-color: var(--borderO);
+      background: rgba(244, 121, 32, 0.06)
+    }
+
+    .price-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--orangeL))
+    }
+
+    .price-badge {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem
+    }
+
+    .price-badge.pop {
+      background: var(--orangeDim);
+      border: 1px solid var(--borderO);
+      color: var(--orange)
+    }
+
+    .price-badge.std {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--textMuted)
+    }
+
+    .price-badge.ent {
+      background: rgba(45, 74, 138, 0.2);
+      border: 1px solid rgba(45, 74, 138, 0.4);
+      color: #93aee8
+    }
+
+    .price-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px
+    }
+
+    .price-desc {
+      font-size: 0.8rem;
+      color: var(--textMuted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem
+    }
+
+    .price-amount {
+      margin-bottom: 1.5rem
+    }
+
+    .price-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--textDim);
+      letter-spacing: 1px;
+      text-transform: uppercase
+    }
+
+    .price-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--orange);
+      margin-top: 4px
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 2rem
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--textMuted)
+    }
+
+    .price-features li::before {
+      content: '✓';
+      width: 18px;
+      height: 18px;
+      background: rgba(34, 197, 94, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: #22c55e;
+      flex-shrink: 0;
+      font-weight: 700;
+      text-align: center;
+      line-height: 18px
+    }
+
+    .price-cta {
+      width: 100%;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s
+    }
+
+    .price-cta.primary {
+      background: var(--orange);
+      color: #fff;
+      border: none
+    }
+
+    .price-cta.primary:hover {
+      background: var(--orangeL);
+      transform: translateY(-2px)
+    }
+
+    .price-cta.ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border)
+    }
+
+    .price-cta.ghost:hover {
+      border-color: var(--borderO);
+      background: var(--orangeDim);
+      color: var(--orange)
+    }
+
+    /* ══ FAQ ══ */
+    .faq-section {
+      padding: 5rem 2rem;
+      max-width: 800px;
+      margin: 0 auto
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 2rem
+    }
+
+    .faq-item {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.3s
+    }
+
+    .faq-item.open {
+      border-color: var(--borderO)
+    }
+
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      gap: 1rem
+    }
+
+    .faq-q-text {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.4
+    }
+
+    .faq-arrow {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--orangeDim);
+      border: 1px solid var(--borderO);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      font-size: 0.7rem;
+      color: var(--orange)
+    }
+
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg)
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s
+    }
+
+    .faq-a-inner {
+      padding: 0 1.5rem 1.2rem;
+      font-size: 0.85rem;
+      color: var(--textMuted);
+      line-height: 1.7
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px
+    }
+
+    /* ══ FINAL CTA BANNER ══ */
+    .cta-banner {
+      margin: 0 2rem 5rem;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(135deg, rgba(26, 45, 90, 0.5) 0%, rgba(8, 15, 32, 0.9) 100%);
+      border: 1px solid var(--borderO);
+      border-radius: 24px;
+      padding: 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: -20%;
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(244, 121, 32, 0.08), transparent 60%);
+      pointer-events: none
+    }
+
+    .cta-banner h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.8rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-banner h2 span {
+      color: var(--orange)
+    }
+
+    .cta-banner p {
+      font-size: 0.95rem;
+      color: var(--textMuted);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1
+    }
+
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
       padding: 2rem;
       text-align: center;
       position: relative;
-      z-index: 2;
+      z-index: 2
     }
 
     .footer-logo {
       font-family: 'Syne', sans-serif;
       font-size: 1.2rem;
       font-weight: 800;
-      margin-bottom: 6px;
+      margin-bottom: 6px
     }
 
     .footer-logo .s {
@@ -1330,344 +2176,182 @@
       font-size: 0.75rem;
       color: var(--textDim);
       font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 1px;
+      letter-spacing: 1px
     }
 
-    /* ── HAMBURGER ── */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    .hamburger.open span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-
-    .hamburger.open span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.open span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 64px;
-      left: 0;
-      right: 0;
-      z-index: 99;
-      background: rgba(8, 15, 32, 0.98);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem 1.5rem;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .mobile-menu.open {
-      display: flex;
-    }
-
-    .mobile-menu a {
-      color: var(--textMuted);
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 500;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      display: block;
-      transition: color 0.2s;
-    }
-
-    .mobile-menu a:last-child {
-      border-bottom: none;
-    }
-
-    .mobile-menu a:hover,
-    .mobile-menu a.active {
-      color: var(--orange);
-    }
-
-    .mobile-menu .mob-cta {
-      margin-top: 1rem;
-      background: var(--orange);
-      color: #fff;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      font-family: 'Inter', sans-serif;
-      text-align: center;
-    }
-
-    /* ── RESPONSIVE 768px ── */
+    /* RESPONSIVE */
     @media(max-width:768px) {
       nav {
-        padding: 0 1.2rem;
+        padding: 0 1.2rem
       }
 
-      .nav-links {
-        display: none;
-      }
-
+      .nav-links,
       .nav-cta {
-        display: none;
+        display: none
       }
 
       .hamburger {
-        display: flex;
+        display: flex
+      }
+
+      .stats-bar-inner {
+        flex-wrap: wrap
+      }
+
+      .sbar-item {
+        flex: 1 1 50%;
+        border-right: none;
+        border-bottom: 1px solid var(--borderO)
+      }
+
+      .sbar-item:nth-child(odd) {
+        border-right: 1px solid var(--borderO)
+      }
+
+      .sbar-item:last-child,
+      .sbar-item:nth-last-child(2):nth-child(odd) {
+        border-bottom: none
       }
 
       .hero {
-        padding: 3rem 1.2rem 2rem;
-        min-height: auto;
-      }
-
-      .hero-inner {
-        padding-top: 1rem;
+        padding: 2rem 1.2rem;
+        min-height: auto
       }
 
       .hero-title {
         font-size: 2.6rem;
-        letter-spacing: -1px;
-      }
-
-      .hero-sub {
-        font-size: 0.9rem;
+        letter-spacing: -1px
       }
 
       .hero-btns {
         flex-direction: column;
-        align-items: center;
+        align-items: center
       }
 
       .hero-btns button {
         width: 100%;
         max-width: 280px;
-        justify-content: center;
+        justify-content: center
       }
 
       .hero-stats {
-        gap: 1.2rem;
-        flex-wrap: wrap;
-      }
-
-      .stat-num {
-        font-size: 1.4rem;
-      }
-
-      .section {
-        padding: 3rem 1.2rem;
-      }
-
-      .sec-title {
-        font-size: 1.8rem;
-      }
-
-      .sec-sub {
-        font-size: 0.88rem;
+        gap: 1.2rem
       }
 
       .vehicle-row {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr)
       }
 
       .feat-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hiw-steps {
         grid-template-columns: 1fr;
+        gap: 2rem
       }
 
-      /* Features page */
-      .features-hero,
-      .platform-hero,
-      .team-hero {
-        padding: 3rem 1.2rem 1.5rem;
-      }
-
-      .feat-section {
-        padding: 2rem 1.2rem;
+      .hiw-line {
+        display: none
       }
 
       .feat-block {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        margin-bottom: 3rem;
+        margin-bottom: 3rem
       }
 
       .feat-block.rev {
-        direction: ltr;
+        direction: ltr
       }
 
       .feat-block-visual {
         aspect-ratio: auto;
         min-height: 200px;
-        padding: 1.5rem;
+        padding: 1.5rem
       }
 
-      .mock-phone {
-        width: 140px;
-        height: 240px;
-      }
-
-      .mock-alerts {
-        width: 100%;
-      }
-
-      .mock-engine {
-        width: 140px;
-      }
-
-      /* Platform page */
       .portal-grid {
         grid-template-columns: 1fr;
-        padding: 0 1.2rem;
-      }
-
-      .portal-card {
-        grid-column: span 1 !important;
-      }
-
-      .tech-section {
-        padding: 2rem 1.2rem 3rem;
+        padding: 0 1.2rem
       }
 
       .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .device-section {
-        padding: 0 1.2rem 3rem;
+        grid-template-columns: repeat(2, 1fr)
       }
 
       .device-grid {
-        grid-template-columns: 1fr;
-      }
-
-      /* Team page */
-      .founder-section {
-        padding: 0 1.2rem 2rem;
+        grid-template-columns: 1fr
       }
 
       .founder-card {
         flex-direction: column;
         gap: 1.2rem;
         padding: 1.5rem;
-        text-align: center;
-      }
-
-      .founder-info h2 {
-        font-size: 1.3rem;
-      }
-
-      .dev-team-section {
-        padding: 0 1.2rem 3rem;
+        text-align: center
       }
 
       .dev-grid {
+        grid-template-columns: 1fr
+      }
+
+      .contact-grid {
         grid-template-columns: 1fr;
+        padding: 0 1.2rem 3rem
       }
 
-      .vision-section {
-        padding: 0 1.2rem 3rem;
+      .form-row {
+        grid-template-columns: 1fr
       }
 
-      .vision-card {
-        padding: 2rem 1.5rem;
+      .pricing-grid {
+        grid-template-columns: 1fr
       }
 
-      .vision-card blockquote {
-        font-size: 1rem;
+      .cta-banner {
+        margin: 0 1.2rem 3rem;
+        padding: 2rem 1.5rem
+      }
+
+      .section {
+        padding: 3rem 1.2rem
       }
     }
 
-    /* ── RESPONSIVE 480px ── */
     @media(max-width:480px) {
-      nav {
-        padding: 0 1rem;
-      }
-
-      .nav-logo-text {
-        font-size: 0.95rem;
-      }
-
       .hero-title {
-        font-size: 2.1rem;
-      }
-
-      .hero-eyebrow {
-        font-size: 0.62rem;
-      }
-
-      .hero-stats {
-        justify-content: space-around;
+        font-size: 2.1rem
       }
 
       .vehicle-row {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr)
       }
 
       .v-ico {
         width: 30px;
-        height: 30px;
+        height: 30px
       }
 
       .v-lbl {
-        font-size: 0.72rem;
+        font-size: 0.72rem
       }
 
       .v-cell {
-        padding: 0.9rem 0.5rem;
-      }
-
-      .feat-grid {
-        grid-template-columns: 1fr;
+        padding: 0.9rem 0.5rem
       }
 
       .tech-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr
       }
 
       .dev-card {
         flex-direction: column;
-        gap: 0.8rem;
+        gap: 0.8rem
       }
 
-      .dev-av {
-        width: 44px;
-        height: 44px;
-        border-radius: 10px;
-      }
-
-      .feat-block-content h2 {
-        font-size: 1.4rem;
-      }
-
-      footer {
-        padding: 1.5rem 1rem;
-      }
-
-      .footer-sub {
-        font-size: 0.62rem;
-        letter-spacing: 0.5px;
+      .sbar-item {
+        flex: 1 1 100%;
+        border-right: none
       }
     }
   </style>
@@ -1678,10 +2362,19 @@
   <div class="grid-bg"></div>
   <div class="scan"></div>
 
-  <!-- ══ NAV ══ -->
+  <!-- FLOATING WHATSAPP -->
+  <button class="wa-float" onclick="window.open('https://wa.me/94701688777','_blank')" title="Chat on WhatsApp">
+    <div class="wa-tooltip">Chat with us on WhatsApp</div>
+    <svg viewBox="0 0 24 24">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </button>
+
+  <!-- NAV -->
   <nav id="nav">
     <div class="nav-logo" onclick="showPage('home')">
-      <img src="IMG/logo.jpeg" alt="ShaloTrack" />
+      <img src="IMG/logo.jpeg" alt="ShaloTrack" onerror="this.style.display='none'" />
       <div class="nav-logo-text"><span class="s">SHALO</span><span class="t">TRACK</span></div>
     </div>
     <ul class="nav-links">
@@ -1689,9 +2382,10 @@
       <li><a onclick="showPage('features')" id="nav-features">Features</a></li>
       <li><a onclick="showPage('platform')" id="nav-platform">Platform</a></li>
       <li><a onclick="showPage('team')" id="nav-team">Team</a></li>
+      <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
     </ul>
-    <button class="nav-cta" onclick="showPage('features')">Explore Features →</button>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <button class="nav-cta" onclick="showPage('contact')">Get Started →</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -1701,12 +2395,45 @@
     <a onclick="showPage('features');closeMenu()" id="mob-features">Features</a>
     <a onclick="showPage('platform');closeMenu()" id="mob-platform">Platform</a>
     <a onclick="showPage('team');closeMenu()" id="mob-team">Team</a>
-    <button class="mob-cta" onclick="showPage('features');closeMenu()">Explore Features →</button>
+    <a onclick="showPage('contact');closeMenu()" id="mob-contact">Contact</a>
+    <button class="mob-cta" onclick="showPage('contact');closeMenu()">Get Started →</button>
   </div>
 
-  <!-- ══════════════════════════════════════
-     PAGE 1 — HOME
-══════════════════════════════════════ -->
+  <!-- STATS BAR -->
+  <div class="stats-bar" id="statsBar">
+    <div class="stats-bar-inner">
+      <div class="sbar-item">
+        <div class="sbar-dot"></div>
+        <div>
+          <div class="sbar-num"><em>25,000</em>+</div>
+          <div class="sbar-label">Active Devices</div>
+        </div>
+      </div>
+      <div class="sbar-item">
+        <div style="font-size:1.2rem">🌐</div>
+        <div>
+          <div class="sbar-num">Island<em>-Wide</em></div>
+          <div class="sbar-label">Coverage</div>
+        </div>
+      </div>
+      <div class="sbar-item">
+        <div style="font-size:1.2rem">⚡</div>
+        <div>
+          <div class="sbar-num">24<em>/7</em></div>
+          <div class="sbar-label">Live Monitoring</div>
+        </div>
+      </div>
+      <div class="sbar-item">
+        <div style="font-size:1.2rem">💬</div>
+        <div>
+          <div class="sbar-num">Fast<em> Support</em></div>
+          <div class="sbar-label">Local Sri Lankan Team</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ HOME ══════════════ -->
   <div class="page active" id="home">
     <div class="hero">
       <div class="hero-inner">
@@ -1718,17 +2445,18 @@
         <p class="hero-sub">Sri Lanka's smart GPS tracking and vehicle security platform — real-time monitoring, fleet
           management, and intelligent alerts for businesses and individual owners.</p>
         <div class="hero-btns">
-          <button class="btn-primary" onclick="showPage('features')">
+          <button class="btn-primary" onclick="showPage('contact')">
             <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/zap.svg"
-              style="width:16px;height:16px;filter:invert(1);" alt="" />
-            Explore Features
+              style="width:16px;height:16px;filter:invert(1)" alt="" />
+            Get Started
           </button>
-          <button class="btn-ghost" onclick="showPage('platform')">View Platform</button>
+          <button class="btn-ghost" onclick="showPage('features')">Explore Features</button>
         </div>
         <div class="hero-stats">
+          <div class="stat"><span class="stat-num">25K<span>+</span></span><span class="stat-label">Active
+              Devices</span></div>
           <div class="stat"><span class="stat-num">5<span>+</span></span><span class="stat-label">Vehicle Types</span>
           </div>
-          <div class="stat"><span class="stat-num">4<span>+</span></span><span class="stat-label">Portals</span></div>
           <div class="stat"><span class="stat-num">24<span>/7</span></span><span class="stat-label">Live Tracking</span>
           </div>
           <div class="stat"><span class="stat-num">LK<span>🇱🇰</span></span><span class="stat-label">Built in Sri
@@ -1737,8 +2465,49 @@
       </div>
     </div>
 
-    <!-- VEHICLES -->
+    <!-- HOW IT WORKS -->
     <div class="section">
+      <div class="sec-eyebrow">How It Works</div>
+      <h2 class="sec-title">Up and running in <span>3 simple steps</span></h2>
+      <p class="sec-sub">From installation to live tracking — ShaloTrack gets your vehicle protected and visible in no
+        time.</p>
+      <div class="hiw-steps" style="position:relative">
+        <div class="hiw-line"></div>
+        <div class="hiw-step">
+          <div class="hiw-num">
+            <span class="hiw-step-icon">🔧</span>
+            <div class="hiw-badge">1</div>
+          </div>
+          <div class="hiw-title">Install the Device</div>
+          <div class="hiw-desc">Our technician professionally installs the GPS tracker inside your vehicle — cars,
+            bikes, vans, or trucks. Takes under an hour.</div>
+          <span class="hiw-tag">Professional Install</span>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-num">
+            <span class="hiw-step-icon">📡</span>
+            <div class="hiw-badge">2</div>
+          </div>
+          <div class="hiw-title">Connect & Activate</div>
+          <div class="hiw-desc">The device connects to GPS satellites and transmits your vehicle's location securely to
+            our cloud platform in real time.</div>
+          <span class="hiw-tag">Instant Activation</span>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-num">
+            <span class="hiw-step-icon">📱</span>
+            <div class="hiw-badge">3</div>
+          </div>
+          <div class="hiw-title">Track from Anywhere</div>
+          <div class="hiw-desc">Open the ShaloTrack app and see your vehicle live on the map. Get instant alerts, view
+            history, and stay in control — always.</div>
+          <span class="hiw-tag">Live on App</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VEHICLES -->
+    <div class="section" style="padding-top:0">
       <div class="sec-eyebrow">What We Track</div>
       <h2 class="sec-title">Every vehicle. <span>Every road.</span></h2>
       <p class="sec-sub">From personal cars to full commercial fleets — ShaloTrack connects and monitors every asset in
@@ -1749,8 +2518,7 @@
           <div class="v-lbl">Cars</div>
         </div>
         <div class="v-cell">
-          <svg class="v-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            style="width:40px;height:40px;display:block;margin:0 auto 12px;filter:invert(0.6);transition:all 0.3s;">
+          <svg class="v-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <circle cx="5.5" cy="17.5" r="3.5" />
             <circle cx="18.5" cy="17.5" r="3.5" />
             <path d="M15 6h2l2 4H9l1-4h2m0 0V4m0 2h3" />
@@ -1776,7 +2544,7 @@
         </div>
       </div>
 
-      <!-- FEATURE GRID -->
+      <!-- FEATURES -->
       <div class="sec-eyebrow">Core Capabilities</div>
       <h2 class="sec-title">Built for <span>speed & reliability</span></h2>
       <p class="sec-sub">Easy vehicle tracking within 3 seconds after opening the app — built for normal Sri Lankan
@@ -1786,7 +2554,7 @@
           <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/map-pin.svg"
               alt="" /></div>
           <h3>Real-Time Tracking</h3>
-          <p>Live GPS position, satellite view, traffic overlay, and vehicle follow mode — all updated in real time.</p>
+          <p>Live GPS position, satellite view, traffic overlay, and vehicle follow mode — updated in real time.</p>
         </div>
         <div class="feat-card">
           <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/history.svg"
@@ -1822,29 +2590,37 @@
       </div>
     </div>
 
+    <!-- CTA BANNER -->
+    <div style="padding:0 2rem;max-width:1100px;margin:0 auto 5rem">
+      <div class="cta-banner">
+        <h2>Ready to protect your <span>vehicle?</span></h2>
+        <p>Join 25,000+ vehicle owners and businesses across Sri Lanka who trust ShaloTrack for real-time GPS tracking
+          and vehicle security.</p>
+        <div class="cta-btns">
+          <button class="btn-primary" onclick="showPage('contact')">Get Started Today →</button>
+          <button class="btn-ghost" onclick="window.open('https://wa.me/94701688777','_blank')">Chat on
+            WhatsApp</button>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
       <div class="footer-sub">GPS TRACKING · VEHICLE SECURITY · FLEET MANAGEMENT · SRI LANKA 🇱🇰</div>
     </footer>
   </div>
 
-  <!-- ══════════════════════════════════════
-     PAGE 2 — FEATURES
-══════════════════════════════════════ -->
+  <!-- ══════════════ FEATURES ══════════════ -->
   <div class="page" id="features">
     <div class="features-hero">
       <div class="sec-eyebrow" style="text-align:center">Mobile Application</div>
-      <h1 class="sec-title"
-        style="font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;text-align:center;">
-        Everything you need,<br /><span>in your pocket.</span></h1>
-      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem;">The ShaloTrack Android app
+      <h1 class="sec-title" style="font-size:clamp(2rem,5vw,3.2rem);text-align:center">Everything you
+        need,<br /><span>in your pocket.</span></h1>
+      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem">The ShaloTrack Android app
         puts complete vehicle control and live monitoring at your fingertips — fast, stable, and built for Sri Lankan
         roads.</p>
     </div>
-
     <div class="feat-section">
-
-      <!-- BLOCK 1 — LIVE TRACKING -->
       <div class="feat-block">
         <div class="feat-block-visual">
           <div class="mock-phone">
@@ -1878,30 +2654,28 @@
           </ul>
         </div>
       </div>
-
-      <!-- BLOCK 2 — ALERTS -->
       <div class="feat-block rev">
         <div class="feat-block-visual">
           <div class="mock-alerts">
             <div class="alert-item">
               <div class="alert-dot warn"></div>
-              <div class="alert-text">⚡ Overspeed — Toyota Hiace CBC-4421</div><span class="alert-time">2m ago</span>
+              <div class="alert-text">Overspeed — Toyota Hiace CBC-4421</div><span class="alert-time">2m ago</span>
             </div>
             <div class="alert-item">
               <div class="alert-dot on"></div>
-              <div class="alert-text">🔑 Ignition ON — Nissan Leaf WP-8821</div><span class="alert-time">5m ago</span>
+              <div class="alert-text">Ignition ON — Nissan Leaf WP-8821</div><span class="alert-time">5m ago</span>
             </div>
             <div class="alert-item">
               <div class="alert-dot off"></div>
-              <div class="alert-text">📡 Device Offline — CAB-1192</div><span class="alert-time">12m ago</span>
+              <div class="alert-text">Device Offline — CAB-1192</div><span class="alert-time">12m ago</span>
             </div>
             <div class="alert-item">
               <div class="alert-dot warn"></div>
-              <div class="alert-text">📍 Geo-fence exit — Truck PQ-3345</div><span class="alert-time">18m ago</span>
+              <div class="alert-text">Geo-fence exit — Truck PQ-3345</div><span class="alert-time">18m ago</span>
             </div>
             <div class="alert-item">
               <div class="alert-dot off"></div>
-              <div class="alert-text">🔋 Low battery — Bike NB-9901</div><span class="alert-time">1h ago</span>
+              <div class="alert-text">Low battery — Bike NB-9901</div><span class="alert-time">1h ago</span>
             </div>
           </div>
         </div>
@@ -1920,30 +2694,28 @@
           </ul>
         </div>
       </div>
-
-      <!-- BLOCK 3 — ENGINE CUT -->
       <div class="feat-block">
         <div class="feat-block-visual">
           <div class="mock-engine">
             <div class="engine-ring">
               <div class="engine-btn">ENGINE<br />CUT</div>
             </div>
-            <div class="engine-label" style="font-size:0.72rem;color:var(--textMuted);">Enter PIN to confirm</div>
+            <div style="font-size:0.72rem;color:var(--textMuted)">Enter PIN to confirm</div>
             <div class="engine-pin">
               <div class="pin-dot filled"></div>
               <div class="pin-dot filled"></div>
               <div class="pin-dot filled"></div>
               <div class="pin-dot"></div>
             </div>
-            <div style="font-size:0.65rem;color:var(--textDim);text-align:center;max-width:150px;line-height:1.4;">
-              Safety check: Vehicle speed must be below 5 km/h</div>
+            <div style="font-size:0.65rem;color:var(--textDim);text-align:center;max-width:150px;line-height:1.4">Safety
+              check: Vehicle speed must be below 5 km/h</div>
           </div>
         </div>
         <div class="feat-block-content">
           <span class="tag">Engine Cut</span>
           <h2>Remotely stop your vehicle — safely</h2>
-          <p>The engine cut feature lets you immobilize your vehicle remotely with full safety checks in place. A PIN
-            and confirmation popup prevent accidental use.</p>
+          <p>The engine cut feature lets you immobilize your vehicle remotely with full safety checks. A PIN and
+            confirmation popup prevent accidental use.</p>
           <ul class="feat-list">
             <li>Remote engine cut command</li>
             <li>PIN protection</li>
@@ -1952,39 +2724,35 @@
           </ul>
         </div>
       </div>
-
-      <!-- BLOCK 4 — HISTORY -->
       <div class="feat-block rev">
         <div class="feat-block-visual">
-          <div style="width:100%;display:flex;flex-direction:column;gap:10px;">
-            <div style="background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:12px;">
+          <div style="width:100%;display:flex;flex-direction:column;gap:10px">
+            <div style="background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:12px">
               <div
-                style="font-size:0.65rem;color:var(--orange);font-family:'JetBrains Mono',monospace;margin-bottom:8px;letter-spacing:1px;">
+                style="font-size:0.65rem;color:var(--orange);font-family:'JetBrains Mono',monospace;margin-bottom:8px;letter-spacing:1px">
                 TODAY'S ROUTE</div>
               <div
-                style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:8px;position:relative;">
+                style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:8px;position:relative">
                 <div
-                  style="position:absolute;left:0;top:0;height:100%;width:72%;background:var(--orange);border-radius:2px;">
+                  style="position:absolute;left:0;top:0;height:100%;width:72%;background:var(--orange);border-radius:2px">
                 </div>
               </div>
-              <div style="display:flex;justify-content:space-between;">
-                <span style="font-size:0.65rem;color:var(--textDim);font-family:'JetBrains Mono',monospace;">142
-                  km</span>
-                <span style="font-size:0.65rem;color:var(--textDim);font-family:'JetBrains Mono',monospace;">4h
-                  22m</span>
+              <div style="display:flex;justify-content:space-between"><span
+                  style="font-size:0.65rem;color:var(--textDim);font-family:'JetBrains Mono',monospace">142
+                  km</span><span
+                  style="font-size:0.65rem;color:var(--textDim);font-family:'JetBrains Mono',monospace">4h 22m</span>
               </div>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
               <div
-                style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
-                <div style="font-size:1rem;font-weight:700;color:#fff;font-family:'Syne',sans-serif;">7</div>
-                <div style="font-size:0.6rem;color:var(--textDim);font-family:'JetBrains Mono',monospace;">Stops</div>
+                style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center">
+                <div style="font-size:1rem;font-weight:700;color:#fff;font-family:'Syne',sans-serif">7</div>
+                <div style="font-size:0.6rem;color:var(--textDim);font-family:'JetBrains Mono',monospace">Stops</div>
               </div>
               <div
-                style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
-                <div style="font-size:1rem;font-weight:700;color:var(--orange);font-family:'Syne',sans-serif;">88</div>
-                <div style="font-size:0.6rem;color:var(--textDim);font-family:'JetBrains Mono',monospace;">Max km/h
-                </div>
+                style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center">
+                <div style="font-size:1rem;font-weight:700;color:var(--orange);font-family:'Syne',sans-serif">88</div>
+                <div style="font-size:0.6rem;color:var(--textDim);font-family:'JetBrains Mono',monospace">Max km/h</div>
               </div>
             </div>
           </div>
@@ -2002,7 +2770,16 @@
           </ul>
         </div>
       </div>
-
+    </div>
+    <div style="padding:0 2rem;max-width:1100px;margin:0 auto 5rem">
+      <div class="cta-banner">
+        <h2>Ready to see it <span>in action?</span></h2>
+        <p>Get in touch and our team will walk you through the ShaloTrack platform and set up your first device.</p>
+        <div class="cta-btns">
+          <button class="btn-primary" onclick="showPage('contact')">Contact Us →</button>
+          <button class="btn-ghost" onclick="showPage('platform')">View Platform</button>
+        </div>
+      </div>
     </div>
     <footer>
       <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
@@ -2010,40 +2787,32 @@
     </footer>
   </div>
 
-  <!-- ══════════════════════════════════════
-     PAGE 3 — PLATFORM
-══════════════════════════════════════ -->
+  <!-- ══════════════ PLATFORM ══════════════ -->
   <div class="page" id="platform">
     <div class="platform-hero">
       <div class="sec-eyebrow" style="text-align:center">Platform Ecosystem</div>
-      <h1 class="sec-title"
-        style="font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;text-align:center;">Four
-        portals. <span>One ecosystem.</span></h1>
-      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem;margin-bottom:2.5rem;">From
+      <h1 class="sec-title" style="font-size:clamp(2rem,5vw,3.2rem);text-align:center">Four portals. <span>One
+          ecosystem.</span></h1>
+      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem;margin-bottom:2.5rem">From
         the driver's phone to the admin's dashboard — every part of the ShaloTrack platform works together seamlessly.
       </p>
     </div>
-
     <div class="portal-grid">
       <div class="portal-card">
         <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/smartphone.svg"
             alt="" /></div>
         <h3>Mobile App</h3>
         <p>Android-first customer app for live tracking, alerts, history playback, and subscription management.</p>
-        <div class="portal-tags">
-          <span class="ptag">Android</span><span class="ptag">Kotlin</span><span class="ptag">Firebase</span><span
-            class="ptag">Google Maps</span>
-        </div>
+        <div class="portal-tags"><span class="ptag">Android</span><span class="ptag">Kotlin</span><span
+            class="ptag">Firebase</span><span class="ptag">Google Maps</span></div>
       </div>
       <div class="portal-card">
         <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/monitor.svg"
             alt="" /></div>
         <h3>Customer Portal</h3>
         <p>Web-based portal for live tracking dashboard, vehicle monitoring, and detailed reports & analytics.</p>
-        <div class="portal-tags">
-          <span class="ptag">PHP</span><span class="ptag">Bootstrap</span><span class="ptag">JavaScript</span><span
-            class="ptag">Maps API</span>
-        </div>
+        <div class="portal-tags"><span class="ptag">PHP</span><span class="ptag">Bootstrap</span><span
+            class="ptag">JavaScript</span><span class="ptag">Maps API</span></div>
       </div>
       <div class="portal-card">
         <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/shield-check.svg"
@@ -2051,36 +2820,29 @@
         <h3>Admin Panel</h3>
         <p>Full control center — customer management, device management, IMEI control, subscriptions, dealers, and
           revenue reports.</p>
-        <div class="portal-tags">
-          <span class="ptag">Customer Mgmt</span><span class="ptag">Device Control</span><span class="ptag">Revenue
-            Reports</span>
-        </div>
+        <div class="portal-tags"><span class="ptag">Customer Mgmt</span><span class="ptag">Device Control</span><span
+            class="ptag">Revenue Reports</span></div>
       </div>
-      <div class="portal-card" style="grid-column:span 1;">
+      <div class="portal-card">
         <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/users.svg" alt="" />
         </div>
         <h3>Dealer Portal</h3>
         <p>Distributor login for device activation, customer registration, subscription activation, and device
           assignment.</p>
-        <div class="portal-tags">
-          <span class="ptag">Activation</span><span class="ptag">Registration</span><span class="ptag">Assignment</span>
-        </div>
+        <div class="portal-tags"><span class="ptag">Activation</span><span class="ptag">Registration</span><span
+            class="ptag">Assignment</span></div>
       </div>
-      <div class="portal-card" style="grid-column:span 2;">
+      <div class="portal-card" style="grid-column:span 2">
         <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/satellite.svg"
             alt="" /></div>
         <h3>GPS Infrastructure</h3>
         <p>The backbone of the platform — a TCP GPS server processing real-time data from all connected devices 24/7,
           with full protocol support and device command management.</p>
-        <div class="portal-tags">
-          <span class="ptag">TCP Server</span><span class="ptag">GT06 Protocol</span><span class="ptag">V5
-            Support</span><span class="ptag">2G Trackers</span><span class="ptag">IMEI Mgmt</span><span
-            class="ptag">Real-Time</span>
-        </div>
+        <div class="portal-tags"><span class="ptag">TCP Server</span><span class="ptag">GT06 Protocol</span><span
+            class="ptag">V5 Support</span><span class="ptag">2G Trackers</span><span class="ptag">IMEI Mgmt</span><span
+            class="ptag">Real-Time</span></div>
       </div>
     </div>
-
-    <!-- TECH STACK -->
     <div class="tech-section">
       <div class="sec-eyebrow">Technology Stack</div>
       <h2 class="sec-title">Built on <span>proven technology</span></h2>
@@ -2091,16 +2853,16 @@
           <div class="tech-card-label">Mobile</div>
           <div class="tech-tags">
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kotlin.svg"
-                style="filter:invert(60%) sepia(60%) saturate(400%) hue-rotate(220deg);" alt="" /><span>Kotlin</span>
+                style="filter:invert(60%) sepia(60%) saturate(400%) hue-rotate(220deg)" alt="" /><span>Kotlin</span>
             </div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/android.svg"
-                style="filter:invert(70%) sepia(50%) saturate(400%) hue-rotate(80deg);" alt="" /><span>Android
-                SDK</span></div>
+                style="filter:invert(70%) sepia(50%) saturate(400%) hue-rotate(80deg)" alt="" /><span>Android SDK</span>
+            </div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/firebase.svg"
-                style="filter:invert(80%) sepia(60%) saturate(400%) hue-rotate(10deg);" alt="" /><span>Firebase
+                style="filter:invert(80%) sepia(60%) saturate(400%) hue-rotate(10deg)" alt="" /><span>Firebase
                 FCM</span></div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlemaps.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(180deg);" alt="" /><span>Google
+                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(180deg)" alt="" /><span>Google
                 Maps</span></div>
           </div>
         </div>
@@ -2108,26 +2870,26 @@
           <div class="tech-card-label">Backend</div>
           <div class="tech-tags">
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/dotnet.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(220deg);" alt="" /><span>.NET Web
+                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(220deg)" alt="" /><span>.NET Web
                 API</span></div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/network.svg"
-                style="filter:invert(0.5);" alt="" /><span>TCP GPS Server</span></div>
+                style="filter:invert(0.5)" alt="" /><span>TCP GPS Server</span></div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/zap.svg"
-                style="filter:invert(0.5);" alt="" /><span>REST APIs</span></div>
+                style="filter:invert(0.5)" alt="" /><span>REST APIs</span></div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/radio.svg"
-                style="filter:invert(0.5);" alt="" /><span>GPS Protocol Parser</span></div>
+                style="filter:invert(0.5)" alt="" /><span>GPS Protocol Parser</span></div>
           </div>
         </div>
         <div class="tech-card">
           <div class="tech-card-label">Web</div>
           <div class="tech-tags">
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/php.svg"
-                style="filter:invert(60%) sepia(20%) saturate(400%) hue-rotate(220deg);" alt="" /><span>PHP</span></div>
+                style="filter:invert(60%) sepia(20%) saturate(400%) hue-rotate(220deg)" alt="" /><span>PHP</span></div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/bootstrap.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(240deg);" alt="" /><span>Bootstrap</span>
+                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(240deg)" alt="" /><span>Bootstrap</span>
             </div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg"
-                style="filter:invert(80%) sepia(60%) saturate(400%) hue-rotate(10deg);" alt="" /><span>JavaScript</span>
+                style="filter:invert(80%) sepia(60%) saturate(400%) hue-rotate(10deg)" alt="" /><span>JavaScript</span>
             </div>
           </div>
         </div>
@@ -2135,27 +2897,25 @@
           <div class="tech-card-label">Cloud & DB</div>
           <div class="tech-tags">
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/postgresql.svg"
-                style="filter:invert(50%) sepia(40%) saturate(400%) hue-rotate(180deg);"
-                alt="" /><span>PostgreSQL</span></div>
+                style="filter:invert(50%) sepia(40%) saturate(400%) hue-rotate(180deg)" alt="" /><span>PostgreSQL</span>
+            </div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/supabase.svg"
-                style="filter:invert(70%) sepia(50%) saturate(400%) hue-rotate(100deg);" alt="" /><span>Supabase</span>
+                style="filter:invert(70%) sepia(50%) saturate(400%) hue-rotate(100deg)" alt="" /><span>Supabase</span>
             </div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftazure.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(180deg);" alt="" /><span>Microsoft
+                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(180deg)" alt="" /><span>Microsoft
                 Azure</span></div>
             <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(180deg);" alt="" /><span>Docker</span>
+                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(180deg)" alt="" /><span>Docker</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- DEVICE SUPPORT -->
     <div class="device-section">
       <div class="sec-eyebrow">Device Compatibility</div>
       <h2 class="sec-title">Supports today's devices. <span>Ready for tomorrow.</span></h2>
-      <p class="sec-sub" style="margin-bottom:2rem;">Full support for current GPS hardware with a clear path to 4G and
+      <p class="sec-sub" style="margin-bottom:2rem">Full support for current GPS hardware with a clear path to 4G and
         future expansion.</p>
       <div class="device-grid">
         <div class="device-card">
@@ -2188,28 +2948,22 @@
         </div>
       </div>
     </div>
-
     <footer>
       <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
       <div class="footer-sub">GPS TRACKING · VEHICLE SECURITY · FLEET MANAGEMENT · SRI LANKA 🇱🇰</div>
     </footer>
   </div>
 
-  <!-- ══════════════════════════════════════
-     PAGE 4 — TEAM
-══════════════════════════════════════ -->
+  <!-- ══════════════ TEAM ══════════════ -->
   <div class="page" id="team">
     <div class="team-hero">
       <div class="sec-eyebrow" style="text-align:center">The People</div>
-      <h1 class="sec-title"
-        style="font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;text-align:center;">Built
-        by <span>Sri Lankans</span><br />for Sri Lanka.</h1>
-      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem;margin-bottom:2.5rem;">A
+      <h1 class="sec-title" style="font-size:clamp(2rem,5vw,3.2rem);text-align:center">Built by <span>Sri
+          Lankans</span><br />for Sri Lanka.</h1>
+      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem;margin-bottom:2.5rem">A
         focused team of engineers and designers building the country's leading GPS tracking platform from the ground up.
       </p>
     </div>
-
-    <!-- FOUNDER -->
     <div class="founder-section">
       <div class="founder-card">
         <div class="founder-avatar">NA</div>
@@ -2221,21 +2975,18 @@
         </div>
       </div>
     </div>
-
-    <!-- DEV TEAM -->
     <div class="dev-team-section">
       <div class="sec-eyebrow">Development Team</div>
-      <h2 class="sec-title" style="margin-bottom:1.5rem;">The engineers <span>behind the platform</span></h2>
+      <h2 class="sec-title" style="margin-bottom:1.5rem">The engineers <span>behind the platform</span></h2>
       <div class="dev-grid">
         <div class="dev-card">
           <div class="dev-av av-o">SJ</div>
           <div class="dev-info">
             <h3>Swen Jayathunga</h3>
             <div class="dev-role">Software Engineer</div>
-            <div class="dev-tags">
-              <span class="dev-tag">Backend</span><span class="dev-tag">System Architecture</span><span
-                class="dev-tag">Database Design</span><span class="dev-tag">GPS Infrastructure</span>
-            </div>
+            <div class="dev-tags"><span class="dev-tag">Backend</span><span class="dev-tag">System
+                Architecture</span><span class="dev-tag">Database Design</span><span class="dev-tag">GPS
+                Infrastructure</span></div>
           </div>
         </div>
         <div class="dev-card">
@@ -2243,10 +2994,8 @@
           <div class="dev-info">
             <h3>Nethmi Wijekoon</h3>
             <div class="dev-role">Software Engineer</div>
-            <div class="dev-tags">
-              <span class="dev-tag">Frontend</span><span class="dev-tag">UI/UX Design</span><span
-                class="dev-tag">Quality Assurance</span>
-            </div>
+            <div class="dev-tags"><span class="dev-tag">Frontend</span><span class="dev-tag">UI/UX Design</span><span
+                class="dev-tag">Quality Assurance</span></div>
           </div>
         </div>
         <div class="dev-card">
@@ -2254,10 +3003,8 @@
           <div class="dev-info">
             <h3>Nuwan Akalanka</h3>
             <div class="dev-role">Software Engineer</div>
-            <div class="dev-tags">
-              <span class="dev-tag">Backend</span><span class="dev-tag">Database Engineering</span><span
-                class="dev-tag">System Analysis</span>
-            </div>
+            <div class="dev-tags"><span class="dev-tag">Backend</span><span class="dev-tag">Database
+                Engineering</span><span class="dev-tag">System Analysis</span></div>
           </div>
         </div>
         <div class="dev-card">
@@ -2265,16 +3012,12 @@
           <div class="dev-info">
             <h3>Amoda Rashmika</h3>
             <div class="dev-role">Software Engineer</div>
-            <div class="dev-tags">
-              <span class="dev-tag">DevOps</span><span class="dev-tag">Cloud Infrastructure</span><span
-                class="dev-tag">Security Engineering</span>
-            </div>
+            <div class="dev-tags"><span class="dev-tag">DevOps</span><span class="dev-tag">Cloud
+                Infrastructure</span><span class="dev-tag">Security Engineering</span></div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- VISION -->
     <div class="vision-section">
       <div class="vision-card">
         <blockquote>To become <span>Sri Lanka's leading GPS tracking and fleet management technology provider</span> —
@@ -2282,12 +3025,10 @@
         <cite>— ShaloTrack Lanka (Pvt) Ltd · Always Connected 🇱🇰</cite>
       </div>
     </div>
-
-    <!-- FUTURE -->
-    <div style="padding:0 2rem 5rem;max-width:1100px;margin:0 auto;">
+    <div style="padding:0 2rem 5rem;max-width:1100px;margin:0 auto">
       <div class="sec-eyebrow">Roadmap</div>
-      <h2 class="sec-title" style="margin-bottom:1.5rem;">Coming <span>next</span></h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+      <h2 class="sec-title" style="margin-bottom:1.5rem">Coming <span>next</span></h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
         <div class="feat-card">
           <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/fuel.svg"
               alt="" /></div>
@@ -2326,6 +3067,267 @@
         </div>
       </div>
     </div>
+    <footer>
+      <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
+      <div class="footer-sub">GPS TRACKING · VEHICLE SECURITY · FLEET MANAGEMENT · SRI LANKA 🇱🇰</div>
+    </footer>
+  </div>
+
+  <!-- ══════════════ CONTACT ══════════════ -->
+  <div class="page" id="contact">
+    <div class="contact-hero">
+      <div class="sec-eyebrow" style="text-align:center">Get In Touch</div>
+      <h1 class="sec-title" style="font-size:clamp(2rem,5vw,3.2rem);text-align:center">Let's get your vehicle
+        <span>protected.</span></h1>
+      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem;margin-bottom:2.5rem">Fill in
+        the form and our team will reach out within the hour. Or just tap the WhatsApp button — we're always available.
+      </p>
+    </div>
+
+    <!-- CONTACT GRID -->
+    <div class="contact-grid">
+      <!-- FORM -->
+      <div class="contact-form-card">
+        <div class="form-title">Send Us a Message</div>
+        <div class="form-sub">We'll reply via WhatsApp with everything you need to get started.</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Your Name *</label><input type="text" class="form-input"
+              id="f-name" placeholder="Nimal Perera" /></div>
+          <div class="form-group"><label class="form-label">Phone *</label><input type="tel" class="form-input"
+              id="f-phone" placeholder="+94 7X XXX XXXX" /></div>
+        </div>
+        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input"
+            id="f-email" placeholder="nimal@email.com" /></div>
+        <div class="form-group"><label class="form-label">Vehicle Type</label>
+          <select class="form-input" id="f-vehicle">
+            <option value="">Select your vehicle type</option>
+            <option>Car / SUV</option>
+            <option>Motorcycle / Scooter</option>
+            <option>Van / Lorry</option>
+            <option>Three-Wheeler</option>
+            <option>Bus / Heavy Vehicle</option>
+            <option>Multiple Vehicles (Fleet)</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" id="f-msg"
+            placeholder="Tell us about your tracking needs..." style="min-height:90px"></textarea></div>
+        <button class="btn-wa-submit" onclick="submitToWA()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+          Send via WhatsApp
+        </button>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="contact-sidebar">
+        <button class="wa-direct-btn" onclick="window.open('https://wa.me/94701688777','_blank')">
+          <div class="wa-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg></div>
+          <div>
+            <div class="wa-title">Chat on WhatsApp</div>
+            <div class="wa-sub">+94 70 168 8777 · Fast replies</div>
+          </div>
+        </button>
+        <div class="contact-info-card">
+          <div class="ci-icon">📞</div>
+          <div>
+            <div class="ci-label">Phone</div>
+            <div class="ci-value">+94 70 168 8777</div>
+            <div class="ci-sub">Mon – Sun · 8 AM – 8 PM</div>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="ci-icon">📧</div>
+          <div>
+            <div class="ci-label">Email</div>
+            <div class="ci-value">aloka@shalotrack.com</div>
+            <div class="ci-sub">We reply within a few hours</div>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="ci-icon">📍</div>
+          <div>
+            <div class="ci-label">Location</div>
+            <div class="ci-value">Colombo, Sri Lanka</div>
+            <div class="ci-sub">Island-wide service coverage</div>
+          </div>
+        </div>
+        <div class="map-placeholder">
+          <div class="map-inner">
+            <div class="map-pin-center">
+              <div style="font-size:2.5rem;margin-bottom:8px">📍</div>
+              <div style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:#fff">Colombo, Sri Lanka
+              </div>
+              <div
+                style="font-size:0.72rem;color:var(--textMuted);margin-top:4px;font-family:'JetBrains Mono',monospace">
+                ShaloTrack Lanka (Pvt) Ltd</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="pricing-section">
+      <div class="pricing-intro">
+        <div class="pricing-note">💰 Pricing Plans</div>
+        <h2 class="sec-title" style="text-align:center">Transparent plans for <span>every need</span></h2>
+        <p style="color:var(--textMuted);font-size:0.9rem;margin-top:0.5rem">All plans include device installation,
+          mobile app access, and local support. Contact us for exact pricing.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-badge std">Personal</div>
+          <div class="price-name">Individual</div>
+          <div class="price-desc">For personal vehicle owners who want to protect and monitor a single vehicle.</div>
+          <div class="price-amount">
+            <div class="price-tag">Starting from</div>
+            <div class="price-val">Contact for Pricing</div>
+          </div>
+          <ul class="price-features">
+            <li>1 vehicle</li>
+            <li>Real-time GPS tracking</li>
+            <li>Mobile app access</li>
+            <li>Smart alerts & notifications</li>
+            <li>Route history & playback</li>
+            <li>Local support</li>
+          </ul>
+          <button class="price-cta ghost"
+            onclick="window.open('https://wa.me/94701688777?text=Hi, I am interested in the Individual plan','_blank')">Enquire
+            Now</button>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge pop">Most Popular</div>
+          <div class="price-name">Business</div>
+          <div class="price-desc">For businesses with multiple vehicles needing fleet visibility and management.</div>
+          <div class="price-amount">
+            <div class="price-tag">Starting from</div>
+            <div class="price-val">Contact for Pricing</div>
+          </div>
+          <ul class="price-features">
+            <li>Up to 20 vehicles</li>
+            <li>Fleet management dashboard</li>
+            <li>Multi-vehicle tracking</li>
+            <li>Driver monitoring</li>
+            <li>Advanced alerts & reports</li>
+            <li>Priority support</li>
+          </ul>
+          <button class="price-cta primary"
+            onclick="window.open('https://wa.me/94701688777?text=Hi, I am interested in the Business plan','_blank')">Get
+            Started →</button>
+        </div>
+        <div class="price-card">
+          <div class="price-badge ent">Enterprise</div>
+          <div class="price-name">Fleet</div>
+          <div class="price-desc">For large fleets, logistics companies, and enterprises needing full control.</div>
+          <div class="price-amount">
+            <div class="price-tag">Custom</div>
+            <div class="price-val">Contact Sales</div>
+          </div>
+          <ul class="price-features">
+            <li>Unlimited vehicles</li>
+            <li>Custom admin portal</li>
+            <li>Dealer portal access</li>
+            <li>API integration</li>
+            <li>Dedicated account manager</li>
+            <li>SLA guarantee</li>
+          </ul>
+          <button class="price-cta ghost"
+            onclick="window.open('https://wa.me/94701688777?text=Hi, I need a custom Enterprise quote','_blank')">Talk
+            to Sales</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <div class="sec-eyebrow" style="text-align:center">FAQ</div>
+      <h2 class="sec-title" style="text-align:center">Common <span>questions</span></h2>
+      <p style="color:var(--textMuted);font-size:0.9rem;text-align:center;margin-bottom:0">Everything you need to know
+        before getting started with ShaloTrack.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How does GPS tracker installation
+              work?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Our certified technician visits your location or you bring your vehicle to our
+              service point. The GPS device is professionally installed inside your vehicle — hidden and secure.
+              Installation typically takes 30–60 minutes. We then activate the device and connect it to your mobile app
+              before you leave.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Which vehicles are
+              supported?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">
+            <div class="faq-a-inner">ShaloTrack supports all types of vehicles including cars, SUVs, motorcycles,
+              scooters, three-wheelers, vans, lorries, trucks, buses, and heavy vehicles. We also support asset tracking
+              for non-motorized equipment. If you're unsure, just contact us and we'll advise the right solution.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How long is the subscription
+              period?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">
+            <div class="faq-a-inner">We offer flexible subscription plans — typically monthly or annual. Annual plans
+              come with a discount compared to monthly billing. Your subscription covers the cloud platform, data
+              transmission, mobile app access, and ongoing support. Renewals are easy and can be done directly through
+              our team via WhatsApp.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Does the app work without internet on
+              the phone?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">
+            <div class="faq-a-inner">The ShaloTrack mobile app requires an internet connection (mobile data or WiFi) to
+              display live tracking data and receive alerts. The GPS device in your vehicle uses its own SIM card to
+              transmit location data to our servers — so your vehicle is always tracked even if you're offline, and data
+              is available once you reconnect.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Can I track multiple vehicles from one
+              account?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Yes. Our Business and Fleet plans support multiple vehicles under a single account.
+              You can view all vehicles on the map simultaneously, switch between them, and receive alerts for any
+              vehicle in your fleet. Contact us for pricing based on the number of vehicles you need to track.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What happens if my GPS device goes
+              offline?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">
+            <div class="faq-a-inner">You'll receive an instant push notification on your phone when any device goes
+              offline. This could indicate a power cut, SIM issue, or tampering attempt. The app will show the last
+              known location and timestamp. Our support team is available to help diagnose and resolve any device issues
+              quickly.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Is my vehicle data private and
+              secure?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Absolutely. All tracking data is encrypted and stored securely on our cloud
+              infrastructure (Microsoft Azure). Only you and authorized users can access your vehicle's data. We never
+              share or sell customer data to third parties. Your account is protected with secure authentication.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How do I get support if I have an
+              issue?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Our local Sri Lankan support team is available via WhatsApp (+94 70 168 8777) and
+              phone from 8 AM to 8 PM, seven days a week. For technical issues, we aim to respond within the hour. You
+              can also email us at aloka@shalotrack.com for non-urgent queries.</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer>
       <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
@@ -2334,35 +3336,66 @@
   </div>
 
   <script>
+    // Page navigation
     function showPage(id) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
+      document.querySelectorAll('.nav-links a,.mobile-menu a').forEach(a => a.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      const navEl = document.getElementById('nav-' + id);
-      if (navEl) navEl.classList.add('active');
-      const mobEl = document.getElementById('mob-' + id);
-      if (mobEl) mobEl.classList.add('active');
+      ['nav-', 'mob-'].forEach(prefix => {
+        const el = document.getElementById(prefix + id);
+        if (el) el.classList.add('active');
+      });
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Show/hide stats bar (hide on contact to give clean look)
+      document.getElementById('statsBar').style.display = 'block';
     }
+
     function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      const ham = document.getElementById('hamburger');
-      menu.classList.toggle('open');
-      ham.classList.toggle('open');
+      document.getElementById('mobileMenu').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
     }
     function closeMenu() {
       document.getElementById('mobileMenu').classList.remove('open');
       document.getElementById('hamburger').classList.remove('open');
     }
 
-    // Scroll-triggered fade-in
+    // FAQ accordion
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // WhatsApp form submit
+    function submitToWA() {
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const vehicle = document.getElementById('f-vehicle').value;
+      const msg = document.getElementById('f-msg').value.trim();
+      if (!name) { alert('Please enter your name.'); return }
+      if (!phone) { alert('Please enter your phone number.'); return }
+      const lines = [
+        '*New ShaloTrack Enquiry*',
+        '----------------------------',
+        '*Name:* ' + name,
+        '*Phone:* ' + phone,
+        email ? '*Email:* ' + email : null,
+        vehicle ? '*Vehicle:* ' + vehicle : null,
+        msg ? '*Message:* ' + msg : null,
+      ].filter(Boolean).join('\n');
+      window.open('https://wa.me/94701688777?text=' + encodeURIComponent(lines), '_blank');
+    }
+
+    // Scroll-triggered animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+        if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)' }
       });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.feat-card,.v-cell,.portal-card,.dev-card,.device-card,.feat-block').forEach(el => {
-      el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.feat-card,.v-cell,.portal-card,.dev-card,.device-card,.feat-block,.hiw-step,.price-card,.faq-item,.contact-info-card,.sbar-item').forEach(el => {
+      el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.5s ease,transform 0.5s ease';
       observer.observe(el);
     });
   </script>
