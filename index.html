@@ -1,3403 +1,1701 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ShaloTrack Lanka | GPS Vehicle Tracking & Security</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071a33">
   <meta name="description"
-    content="ShaloTrack — Sri Lanka's smart GPS tracking and vehicle security platform. Real-time tracking, fleet management and alerts. 25,000+ active devices." />
+    content="ShaloTrack provides real-time GPS tracking, vehicle security, and fleet visibility for Sri Lankan drivers and businesses.">
   <meta name="keywords"
-    content="GPS tracking Sri Lanka, vehicle tracking, fleet management, ShaloTrack, GPS tracker Sri Lanka, vehicle security" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
+    content="GPS tracking Sri Lanka, vehicle tracking, fleet management, vehicle security, ShaloTrack">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://shalotrack.com/">
+  <title>ShaloTrack | GPS Tracking & Vehicle Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box
-    }
-
     :root {
-      --navy: #0d1b3e;
-      --navy2: #1a2d5a;
-      --navy3: #2d4a8a;
-      --orange: #f47920;
-      --orangeL: #ff9a45;
-      --orangeDim: rgba(244, 121, 32, 0.12);
-      --glass: rgba(255, 255, 255, 0.04);
-      --border: rgba(255, 255, 255, 0.07);
-      --borderO: rgba(244, 121, 32, 0.2);
-      --text: #e8f0ff;
-      --textMuted: rgba(200, 220, 255, 0.55);
-      --textDim: rgba(200, 220, 255, 0.35);
+      --ink: #071a33;
+      --ink-2: #0b284e;
+      --ink-3: #123b68;
+      --blue: #1464a5;
+      --orange: #f4772e;
+      --orange-dark: #d95817;
+      --orange-wash: #fff1e9;
+      --surface: #f7f9fc;
+      --paper: #ffffff;
+      --line: #dce4ee;
+      --muted: #60728a;
+      --text: #102641;
+      --success: #26b178;
+      --shadow-sm: 0 10px 25px rgba(7, 26, 51, .07);
+      --shadow: 0 24px 58px rgba(7, 26, 51, .14);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --content: 1180px;
     }
 
-    html {
-      scroll-behavior: smooth
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      background: #080f20;
+      margin: 0;
+      min-width: 320px;
+      background: var(--paper);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: "Manrope", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
       overflow-x: hidden;
-      line-height: 1.6
     }
 
-    body::before {
-      content: '';
+    body.menu-open { overflow: hidden; }
+
+    a { color: inherit; }
+
+    button, input, select, textarea { font: inherit; }
+
+    button { cursor: pointer; }
+
+    :focus-visible {
+      outline: 3px solid rgba(244, 119, 46, .45);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
       position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4
+      z-index: 1000;
+      top: -60px;
+      left: 16px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
     }
 
-    .grid-bg {
+    .skip-link:focus { top: 16px; }
+
+    .container {
+      width: min(calc(100% - 48px), var(--content));
+      margin: 0 auto;
+    }
+
+    .site-header {
       position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image: linear-gradient(rgba(244, 121, 32, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(244, 121, 32, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      animation: gridPan 30s linear infinite
-    }
-
-    @keyframes gridPan {
-      0% {
-        background-position: 0 0
-      }
-
-      100% {
-        background-position: 60px 60px
-      }
-    }
-
-    .scan {
-      position: fixed;
+      z-index: 100;
       top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--orange) 50%, transparent);
-      opacity: 0.2;
-      animation: scanMove 6s ease-in-out infinite;
-      z-index: 1;
-      pointer-events: none
-    }
-
-    @keyframes scanMove {
-
-      0%,
-      100% {
-        top: 0
-      }
-
-      50% {
-        top: 100vh
-      }
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
       right: 0;
-      z-index: 200;
-      padding: 0 2rem;
-      height: 64px;
+      left: 0;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+      transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .site-header.is-scrolled {
+      background: rgba(255, 255, 255, .94);
+      border-color: rgba(220, 228, 238, .9);
+      box-shadow: 0 4px 20px rgba(7, 26, 51, .05);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-shell {
+      width: min(calc(100% - 48px), var(--content));
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(8, 15, 32, 0.92);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border)
+      gap: 28px;
     }
 
-    .nav-logo {
-      display: flex;
+    .brand {
+      display: inline-flex;
       align-items: center;
       gap: 10px;
-      cursor: pointer
-    }
-
-    .nav-logo img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-      border-radius: 8px
-    }
-
-    .nav-logo-text {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1.22rem;
       font-weight: 800;
-      letter-spacing: 1px
+      letter-spacing: -.055em;
+      line-height: 1;
+      white-space: nowrap;
     }
 
-    .nav-logo-text .s {
-      color: #fff
+    .brand-mark {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      color: var(--orange);
     }
 
-    .nav-logo-text .t {
-      color: var(--orange)
-    }
+    .brand-mark svg { width: 100%; height: 100%; }
+
+    .brand-track { color: var(--orange); }
 
     .nav-links {
       display: flex;
-      gap: 1.6rem;
-      list-style: none
+      align-items: center;
+      gap: 30px;
+      margin: 0 0 0 auto;
+      padding: 0;
+      list-style: none;
     }
 
     .nav-links a {
-      color: var(--textMuted);
+      position: relative;
+      padding: 8px 0;
+      color: #43566e;
+      font-size: .88rem;
+      font-weight: 700;
       text-decoration: none;
-      font-size: 0.83rem;
-      font-weight: 500;
-      transition: color 0.2s;
-      cursor: pointer
+      transition: color .2s ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--orange)
-    }
-
-    .nav-cta {
-      background: var(--orange);
-      color: #fff;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: 'Inter', sans-serif
-    }
-
-    .nav-cta:hover {
-      background: var(--orangeL);
-      transform: translateY(-1px)
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none
-    }
-
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: all 0.3s
-    }
-
-    .hamburger.open span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg)
-    }
-
-    .hamburger.open span:nth-child(2) {
-      opacity: 0
-    }
-
-    .hamburger.open span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg)
-    }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 64px;
-      left: 0;
+    .nav-links a::after {
+      position: absolute;
       right: 0;
-      z-index: 199;
-      background: rgba(8, 15, 32, 0.98);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem 1.5rem;
-      flex-direction: column
-    }
-
-    .mobile-menu.open {
-      display: flex
-    }
-
-    .mobile-menu a {
-      color: var(--textMuted);
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 500;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      display: block;
-      transition: color 0.2s
-    }
-
-    .mobile-menu a.active,
-    .mobile-menu a:hover {
-      color: var(--orange)
-    }
-
-    .mob-cta {
-      margin-top: 1rem;
+      bottom: 2px;
+      left: 0;
+      height: 2px;
       background: var(--orange);
-      color: #fff;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      font-family: 'Inter', sans-serif
+      content: "";
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .2s ease;
     }
 
-    /* STATS BAR */
-    .stats-bar {
-      background: rgba(244, 121, 32, 0.07);
-      border-bottom: 1px solid var(--borderO)
-    }
+    .nav-links a:hover, .nav-links a.is-active { color: var(--ink); }
+    .nav-links a:hover::after, .nav-links a.is-active::after { transform: scaleX(1); transform-origin: left; }
 
-    .stats-bar-inner {
-      display: flex;
-      align-items: stretch;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .sbar-item {
-      flex: 1;
-      display: flex;
+    .button {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 12px 16px;
-      border-right: 1px solid var(--borderO)
+      min-height: 48px;
+      padding: 12px 20px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-size: .9rem;
+      font-weight: 800;
+      line-height: 1;
+      text-align: center;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
     }
 
-    .sbar-item:last-child {
-      border-right: none
+    .button:hover { transform: translateY(-2px); }
+
+    .button-primary {
+      background: var(--orange);
+      color: #fff;
+      box-shadow: 0 12px 22px rgba(244, 119, 46, .23);
     }
 
-    .sbar-dot {
+    .button-primary:hover {
+      background: var(--orange-dark);
+      box-shadow: 0 16px 30px rgba(217, 88, 23, .28);
+    }
+
+    .button-secondary {
+      border-color: #cbd6e3;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .button-secondary:hover { border-color: var(--orange); color: var(--orange-dark); }
+
+    .button svg { width: 17px; height: 17px; flex: 0 0 auto; }
+
+    .nav-button { min-height: 42px; padding: 10px 16px; }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 19px;
+      height: 2px;
+      margin: 4px auto;
+      border-radius: 2px;
+      background: currentColor;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .hero {
+      position: relative;
+      padding: 152px 0 84px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 87% 22%, rgba(244, 119, 46, .13), transparent 20rem),
+        radial-gradient(circle at 52% 18%, rgba(25, 103, 169, .11), transparent 26rem),
+        linear-gradient(180deg, #f9fbfd 0%, #ffffff 100%);
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(11, 40, 78, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(11, 40, 78, .04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      content: "";
+      mask-image: linear-gradient(to bottom, #000, transparent 82%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, .94fr) minmax(480px, 1.06fr);
+      align-items: center;
+      gap: clamp(38px, 6vw, 86px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      color: #1b5b90;
+      font-family: "DM Mono", monospace;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-      flex-shrink: 0;
-      animation: liveBlink 2s ease-in-out infinite
+      background: var(--orange);
+      box-shadow: 0 0 0 5px rgba(244, 119, 46, .13);
+      content: "";
     }
 
-    @keyframes liveBlink {
+    h1, h2, h3, p { margin-top: 0; }
 
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      50% {
-        opacity: 0.4
-      }
-    }
-
-    .sbar-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
+    .hero h1 {
+      max-width: 630px;
+      margin-bottom: 24px;
+      color: var(--ink);
+      font-size: clamp(3rem, 5.1vw, 5.3rem);
       font-weight: 800;
-      color: #fff
+      letter-spacing: -.065em;
+      line-height: .98;
     }
 
-    .sbar-num em {
-      color: var(--orange);
-      font-style: normal
+    .hero h1 em { color: var(--orange); font-style: normal; }
+
+    .hero-copy {
+      max-width: 555px;
+      margin-bottom: 30px;
+      color: #53677f;
+      font-size: 1.05rem;
+      line-height: 1.75;
     }
 
-    .sbar-label {
-      font-size: 0.68rem;
-      color: var(--textMuted);
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.5px
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 34px; }
+
+    .hero-assurance {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 25px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #5f7288;
+      font-size: .79rem;
+      font-weight: 700;
     }
 
-    /* PAGES */
-    .page {
-      display: none;
-      min-height: 100vh;
+    .hero-assurance li { display: flex; align-items: center; gap: 7px; }
+
+    .check {
+      display: inline-grid;
+      width: 17px;
+      height: 17px;
+      place-items: center;
+      border-radius: 50%;
+      background: #e0f6ec;
+      color: #168858;
+    }
+
+    .check svg { width: 11px; height: 11px; }
+
+    .hero-product { position: relative; min-height: 478px; }
+
+    .hero-product::before {
+      position: absolute;
+      z-index: 0;
+      top: 19%;
+      right: -10%;
+      width: 82%;
+      height: 72%;
+      border-radius: 50%;
+      background: #e5f2fc;
+      content: "";
+      filter: blur(0);
+    }
+
+    .tracking-card {
       position: relative;
-      z-index: 2
+      z-index: 1;
+      width: min(100%, 630px);
+      margin-left: auto;
+      padding: 13px;
+      border: 1px solid rgba(202, 215, 229, .88);
+      border-radius: 23px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 30px 70px rgba(7, 36, 70, .18);
     }
 
-    .page.active {
-      display: block
+    .app-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 11px 15px;
     }
 
-    /* SHARED */
-    .section {
-      padding: 5rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .sec-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 0.8rem
-    }
-
-    .sec-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
+    .app-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--ink);
+      font-size: .77rem;
       font-weight: 800;
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 1rem
     }
 
-    .sec-title span {
-      color: var(--orange)
+    .app-title-mark {
+      display: grid;
+      width: 25px;
+      height: 25px;
+      place-items: center;
+      border-radius: 7px;
+      background: var(--ink);
+      color: var(--orange);
     }
 
-    .sec-sub {
-      font-size: 0.95rem;
-      color: var(--textMuted);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 3rem
+    .app-title-mark svg { width: 16px; height: 16px; }
+
+    .app-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #4e6178;
+      font-family: "DM Mono", monospace;
+      font-size: .62rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
     }
 
-    .ping-dot {
+    .live-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--orange);
+      background: var(--success);
+      box-shadow: 0 0 0 4px rgba(38, 177, 120, .13);
+    }
+
+    .map-frame {
       position: relative;
-      display: inline-block
-    }
-
-    .ping-dot::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      border: 1px solid var(--orange);
-      animation: pingRing 2s ease-out infinite
-    }
-
-    @keyframes pingRing {
-      0% {
-        transform: scale(1);
-        opacity: 0.8
-      }
-
-      100% {
-        transform: scale(2.5);
-        opacity: 0
-      }
-    }
-
-    /* FLOATING WHATSAPP */
-    .wa-float {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 300;
-      width: 56px;
-      height: 56px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 24px rgba(37, 211, 102, 0.5);
-      cursor: pointer;
-      transition: all 0.3s;
-      border: none
-    }
-
-    .wa-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 32px rgba(37, 211, 102, 0.6)
-    }
-
-    .wa-float svg {
-      width: 28px;
-      height: 28px;
-      fill: #fff
-    }
-
-    .wa-tooltip {
-      position: absolute;
-      right: 70px;
-      background: rgba(8, 15, 32, 0.95);
-      border: 1px solid var(--borderO);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 6px 12px;
-      border-radius: 8px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-      font-family: 'Inter', sans-serif
-    }
-
-    .wa-float:hover .wa-tooltip {
-      opacity: 1
-    }
-
-    /* ══ HOME ══ */
-    #home {
-      padding-top: 104px
-    }
-
-    .hero {
-      min-height: calc(100vh - 104px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 2rem;
-      text-align: center;
-      position: relative
-    }
-
-    .hero-inner {
-      max-width: 760px;
-      animation: fadeUp 0.9s ease both
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(32px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 14px;
-      border-radius: 20px;
-      border: 1px solid var(--borderO);
-      background: var(--orangeDim);
-      margin-bottom: 1.8rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 2px;
-      color: var(--orange);
-      text-transform: uppercase
-    }
-
-    .hero-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -2px;
-      margin-bottom: 1.5rem
-    }
-
-    .hero-title .line1 {
-      display: block;
-      color: #fff
-    }
-
-    .hero-title .line2 {
-      display: block;
-      color: var(--orange)
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--textMuted);
-      max-width: 520px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.75
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 3rem
-    }
-
-    .btn-primary {
-      background: var(--orange);
-      color: #fff;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.25s;
-      font-family: 'Inter', sans-serif;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px
-    }
-
-    .btn-primary:hover {
-      background: var(--orangeL);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(244, 121, 32, 0.3)
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 12px 28px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.25s;
-      font-family: 'Inter', sans-serif
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--borderO);
-      background: var(--orangeDim);
-      color: var(--orange)
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 2.5rem;
-      justify-content: center;
-      flex-wrap: wrap
-    }
-
-    .stat {
-      text-align: center
-    }
-
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #fff;
-      display: block
-    }
-
-    .stat-num span {
-      color: var(--orange)
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--textDim);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-family: 'JetBrains Mono', monospace
-    }
-
-    /* VEHICLE ROW */
-    .vehicle-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      height: 347px;
       overflow: hidden;
-      margin-bottom: 5rem
+      border-radius: 15px;
+      background:
+        linear-gradient(90deg, rgba(89, 132, 166, .10) 1px, transparent 1px),
+        linear-gradient(rgba(89, 132, 166, .10) 1px, transparent 1px),
+        linear-gradient(135deg, #eef6f5 0%, #eaf3fb 100%);
+      background-size: 38px 38px, 38px 38px, 100% 100%;
     }
 
-    .v-cell {
-      padding: 1.8rem 1.5rem;
-      background: var(--glass);
-      text-align: center;
-      transition: all 0.3s;
-      cursor: default;
-      position: relative;
-      overflow: hidden
-    }
-
-    .v-cell::before {
-      content: '';
+    .map-frame::before, .map-frame::after {
       position: absolute;
-      inset: 0;
-      background: var(--orangeDim);
-      opacity: 0;
-      transition: opacity 0.3s
-    }
-
-    .v-cell:hover::before {
-      opacity: 1
-    }
-
-    .v-ico {
-      width: 40px;
-      height: 40px;
       display: block;
-      margin: 0 auto 12px;
-      filter: invert(0.6);
-      transition: all 0.3s
-    }
-
-    .v-cell:hover .v-ico {
-      filter: invert(65%) sepia(80%) saturate(500%) hue-rotate(340deg);
-      transform: scale(1.1)
-    }
-
-    .v-lbl {
-      font-size: 0.82rem;
-      color: var(--textMuted);
-      font-weight: 500;
-      position: relative
-    }
-
-    .feat-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px
-    }
-
-    .feat-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      transition: all 0.3s;
-      cursor: default
-    }
-
-    .feat-card:hover {
-      border-color: var(--borderO);
-      background: rgba(244, 121, 32, 0.06);
-      transform: translateY(-3px)
-    }
-
-    .feat-card-ico {
-      width: 36px;
-      height: 36px;
-      background: var(--orangeDim);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem
-    }
-
-    .feat-card-ico img {
-      width: 18px;
-      height: 18px;
-      filter: invert(65%) sepia(80%) saturate(500%) hue-rotate(340deg)
-    }
-
-    .feat-card h3 {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 6px
-    }
-
-    .feat-card p {
-      font-size: 0.78rem;
-      color: var(--textMuted);
-      line-height: 1.6
-    }
-
-    /* HOW IT WORKS */
-    .hiw-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      position: relative;
-      margin-top: 3rem;
-      gap: 0
-    }
-
-    .hiw-line {
-      position: absolute;
-      top: 36px;
-      left: calc(16.66% + 24px);
-      right: calc(16.66% + 24px);
-      height: 2px;
-      background: linear-gradient(90deg, var(--orange), rgba(244, 121, 32, 0.2));
-      z-index: 0
-    }
-
-    .hiw-step {
-      text-align: center;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 1
-    }
-
-    .hiw-num {
-      width: 72px;
-      height: 72px;
+      width: 760px;
+      height: 78px;
+      border: 15px solid rgba(255, 255, 255, .79);
+      border-right: 0;
+      border-left: 0;
       border-radius: 50%;
-      background: var(--orangeDim);
-      border: 2px solid var(--borderO);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      position: relative;
-      transition: all 0.3s
+      content: "";
+      transform: rotate(-22deg);
     }
 
-    .hiw-step:hover .hiw-num {
-      background: rgba(244, 121, 32, 0.22);
-      border-color: var(--orange);
-      transform: scale(1.08)
-    }
+    .map-frame::before { top: 100px; left: -170px; }
+    .map-frame::after { top: 192px; left: -136px; transform: rotate(21deg); }
 
-    .hiw-step-icon {
-      font-size: 1.6rem
-    }
-
-    .hiw-badge {
+    .map-road {
       position: absolute;
-      top: -6px;
-      right: -6px;
-      width: 22px;
-      height: 22px;
-      background: var(--orange);
+      z-index: 1;
+      width: 280px;
+      height: 48px;
+      border: 9px solid rgba(255, 255, 255, .86);
       border-radius: 50%;
-      font-size: 0.6rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'JetBrains Mono', monospace
+      transform: rotate(70deg);
     }
 
-    .hiw-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px
-    }
+    .road-a { top: 80px; right: -70px; }
+    .road-b { bottom: 28px; left: -67px; transform: rotate(-61deg); }
 
-    .hiw-desc {
-      font-size: 0.8rem;
-      color: var(--textMuted);
-      line-height: 1.65
-    }
-
-    .hiw-tag {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      background: var(--orangeDim);
-      border: 1px solid var(--borderO);
-      font-size: 0.65rem;
-      color: var(--orange);
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 1px
-    }
-
-    /* ══ FEATURES PAGE ══ */
-    #features {
-      padding-top: 64px
-    }
-
-    .features-hero {
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto
-    }
-
-    .feat-section {
-      padding: 4rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .feat-block {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      margin-bottom: 5rem
-    }
-
-    .feat-block.rev {
-      direction: rtl
-    }
-
-    .feat-block.rev>* {
-      direction: ltr
-    }
-
-    .feat-block-visual {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-      aspect-ratio: 1/0.75;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden
-    }
-
-    .feat-block-visual::before {
-      content: '';
+    .water-shape {
       position: absolute;
-      top: -40%;
-      left: -40%;
-      width: 180%;
-      height: 180%;
-      background: radial-gradient(circle, rgba(244, 121, 32, 0.06) 0%, transparent 60%);
-      animation: rotateBg 15s linear infinite
+      top: -45px;
+      right: -35px;
+      width: 233px;
+      height: 246px;
+      border-radius: 45% 55% 56% 44% / 46% 35% 65% 54%;
+      background: #cfe8f7;
+      opacity: .8;
+      transform: rotate(-12deg);
     }
 
-    @keyframes rotateBg {
-      from {
-        transform: rotate(0deg)
-      }
-
-      to {
-        transform: rotate(360deg)
-      }
-    }
-
-    .feat-block-content .tag {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 6px;
-      background: var(--orangeDim);
-      border: 1px solid var(--borderO);
-      font-size: 0.68rem;
-      letter-spacing: 2px;
+    .map-label {
+      position: absolute;
+      z-index: 3;
+      color: #91a6b5;
+      font-family: "DM Mono", monospace;
+      font-size: .59rem;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      color: var(--orange);
-      font-family: 'JetBrains Mono', monospace;
-      margin-bottom: 1rem
     }
 
-    .feat-block-content h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
+    .label-a { top: 72px; left: 59px; }
+    .label-b { top: 152px; right: 54px; }
+    .label-c { bottom: 56px; left: 181px; }
+
+    .route-svg {
+      position: absolute;
+      z-index: 4;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .route-line {
+      fill: none;
+      stroke: var(--orange);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 6 8;
+      filter: drop-shadow(0 2px 1px rgba(159, 65, 17, .24));
+    }
+
+    .map-pin {
+      position: absolute;
+      z-index: 5;
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 5px 16px rgba(167, 64, 13, .32);
       color: #fff;
-      margin-bottom: 0.8rem;
-      line-height: 1.15
     }
 
-    .feat-block-content p {
-      font-size: 0.9rem;
-      color: var(--textMuted);
-      line-height: 1.7;
-      margin-bottom: 1.5rem
+    .map-pin::after {
+      position: absolute;
+      top: 26px;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-top-color: var(--orange);
+      content: "";
     }
 
-    .feat-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px
+    .map-pin svg { width: 16px; height: 16px; }
+    .pin-current { top: 118px; left: 49%; }
+    .pin-start { bottom: 81px; left: 19%; width: 24px; height: 24px; background: var(--ink-3); }
+    .pin-start::after { top: 18px; border-top-color: var(--ink-3); }
+
+    .vehicle-status {
+      position: absolute;
+      z-index: 6;
+      right: 15px;
+      bottom: 14px;
+      left: 15px;
+      display: grid;
+      grid-template-columns: 1.25fr .65fr .65fr;
+      gap: 11px;
+      padding: 14px;
+      border: 1px solid rgba(215, 225, 234, .94);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .96);
+      box-shadow: 0 9px 22px rgba(10, 40, 75, .10);
     }
 
-    .feat-list li {
+    .vehicle-identity { display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+    .vehicle-icon {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--orange-wash);
+      color: var(--orange);
+    }
+
+    .vehicle-icon svg { width: 18px; height: 18px; }
+    .vehicle-name { overflow: hidden; color: var(--ink); font-size: .74rem; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+    .vehicle-meta { display: flex; align-items: center; gap: 5px; color: #708298; font-size: .61rem; font-weight: 700; }
+    .vehicle-meta .live-dot { width: 5px; height: 5px; box-shadow: none; }
+
+    .data-point { min-width: 0; padding-left: 12px; border-left: 1px solid var(--line); }
+    .data-label { margin-bottom: 2px; color: #8191a4; font-family: "DM Mono", monospace; font-size: .54rem; letter-spacing: .06em; text-transform: uppercase; }
+    .data-value { color: var(--ink); font-size: .78rem; font-weight: 800; white-space: nowrap; }
+
+    .floating-card {
+      position: absolute;
+      z-index: 7;
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 0.85rem;
-      color: var(--textMuted)
+      padding: 11px 13px;
+      border: 1px solid rgba(210, 222, 233, .92);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .97);
+      box-shadow: var(--shadow-sm);
     }
 
-    .feat-list li::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--orange);
-      flex-shrink: 0
+    .floating-card-icon {
+      display: grid;
+      width: 31px;
+      height: 31px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 9px;
+      background: #e8f7f0;
+      color: #159463;
     }
 
-    .mock-phone {
-      width: 180px;
-      height: 300px;
-      background: var(--navy2);
-      border-radius: 24px;
-      border: 2px solid rgba(255, 255, 255, 0.1);
+    .floating-card-icon svg { width: 16px; height: 16px; }
+    .floating-card strong { display: block; color: var(--ink); font-size: .69rem; line-height: 1.2; }
+    .floating-card span { display: block; margin-top: 2px; color: #8191a4; font-family: "DM Mono", monospace; font-size: .55rem; }
+    .alert-card { top: 54px; left: -37px; }
+
+    .activity-card {
+      right: -17px;
+      bottom: 16px;
+      padding: 10px 12px;
+    }
+
+    .activity-card .floating-card-icon { background: var(--orange-wash); color: var(--orange); }
+
+    .trust-strip {
       position: relative;
-      overflow: hidden;
+      z-index: 2;
+      margin-top: -1px;
+      border-top: 1px solid #e7edf4;
+      border-bottom: 1px solid #e7edf4;
+      background: #fff;
+    }
+
+    .trust-inner {
+      display: grid;
+      grid-template-columns: 1.1fr repeat(3, 1fr);
+      align-items: center;
+      min-height: 108px;
+    }
+
+    .trust-title {
+      color: #7b8ba0;
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .trust-item {
       display: flex;
-      flex-direction: column;
-      padding: 12px
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 26px;
+      border-left: 1px solid #e7edf4;
+      color: #4d617a;
+      font-size: .82rem;
+      font-weight: 800;
+      text-align: center;
     }
 
-    .mock-phone-bar {
-      height: 4px;
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 2px;
-      margin-bottom: 10px
-    }
+    .trust-item strong { margin-right: 7px; color: var(--ink); font-size: 1rem; }
 
-    .mock-phone-map {
-      flex: 1;
-      background: linear-gradient(135deg, #0d1b3e 0%, #1a2d5a 100%);
-      border-radius: 12px;
-      position: relative;
-      overflow: hidden
-    }
+    .section { padding: 112px 0; }
+    .section-soft { background: var(--surface); }
+    .section-dark { position: relative; overflow: hidden; background: var(--ink); color: #fff; }
 
-    .mock-pin {
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 12px;
-      height: 12px;
-      background: var(--orange);
-      border-radius: 50%;
-      box-shadow: 0 0 0 4px rgba(244, 121, 32, 0.3);
-      animation: pingRing 2s ease-out infinite
-    }
+    .section-heading { max-width: 650px; margin-bottom: 48px; }
+    .section-heading.center { margin-right: auto; margin-left: auto; text-align: center; }
+    .section-heading.center .eyebrow { justify-content: center; }
 
-    .mock-route {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60%;
-      background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(244, 121, 32, 0.15) 3px, rgba(244, 121, 32, 0.15) 4px)
-    }
-
-    .mock-info {
-      background: rgba(13, 27, 62, 0.95);
-      border-radius: 10px;
-      padding: 8px;
-      margin-top: 8px
-    }
-
-    .mock-info-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 3px
-    }
-
-    .mock-info-lbl {
-      font-size: 0.55rem;
-      color: var(--textDim);
-      font-family: 'JetBrains Mono', monospace
-    }
-
-    .mock-info-val {
-      font-size: 0.6rem;
+    .section-kicker {
+      margin-bottom: 13px;
       color: var(--orange);
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500
+      font-family: "DM Mono", monospace;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      line-height: 1.2;
+      text-transform: uppercase;
     }
 
-    .mock-alerts {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 8px
+    .section-title {
+      margin-bottom: 15px;
+      color: var(--ink);
+      font-size: clamp(2.1rem, 3.6vw, 3.45rem);
+      font-weight: 800;
+      letter-spacing: -.055em;
+      line-height: 1.07;
     }
 
-    .alert-item {
-      background: var(--navy2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px
-    }
+    .section-dark .section-title { color: #fff; }
+    .section-title em { color: var(--orange); font-style: normal; }
 
-    .alert-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0
-    }
+    .section-intro { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+    .section-dark .section-intro { color: #b8c8da; }
 
-    .alert-dot.on {
-      background: #22c55e;
-      box-shadow: 0 0 6px rgba(34, 197, 94, 0.5)
-    }
-
-    .alert-dot.warn {
-      background: var(--orange);
-      box-shadow: 0 0 6px rgba(244, 121, 32, 0.5)
-    }
-
-    .alert-dot.off {
-      background: #ef4444;
-      box-shadow: 0 0 6px rgba(239, 68, 68, 0.4)
-    }
-
-    .alert-text {
-      font-size: 0.75rem;
-      color: var(--textMuted)
-    }
-
-    .alert-time {
-      font-size: 0.65rem;
-      color: var(--textDim);
-      margin-left: auto;
-      font-family: 'JetBrains Mono', monospace
-    }
-
-    .mock-engine {
-      width: 180px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px
-    }
-
-    .engine-ring {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 3px solid var(--borderO);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative
-    }
-
-    .engine-ring::before {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      border: 1px dashed rgba(244, 121, 32, 0.2);
-      animation: spin 10s linear infinite
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg)
-      }
-
-      to {
-        transform: rotate(360deg)
-      }
-    }
-
-    .engine-btn {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: rgba(239, 68, 68, 0.15);
-      border: 2px solid rgba(239, 68, 68, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      color: #fca5a5;
-      font-family: 'JetBrains Mono', monospace;
-      text-align: center;
-      letter-spacing: 1px
-    }
-
-    .engine-pin {
-      display: flex;
-      gap: 6px
-    }
-
-    .pin-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--navy2);
-      border: 1px solid var(--border)
-    }
-
-    .pin-dot.filled {
-      background: var(--orange);
-      border-color: var(--orange)
-    }
-
-    /* ══ PLATFORM PAGE ══ */
-    #platform {
-      padding-top: 64px
-    }
-
-    .platform-hero {
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto
-    }
-
-    .portal-grid {
+    .solutions-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      padding: 0 2rem;
-      max-width: 1100px;
-      margin: 0 auto 4rem
+      gap: 18px;
     }
 
-    .portal-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.3s;
-      cursor: default
+    .solution-card {
+      position: relative;
+      min-height: 307px;
+      padding: 28px;
+      overflow: hidden;
+      border: 1px solid #e0e8f1;
+      border-radius: var(--radius-md);
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(9, 39, 73, .035);
+      transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
     }
 
-    .portal-card:hover {
-      border-color: var(--borderO);
-      background: rgba(244, 121, 32, 0.05);
-      transform: translateY(-4px)
-    }
+    .solution-card:hover { border-color: rgba(244, 119, 46, .42); box-shadow: var(--shadow-sm); transform: translateY(-5px); }
 
-    .portal-ico {
+    .solution-icon {
+      display: grid;
       width: 48px;
       height: 48px;
-      border-radius: 12px;
-      background: var(--orangeDim);
-      border: 1px solid var(--borderO);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.2rem
-    }
-
-    .portal-ico img {
-      width: 24px;
-      height: 24px;
-      filter: invert(65%) sepia(80%) saturate(500%) hue-rotate(340deg)
-    }
-
-    .portal-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px
-    }
-
-    .portal-card p {
-      font-size: 0.8rem;
-      color: var(--textMuted);
-      line-height: 1.6;
-      margin-bottom: 1.2rem
-    }
-
-    .portal-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px
-    }
-
-    .ptag {
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.68rem;
-      font-family: 'JetBrains Mono', monospace;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      color: var(--textMuted)
-    }
-
-    .tech-section {
-      padding: 3rem 2rem 5rem;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px
-    }
-
-    .tech-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.2rem
-    }
-
-    .tech-card-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      place-items: center;
+      margin-bottom: 32px;
+      border-radius: 13px;
+      background: var(--orange-wash);
       color: var(--orange);
-      margin-bottom: 10px;
-      opacity: 0.8
     }
 
-    .tech-tags {
-      display: flex;
-      flex-direction: column;
-      gap: 6px
-    }
+    .solution-icon.blue { background: #eaf4fb; color: #1765a5; }
+    .solution-icon.green { background: #e8f7f0; color: #159463; }
+    .solution-icon svg { width: 24px; height: 24px; }
+    .solution-card h3 { margin-bottom: 10px; color: var(--ink); font-size: 1.08rem; letter-spacing: -.025em; }
+    .solution-card p { max-width: 290px; margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.72; }
 
-    .tech-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 10px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      transition: all 0.2s
-    }
-
-    .tech-row:hover {
-      border-color: var(--borderO);
-      background: var(--orangeDim)
-    }
-
-    .tech-row img {
-      width: 14px;
-      height: 14px;
-      object-fit: contain
-    }
-
-    .tech-row span {
-      font-size: 0.75rem;
-      color: var(--textMuted);
-      font-family: 'JetBrains Mono', monospace
-    }
-
-    .device-section {
-      padding: 0 2rem 5rem;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .device-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px
-    }
-
-    .device-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      display: flex;
-      gap: 1.2rem;
-      align-items: flex-start
-    }
-
-    .device-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--orange);
-      opacity: 0.3;
+    .card-index {
+      position: absolute;
+      right: 22px;
+      bottom: 14px;
+      color: #e5ebf1;
+      font-family: "DM Mono", monospace;
+      font-size: 3.4rem;
+      font-weight: 500;
+      letter-spacing: -.12em;
       line-height: 1;
-      flex-shrink: 0;
-      min-width: 2.5rem
     }
 
-    .device-card h4 {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 4px
-    }
-
-    .device-card p {
-      font-size: 0.78rem;
-      color: var(--textMuted);
-      line-height: 1.5
-    }
-
-    /* ══ TEAM PAGE ══ */
-    #team {
-      padding-top: 64px
-    }
-
-    .team-hero {
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto
-    }
-
-    .founder-section {
-      padding: 0 2rem 3rem;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .founder-card {
-      background: var(--glass);
-      border: 1px solid var(--borderO);
-      border-radius: 20px;
-      padding: 2.5rem;
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      position: relative;
-      overflow: hidden
-    }
-
-    .founder-card::before {
-      content: '';
-      position: absolute;
-      top: -60%;
-      right: -20%;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(244, 121, 32, 0.06) 0%, transparent 60%)
-    }
-
-    .founder-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: var(--orangeDim);
-      border: 2px solid var(--orange);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--orange);
-      flex-shrink: 0;
-      animation: pulseLogo 4s ease-in-out infinite
-    }
-
-    @keyframes pulseLogo {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 0 rgba(244, 121, 32, 0.3)
-      }
-
-      50% {
-        box-shadow: 0 0 0 12px rgba(244, 121, 32, 0)
-      }
-    }
-
-    .founder-info .crown {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 6px
-    }
-
-    .founder-info h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 4px
-    }
-
-    .founder-info p {
-      font-size: 0.85rem;
-      color: var(--textMuted)
-    }
-
-    .dev-team-section {
-      padding: 0 2rem 5rem;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .dev-grid {
+    .platform-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px
-    }
-
-    .dev-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.8rem;
-      display: flex;
-      gap: 1.2rem;
-      align-items: flex-start;
-      transition: all 0.3s
-    }
-
-    .dev-card:hover {
-      border-color: var(--borderO);
-      background: rgba(244, 121, 32, 0.04);
-      transform: translateY(-3px)
-    }
-
-    .dev-av {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      display: flex;
+      grid-template-columns: minmax(0, .94fr) minmax(430px, 1.06fr);
       align-items: center;
-      justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 800;
-      flex-shrink: 0;
-      letter-spacing: 1px
+      gap: clamp(42px, 7vw, 94px);
     }
 
-    .av-o {
-      background: rgba(244, 121, 32, 0.15);
-      color: var(--orange);
-      border: 1px solid rgba(244, 121, 32, 0.4)
-    }
+    .platform-copy .section-heading { margin-bottom: 31px; }
 
-    .av-n {
-      background: rgba(45, 74, 138, 0.3);
-      color: #93aee8;
-      border: 1px solid rgba(45, 74, 138, 0.6)
-    }
-
-    .dev-info h3 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 3px
-    }
-
-    .dev-role {
-      font-size: 0.75rem;
-      color: var(--orange);
-      margin-bottom: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      opacity: 0.85
-    }
-
-    .dev-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px
-    }
-
-    .dev-tag {
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 0.65rem;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--textDim);
-      font-family: 'JetBrains Mono', monospace
-    }
-
-    .vision-section {
-      padding: 0 2rem 5rem;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .vision-card {
-      background: linear-gradient(135deg, rgba(26, 45, 90, 0.4) 0%, rgba(8, 15, 32, 0.8) 100%);
-      border: 1px solid var(--borderO);
-      border-radius: 20px;
-      padding: 3rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden
-    }
-
-    .vision-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(244, 121, 32, 0.05) 0%, transparent 55%);
-      animation: rotateBg 20s linear infinite
-    }
-
-    .vision-card blockquote {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.4;
-      position: relative;
-      z-index: 1
-    }
-
-    .vision-card blockquote span {
-      color: var(--orange)
-    }
-
-    .vision-card cite {
-      display: block;
-      margin-top: 1.2rem;
-      font-size: 0.78rem;
-      color: var(--textDim);
-      font-style: normal;
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 1px;
-      position: relative;
-      z-index: 1
-    }
-
-    /* ══ CONTACT PAGE ══ */
-    #contact {
-      padding-top: 64px
-    }
-
-    .contact-hero {
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto
-    }
-
-    .contact-grid {
+    .feature-list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      padding: 0 2rem 5rem;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .contact-form-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2.5rem
-    }
-
-    .form-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 0.4rem
-    }
-
-    .form-sub {
-      font-size: 0.82rem;
-      color: var(--textMuted);
-      margin-bottom: 2rem
-    }
-
-    .form-group {
-      margin-bottom: 1.2rem
-    }
-
-    .form-label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--textMuted);
-      margin-bottom: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.5px;
-      text-transform: uppercase
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 11px 14px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.03);
-      transition: all 0.2s;
-      outline: none
-    }
-
-    .form-input:focus {
-      border-color: var(--borderO);
-      background: rgba(244, 121, 32, 0.05);
-      box-shadow: 0 0 0 3px rgba(244, 121, 32, 0.08)
-    }
-
-    .form-input::placeholder {
-      color: var(--textDim)
-    }
-
-    select.form-input option {
-      background: #0d1b3e;
-      color: var(--text)
-    }
-
-    textarea.form-input {
-      resize: vertical;
-      min-height: 90px
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px
-    }
-
-    .btn-wa-submit {
-      width: 100%;
-      background: #25D366;
-      color: #fff;
-      border: none;
-      padding: 13px 20px;
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 0.25s;
-      margin-top: 0.5rem
-    }
-
-    .btn-wa-submit:hover {
-      background: #22c55e;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35)
-    }
-
-    .contact-sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 16px
-    }
-
-    .contact-info-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      transition: all 0.3s
-    }
-
-    .contact-info-card:hover {
-      border-color: var(--borderO);
-      transform: translateX(4px)
-    }
-
-    .ci-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--orangeDim);
-      border: 1px solid var(--borderO);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0
-    }
-
-    .ci-label {
-      font-size: 0.65rem;
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--textDim);
-      margin-bottom: 4px
-    }
-
-    .ci-value {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: #fff
-    }
-
-    .ci-sub {
-      font-size: 0.75rem;
-      color: var(--textMuted);
-      margin-top: 2px
-    }
-
-    .wa-direct-btn {
-      background: rgba(37, 211, 102, 0.12);
-      border: 1px solid rgba(37, 211, 102, 0.3);
-      color: #4ade80;
-      border-radius: 14px;
-      padding: 1.3rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      cursor: pointer;
-      transition: all 0.3s;
-      text-align: left
-    }
-
-    .wa-direct-btn:hover {
-      background: rgba(37, 211, 102, 0.2);
-      border-color: rgba(37, 211, 102, 0.5);
-      transform: translateX(4px)
-    }
-
-    .wa-direct-btn .wa-icon {
-      width: 44px;
-      height: 44px;
-      background: #25D366;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0
-    }
-
-    .wa-direct-btn .wa-icon svg {
-      width: 24px;
-      height: 24px;
-      fill: #fff
-    }
-
-    .wa-title {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: #4ade80;
-      margin-bottom: 2px
-    }
-
-    .wa-sub {
-      font-size: 0.75rem;
-      color: rgba(74, 222, 128, 0.7)
-    }
-
-    .map-placeholder {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 2rem;
-      text-align: center
-    }
-
-    .map-inner {
-      background: rgba(13, 27, 62, 0.6);
-      border-radius: 10px;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden
-    }
-
-    .map-inner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(244, 121, 32, 0.04) 28px, rgba(244, 121, 32, 0.04) 29px), repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(244, 121, 32, 0.04) 28px, rgba(244, 121, 32, 0.04) 29px)
-    }
-
-    .map-pin-center {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 1rem 0
-    }
-
-    /* ══ PRICING ══ */
-    .pricing-section {
-      padding: 5rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto
-    }
-
-    .pricing-intro {
-      text-align: center;
-      margin-bottom: 3rem
-    }
-
-    .pricing-note {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--orangeDim);
-      border: 1px solid var(--borderO);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-size: 0.75rem;
-      color: var(--orange);
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 1px;
-      margin-bottom: 1rem;
-      text-transform: uppercase
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px
-    }
-
-    .price-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden
-    }
-
-    .price-card.featured {
-      border-color: var(--borderO);
-      background: rgba(244, 121, 32, 0.06)
-    }
-
-    .price-card.featured::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--orange), var(--orangeL))
-    }
-
-    .price-badge {
-      display: inline-block;
-      padding: 3px 12px;
-      border-radius: 20px;
-      font-size: 0.65rem;
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem
-    }
-
-    .price-badge.pop {
-      background: var(--orangeDim);
-      border: 1px solid var(--borderO);
-      color: var(--orange)
-    }
-
-    .price-badge.std {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      color: var(--textMuted)
-    }
-
-    .price-badge.ent {
-      background: rgba(45, 74, 138, 0.2);
-      border: 1px solid rgba(45, 74, 138, 0.4);
-      color: #93aee8
-    }
-
-    .price-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 6px
-    }
-
-    .price-desc {
-      font-size: 0.8rem;
-      color: var(--textMuted);
-      line-height: 1.6;
-      margin-bottom: 1.5rem
-    }
-
-    .price-amount {
-      margin-bottom: 1.5rem
-    }
-
-    .price-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--textDim);
-      letter-spacing: 1px;
-      text-transform: uppercase
-    }
-
-    .price-val {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--orange);
-      margin-top: 4px
-    }
-
-    .price-features {
+      gap: 15px;
+      margin: 0;
+      padding: 0;
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 2rem
     }
 
-    .price-features li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.82rem;
-      color: var(--textMuted)
+    .feature-list li { display: flex; align-items: flex-start; gap: 13px; color: #50647d; font-size: .9rem; font-weight: 600; }
+    .feature-list .check { width: 20px; height: 20px; flex: 0 0 auto; margin-top: 2px; }
+
+    .platform-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+    .dashboard-wrap {
+      position: relative;
+      padding: 12px;
+      border: 1px solid rgba(190, 208, 225, .55);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .65);
+      box-shadow: 0 24px 55px rgba(7, 34, 65, .12);
     }
 
-    .price-features li::before {
-      content: '✓';
-      width: 18px;
-      height: 18px;
-      background: rgba(34, 197, 94, 0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      color: #22c55e;
-      flex-shrink: 0;
-      font-weight: 700;
-      text-align: center;
-      line-height: 18px
-    }
-
-    .price-cta {
-      width: 100%;
-      padding: 11px 20px;
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.25s
-    }
-
-    .price-cta.primary {
-      background: var(--orange);
-      color: #fff;
-      border: none
-    }
-
-    .price-cta.primary:hover {
-      background: var(--orangeL);
-      transform: translateY(-2px)
-    }
-
-    .price-cta.ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border)
-    }
-
-    .price-cta.ghost:hover {
-      border-color: var(--borderO);
-      background: var(--orangeDim);
-      color: var(--orange)
-    }
-
-    /* ══ FAQ ══ */
-    .faq-section {
-      padding: 5rem 2rem;
-      max-width: 800px;
-      margin: 0 auto
-    }
-
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 2rem
-    }
-
-    .faq-item {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+    .dashboard {
       overflow: hidden;
-      transition: border-color 0.3s
+      border-radius: 15px;
+      background: #fff;
     }
 
-    .faq-item.open {
-      border-color: var(--borderO)
-    }
-
-    .faq-q {
+    .dashboard-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 1.5rem;
-      cursor: pointer;
-      gap: 1rem
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 1px solid #e8eef4;
     }
 
-    .faq-q-text {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.4
+    .dashboard-brand { display: flex; align-items: center; gap: 9px; color: var(--ink); font-size: .72rem; font-weight: 800; }
+    .dashboard-brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+    .dashboard-tabs { display: flex; gap: 12px; color: #91a0b2; font-family: "DM Mono", monospace; font-size: .56rem; text-transform: uppercase; }
+    .dashboard-tabs .selected { color: var(--orange); }
+
+    .dashboard-main { display: grid; grid-template-columns: 1fr 152px; min-height: 355px; }
+
+    .dashboard-map {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(89, 132, 166, .09) 1px, transparent 1px),
+        linear-gradient(rgba(89, 132, 166, .09) 1px, transparent 1px),
+        #f0f6f8;
+      background-size: 31px 31px;
     }
 
-    .faq-arrow {
-      width: 20px;
-      height: 20px;
+    .dashboard-map::before, .dashboard-map::after {
+      position: absolute;
+      width: 490px;
+      height: 59px;
+      border: 12px solid #fff;
+      border-right: 0;
+      border-left: 0;
       border-radius: 50%;
-      background: var(--orangeDim);
-      border: 1px solid var(--borderO);
+      content: "";
+      transform: rotate(-26deg);
+    }
+
+    .dashboard-map::before { top: 73px; left: -98px; }
+    .dashboard-map::after { top: 206px; left: -88px; transform: rotate(27deg); }
+
+    .dash-water { position: absolute; right: -55px; bottom: -45px; width: 205px; height: 218px; border-radius: 55% 45% 0 0; background: #cdeafb; transform: rotate(15deg); }
+    .dash-route { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; }
+    .dash-route polyline { fill: none; stroke: var(--orange); stroke-width: 4; stroke-dasharray: 7 8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .dash-vehicle {
+      position: absolute;
+      z-index: 3;
+      top: 42%;
+      left: 51%;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 6px 14px rgba(189, 74, 16, .33);
+      color: #fff;
+    }
+
+    .dash-vehicle svg { width: 18px; height: 18px; }
+
+    .dash-side { padding: 16px 12px; border-left: 1px solid #e8eef4; background: #fbfcfe; }
+    .dash-side-title { margin-bottom: 12px; color: #8c9bad; font-family: "DM Mono", monospace; font-size: .55rem; letter-spacing: .06em; text-transform: uppercase; }
+    .mini-vehicle { padding: 10px 8px; margin-bottom: 7px; border: 1px solid transparent; border-radius: 9px; }
+    .mini-vehicle.active { border-color: #f7d8c5; background: #fff8f3; }
+    .mini-vehicle strong { display: block; margin-bottom: 3px; color: var(--ink); font-size: .62rem; line-height: 1.2; }
+    .mini-vehicle span { display: flex; align-items: center; gap: 4px; color: #8191a4; font-size: .54rem; }
+    .mini-vehicle span::before { width: 5px; height: 5px; border-radius: 50%; background: var(--success); content: ""; }
+    .mini-vehicle.offline span::before { background: #b7c0cc; }
+
+    .dashboard-kpis { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #e8eef4; }
+    .dashboard-kpi { padding: 13px 17px; border-right: 1px solid #e8eef4; }
+    .dashboard-kpi:last-child { border-right: 0; }
+    .dashboard-kpi span { display: block; margin-bottom: 3px; color: #8b9aad; font-family: "DM Mono", monospace; font-size: .52rem; letter-spacing: .05em; text-transform: uppercase; }
+    .dashboard-kpi strong { color: var(--ink); font-size: .76rem; }
+
+    .dash-orbit { position: absolute; z-index: -1; top: -47px; right: -58px; width: 260px; height: 260px; border: 1px solid rgba(31, 118, 185, .14); border-radius: 50%; }
+    .dash-orbit::after { position: absolute; inset: 24px; border: 1px solid rgba(244, 119, 46, .2); border-radius: 50%; content: ""; }
+
+    .security-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      align-items: center;
+      gap: clamp(42px, 7vw, 94px);
+    }
+
+    .section-dark::before {
+      position: absolute;
+      top: -170px;
+      right: -150px;
+      width: 530px;
+      height: 530px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .section-dark::after {
+      position: absolute;
+      right: 2%;
+      bottom: 14%;
+      width: 160px;
+      height: 160px;
+      border: 1px solid rgba(244, 119, 46, .33);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .security-copy, .security-panel { position: relative; z-index: 1; }
+
+    .security-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 39px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, .16);
+    }
+
+    .security-stat strong { display: block; color: #fff; font-size: clamp(1.35rem, 2vw, 1.8rem); font-weight: 800; letter-spacing: -.05em; }
+    .security-stat span { color: #97abc1; font-family: "DM Mono", monospace; font-size: .61rem; letter-spacing: .05em; text-transform: uppercase; }
+
+    .security-panel {
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 21px;
+      background: rgba(255, 255, 255, .055);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
+    }
+
+    .monitor-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 19px; border-bottom: 1px solid rgba(255, 255, 255, .12); }
+    .monitor-heading { display: flex; align-items: center; gap: 11px; color: #fff; font-size: .86rem; font-weight: 800; }
+    .monitor-heading-icon { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 10px; background: rgba(244, 119, 46, .17); color: var(--orange); }
+    .monitor-heading-icon svg { width: 18px; height: 18px; }
+    .monitor-status { display: inline-flex; align-items: center; gap: 6px; color: #a7bacd; font-family: "DM Mono", monospace; font-size: .58rem; letter-spacing: .05em; text-transform: uppercase; }
+    .monitor-status::before { width: 6px; height: 6px; border-radius: 50%; background: #42ca92; box-shadow: 0 0 0 4px rgba(66, 202, 146, .13); content: ""; }
+
+    .activity-list { display: grid; gap: 4px; margin: 14px 0 0; padding: 0; list-style: none; }
+    .activity-item { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 12px; padding: 13px 8px; border-radius: 11px; }
+    .activity-item:hover { background: rgba(255, 255, 255, .05); }
+    .activity-icon { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 9px; background: rgba(255, 255, 255, .08); color: #b8cce0; }
+    .activity-icon.alert { background: rgba(244, 119, 46, .14); color: var(--orange); }
+    .activity-icon.safe { background: rgba(66, 202, 146, .12); color: #42ca92; }
+    .activity-icon svg { width: 16px; height: 16px; }
+    .activity-info strong { display: block; color: #e7eff8; font-size: .72rem; font-weight: 700; line-height: 1.3; }
+    .activity-info span { display: block; margin-top: 2px; color: #8fa3b9; font-size: .6rem; }
+    .activity-time { color: #8197af; font-family: "DM Mono", monospace; font-size: .56rem; white-space: nowrap; }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+    .step { position: relative; padding: 10px 16px 0 0; }
+    .step:not(:last-child)::after { position: absolute; top: 31px; right: -17px; width: calc(100% - 39px); height: 1px; background: #d9e3ed; content: ""; }
+    .step-number { position: relative; z-index: 1; display: grid; width: 62px; height: 62px; place-items: center; margin-bottom: 23px; border: 1px solid #fed6bd; border-radius: 17px; background: #fff8f3; color: var(--orange); font-family: "DM Mono", monospace; font-size: 1rem; font-weight: 500; }
+    .step h3 { margin-bottom: 9px; color: var(--ink); font-size: 1.08rem; letter-spacing: -.03em; }
+    .step p { max-width: 295px; margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.72; }
+
+    .people-section { position: relative; overflow: hidden; background: #fff; }
+    .people-section::before { position: absolute; top: 130px; left: -165px; width: 410px; height: 410px; border-radius: 50%; background: #f0f7fc; content: ""; }
+    .people-section .container { position: relative; }
+
+    .owner-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) minmax(215px, .55fr);
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 70px;
+      padding: clamp(28px, 4vw, 46px);
+      overflow: hidden;
+      border: 1px solid rgba(37, 74, 112, .17);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(116deg, var(--ink) 0%, #0b315d 65%, #104a7d 100%);
+      box-shadow: 0 22px 47px rgba(7, 26, 51, .18);
+    }
+
+    .owner-card::before {
+      position: absolute;
+      top: -145px;
+      right: -105px;
+      width: 360px;
+      height: 360px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .owner-card::after {
+      position: absolute;
+      right: 75px;
+      bottom: -90px;
+      width: 195px;
+      height: 195px;
+      border-radius: 50%;
+      background: rgba(244, 119, 46, .18);
+      content: "";
+    }
+
+    .owner-card > * { position: relative; z-index: 1; }
+
+    .person-monogram {
+      display: grid;
+      width: 92px;
+      height: 92px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 27px;
+      background: linear-gradient(145deg, #ff9658, var(--orange));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 15px 26px rgba(0, 0, 0, .15);
+      color: #fff;
+      font-family: "DM Mono", monospace;
+      font-size: 1.55rem;
+      font-weight: 500;
+      letter-spacing: -.08em;
+    }
+
+    .owner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 11px;
+      color: #ffae7d;
+      font-family: "DM Mono", monospace;
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .owner-badge svg { width: 15px; height: 15px; }
+    .owner-details h3 { margin: 0 0 5px; color: #fff; font-size: clamp(1.35rem, 2.5vw, 1.82rem); font-weight: 800; letter-spacing: -.045em; }
+    .owner-details p { max-width: 590px; margin: 0; color: #b9cbe0; font-size: .88rem; line-height: 1.72; }
+    .owner-statement { padding-left: 25px; border-left: 1px solid rgba(255, 255, 255, .18); color: #d8e6f4; font-size: .88rem; font-weight: 700; line-height: 1.66; }
+    .owner-statement strong { display: block; margin-bottom: 8px; color: #ffae7d; font-family: "DM Mono", monospace; font-size: .6rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+
+    .people-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 27px; }
+    .people-heading-row .section-heading { max-width: 595px; margin: 0; }
+    .people-heading-row .section-title { margin-bottom: 0; }
+    .people-support-copy { max-width: 325px; margin: 0 0 5px; color: var(--muted); font-size: .86rem; line-height: 1.72; }
+
+    .developer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+    .developer-card { min-height: 263px; padding: 23px; border: 1px solid #dfe8f1; border-radius: 17px; background: #fff; box-shadow: 0 8px 22px rgba(9, 39, 73, .035); transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+    .developer-card:hover { border-color: rgba(244, 119, 46, .42); box-shadow: var(--shadow-sm); transform: translateY(-4px); }
+    .developer-avatar { display: grid; width: 52px; height: 52px; place-items: center; margin-bottom: 22px; border-radius: 15px; color: #fff; font-family: "DM Mono", monospace; font-size: .87rem; font-weight: 500; letter-spacing: -.07em; }
+    .avatar-swen { background: linear-gradient(135deg, #f4772e, #e45118); }
+    .avatar-nethmi { background: linear-gradient(135deg, #2875af, #123e70); }
+    .avatar-nuwan { background: linear-gradient(135deg, #516f93, #1b3656); }
+    .avatar-amoda { background: linear-gradient(135deg, #178d70, #0d5a57); }
+    .developer-card h3 { margin-bottom: 4px; color: var(--ink); font-size: .96rem; font-weight: 800; letter-spacing: -.025em; }
+    .developer-role { margin-bottom: 17px; color: #5e738d; font-family: "DM Mono", monospace; font-size: .62rem; letter-spacing: .04em; text-transform: uppercase; }
+    .developer-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .developer-tags span { padding: 5px 7px; border-radius: 5px; background: #f1f5f9; color: #546a84; font-size: .61rem; font-weight: 700; line-height: 1.25; }
+
+    .team-connect {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: transform 0.3s;
-      font-size: 0.7rem;
-      color: var(--orange)
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 20px;
+      padding: 19px 22px;
+      border: 1px solid #dce6ef;
+      border-radius: 15px;
+      background: #f8fbfd;
     }
 
-    .faq-item.open .faq-arrow {
-      transform: rotate(180deg)
-    }
+    .team-connect-copy { color: #5d7088; font-size: .78rem; font-weight: 700; }
+    .team-connect-copy strong { display: block; margin-bottom: 2px; color: var(--ink); font-size: .86rem; }
+    .team-connect-links { display: flex; flex-wrap: wrap; gap: 9px; }
+    .team-connect-links a { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 8px 10px; border: 1px solid #cedce8; border-radius: 8px; background: #fff; color: #3e5874; font-size: .68rem; font-weight: 800; text-decoration: none; transition: border-color .2s ease, color .2s ease, transform .2s ease; }
+    .team-connect-links a:hover { border-color: var(--orange); color: var(--orange-dark); transform: translateY(-1px); }
+    .team-connect-links svg { width: 15px; height: 15px; }
 
-    .faq-a {
-      max-height: 0;
+    .contact-section { padding: 0 0 112px; background: var(--surface); }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
       overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s
+      border-radius: var(--radius-lg);
+      background: #fff;
+      box-shadow: var(--shadow);
     }
 
-    .faq-a-inner {
-      padding: 0 1.5rem 1.2rem;
-      font-size: 0.85rem;
-      color: var(--textMuted);
-      line-height: 1.7
-    }
-
-    .faq-item.open .faq-a {
-      max-height: 300px
-    }
-
-    /* ══ FINAL CTA BANNER ══ */
-    .cta-banner {
-      margin: 0 2rem 5rem;
-      max-width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
-      background: linear-gradient(135deg, rgba(26, 45, 90, 0.5) 0%, rgba(8, 15, 32, 0.9) 100%);
-      border: 1px solid var(--borderO);
-      border-radius: 24px;
-      padding: 3.5rem;
-      text-align: center;
+    .contact-aside {
       position: relative;
-      overflow: hidden
-    }
-
-    .cta-banner::before {
-      content: '';
-      position: absolute;
-      top: -40%;
-      left: -20%;
-      width: 600px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(244, 121, 32, 0.08), transparent 60%);
-      pointer-events: none
-    }
-
-    .cta-banner h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800;
+      padding: clamp(35px, 5vw, 60px);
+      overflow: hidden;
+      background: var(--ink);
       color: #fff;
-      margin-bottom: 0.8rem;
-      position: relative;
-      z-index: 1
     }
 
-    .cta-banner h2 span {
-      color: var(--orange)
+    .contact-aside::before { position: absolute; top: -110px; right: -120px; width: 300px; height: 300px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 50%; content: ""; }
+    .contact-aside::after { position: absolute; right: 28px; bottom: -55px; width: 175px; height: 175px; border-radius: 50%; background: rgba(244, 119, 46, .12); content: ""; }
+    .contact-aside > * { position: relative; z-index: 1; }
+
+    .contact-aside .section-kicker { color: #ff9d64; }
+    .contact-aside h2 { max-width: 380px; margin-bottom: 16px; color: #fff; font-size: clamp(2.2rem, 3.6vw, 3.3rem); font-weight: 800; letter-spacing: -.06em; line-height: 1.04; }
+    .contact-aside p { max-width: 380px; margin-bottom: 31px; color: #b9c9dc; font-size: .94rem; line-height: 1.72; }
+
+    .contact-options { display: grid; gap: 12px; }
+    .contact-option { display: flex; align-items: center; gap: 13px; color: #e8eff7; font-size: .82rem; font-weight: 700; text-decoration: none; }
+    .contact-option:hover { color: #fff; }
+    .contact-option-icon { display: grid; width: 37px; height: 37px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(255, 255, 255, .15); border-radius: 10px; background: rgba(255, 255, 255, .06); color: #ff9d64; }
+    .contact-option-icon svg { width: 18px; height: 18px; }
+    .contact-option small { display: block; margin-bottom: 1px; color: #91a7bd; font-size: .64rem; font-weight: 600; }
+
+    .contact-form { padding: clamp(35px, 5vw, 58px); }
+    .form-title { margin-bottom: 5px; color: var(--ink); font-size: 1.45rem; font-weight: 800; letter-spacing: -.04em; }
+    .form-description { margin-bottom: 26px; color: var(--muted); font-size: .85rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label { display: block; margin-bottom: 7px; color: #425875; font-size: .72rem; font-weight: 800; }
+    .form-control { width: 100%; min-height: 47px; padding: 11px 13px; border: 1px solid #d7e1eb; border-radius: 9px; background: #fff; color: var(--ink); font-size: .84rem; outline: none; transition: border-color .2s ease, box-shadow .2s ease; }
+    textarea.form-control { min-height: 101px; resize: vertical; }
+    .form-control::placeholder { color: #a4b0bf; }
+    .form-control:focus { border-color: var(--orange); box-shadow: 0 0 0 4px rgba(244, 119, 46, .11); }
+    .form-control option { color: var(--ink); }
+    .form-footer { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 3px; }
+    .form-note { max-width: 220px; margin: 0; color: #8392a4; font-size: .67rem; line-height: 1.5; }
+    .form-status { min-height: 18px; margin: 12px 0 0; color: #c4460b; font-size: .75rem; font-weight: 700; }
+
+    .faq-section { padding-top: 0; }
+    .faq-list { max-width: 830px; margin: 0 auto; }
+    .faq-list details { border-bottom: 1px solid #dce5ee; }
+    .faq-list summary { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 20px 0; color: var(--ink); cursor: pointer; font-size: .96rem; font-weight: 800; list-style: none; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { width: 22px; height: 22px; flex: 0 0 auto; border: 1px solid #cfdbe7; border-radius: 50%; background: linear-gradient(var(--orange), var(--orange)) center / 9px 1.5px no-repeat, linear-gradient(var(--orange), var(--orange)) center / 1.5px 9px no-repeat; content: ""; transition: transform .2s ease; }
+    .faq-list details[open] summary::after { transform: rotate(45deg); }
+    .faq-list p { max-width: 745px; padding: 0 42px 21px 0; margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.75; }
+
+    footer { padding: 38px 0; border-top: 1px solid #e3eaf2; background: #fff; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-copy { color: #8191a4; font-size: .72rem; }
+    .footer-links { display: flex; gap: 18px; color: #647790; font-size: .74rem; font-weight: 700; }
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: var(--orange); }
+
+    .whatsapp-float {
+      position: fixed;
+      z-index: 90;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      width: 52px;
+      height: 52px;
+      place-items: center;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 10px 28px rgba(21, 119, 66, .28);
+      color: #fff;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
 
-    .cta-banner p {
-      font-size: 0.95rem;
-      color: var(--textMuted);
-      max-width: 500px;
-      margin: 0 auto 2rem;
-      line-height: 1.7;
-      position: relative;
-      z-index: 1
+    .whatsapp-float:hover { box-shadow: 0 14px 32px rgba(21, 119, 66, .35); transform: translateY(-3px); }
+    .whatsapp-float svg { width: 25px; height: 25px; }
+
+    [data-reveal] { transition: opacity .6s ease, transform .6s ease; }
+    .reveal-pending { opacity: 0; transform: translateY(22px); }
+    .reveal-pending.revealed { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1050px) {
+      .nav-links { gap: 20px; }
+      .hero-grid, .platform-grid, .security-grid { grid-template-columns: 1fr; }
+      .hero-copy { max-width: 630px; }
+      .hero-product { width: min(100%, 650px); min-height: 440px; margin: 0 auto; }
+      .tracking-card { margin: 0 auto; }
+      .platform-copy { order: 1; }
+      .dashboard-wrap { max-width: 650px; margin: 0 auto; }
+      .security-panel { max-width: 650px; }
+      .contact-panel { grid-template-columns: .86fr 1.14fr; }
+      .developer-grid { grid-template-columns: repeat(2, 1fr); }
+      .owner-card { grid-template-columns: auto 1fr; }
+      .owner-statement { grid-column: 2; }
     }
 
-    .cta-btns {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1
+    @media (max-width: 820px) {
+      .site-header { height: 70px; }
+      .nav-shell { width: min(calc(100% - 32px), var(--content)); }
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        left: 0;
+        display: grid;
+        gap: 0;
+        max-height: 0;
+        padding: 0 24px;
+        overflow: hidden;
+        border-bottom: 1px solid transparent;
+        background: rgba(255, 255, 255, .98);
+        box-shadow: 0 15px 25px rgba(7, 26, 51, .08);
+        opacity: 0;
+        transition: max-height .25s ease, padding .25s ease, opacity .2s ease, border-color .25s ease;
+      }
+      .nav-links.is-open { max-height: 360px; padding: 12px 24px 20px; border-color: var(--line); opacity: 1; }
+      .nav-links a { display: block; padding: 14px 0; }
+      .nav-cta { display: none; }
+      .menu-toggle { display: block; }
+      .hero { padding-top: 125px; }
+      .trust-inner { grid-template-columns: repeat(3, 1fr); padding: 22px 0; row-gap: 16px; }
+      .trust-title { grid-column: 1 / -1; text-align: center; }
+      .trust-item { min-height: 32px; padding: 0 10px; }
+      .trust-item:first-of-type { border-left: 0; }
+      .solutions-grid { grid-template-columns: 1fr; }
+      .solution-card { min-height: 250px; }
+      .solution-icon { margin-bottom: 24px; }
+      .contact-panel { grid-template-columns: 1fr; }
+      .contact-aside { padding-bottom: 43px; }
+      .steps-grid { gap: 25px; }
+      .step:not(:last-child)::after { right: -11px; width: calc(100% - 36px); }
+      .people-heading-row { align-items: start; flex-direction: column; }
+      .people-support-copy { max-width: 570px; }
     }
 
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-      z-index: 2
+    @media (max-width: 610px) {
+      .container { width: min(calc(100% - 32px), var(--content)); }
+      .hero { padding-bottom: 60px; }
+      .hero h1 { font-size: clamp(2.72rem, 12.5vw, 4.2rem); }
+      .hero-copy { font-size: .96rem; }
+      .hero-actions .button { width: 100%; }
+      .hero-assurance { display: grid; gap: 11px; }
+      .hero-product { min-height: 366px; }
+      .tracking-card { padding: 9px; border-radius: 17px; }
+      .app-topbar { padding: 6px 5px 10px; }
+      .map-frame { height: 276px; }
+      .vehicle-status { grid-template-columns: 1fr 1fr; gap: 7px; right: 9px; bottom: 9px; left: 9px; padding: 10px; }
+      .vehicle-identity { grid-column: 1 / -1; }
+      .data-point { padding-left: 8px; }
+      .alert-card { top: 39px; left: -8px; }
+      .activity-card { display: none; }
+      .floating-card { padding: 8px 9px; }
+      .floating-card-icon { width: 27px; height: 27px; }
+      .floating-card strong { font-size: .61rem; }
+      .floating-card span { font-size: .49rem; }
+      .trust-inner { grid-template-columns: 1fr; }
+      .trust-title { margin-bottom: 2px; }
+      .trust-item { justify-content: flex-start; min-height: auto; padding: 5px 0; border-left: 0; }
+      .section { padding: 76px 0; }
+      .section-heading { margin-bottom: 34px; }
+      .section-title { font-size: 2.25rem; }
+      .dashboard-main { grid-template-columns: 1fr; }
+      .dashboard-map { min-height: 270px; }
+      .dash-side { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 10px; border-top: 1px solid #e8eef4; border-left: 0; }
+      .dash-side-title { display: none; }
+      .mini-vehicle { margin: 0; padding: 8px 5px; }
+      .mini-vehicle strong { font-size: .55rem; }
+      .mini-vehicle span { font-size: .47rem; }
+      .dashboard-kpi { padding: 10px 9px; }
+      .dashboard-kpi strong { font-size: .67rem; }
+      .security-stats { gap: 10px; }
+      .security-stat strong { font-size: 1.22rem; }
+      .security-stat span { font-size: .53rem; }
+      .security-panel { padding: 15px; }
+      .activity-item { grid-template-columns: 29px 1fr auto; gap: 8px; padding: 10px 3px; }
+      .activity-icon { width: 29px; height: 29px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 25px; }
+      .step { padding: 0; }
+      .step:not(:last-child)::after { top: auto; right: auto; bottom: -16px; left: 30px; width: 1px; height: 18px; }
+      .step-number { margin-bottom: 15px; }
+      .owner-card { grid-template-columns: 1fr; gap: 18px; padding: 27px; margin-bottom: 49px; }
+      .person-monogram { width: 72px; height: 72px; border-radius: 21px; font-size: 1.2rem; }
+      .owner-statement { grid-column: auto; padding-top: 18px; padding-left: 0; border-top: 1px solid rgba(255, 255, 255, .18); border-left: 0; }
+      .developer-grid { grid-template-columns: 1fr; }
+      .developer-card { min-height: auto; padding: 21px; }
+      .team-connect { align-items: flex-start; flex-direction: column; padding: 18px; }
+      .team-connect-links { width: 100%; }
+      .team-connect-links a { flex: 1; justify-content: center; }
+      .contact-section { padding-bottom: 76px; }
+      .contact-panel { margin-right: -16px; margin-left: -16px; border-radius: 0; }
+      .form-grid { grid-template-columns: 1fr; gap: 0; }
+      .form-footer { align-items: stretch; flex-direction: column; }
+      .form-footer .button { width: 100%; }
+      .form-note { max-width: none; }
+      .faq-list summary { font-size: .86rem; }
+      .faq-list p { padding-right: 5px; font-size: .83rem; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .whatsapp-float { right: 15px; bottom: 15px; width: 48px; height: 48px; }
     }
 
-    .footer-logo {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 6px
-    }
-
-    .footer-logo .s {
-      color: #fff
-    }
-
-    .footer-logo .t {
-      color: var(--orange)
-    }
-
-    .footer-sub {
-      font-size: 0.75rem;
-      color: var(--textDim);
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 1px
-    }
-
-    /* RESPONSIVE */
-    @media(max-width:768px) {
-      nav {
-        padding: 0 1.2rem
-      }
-
-      .nav-links,
-      .nav-cta {
-        display: none
-      }
-
-      .hamburger {
-        display: flex
-      }
-
-      .stats-bar-inner {
-        flex-wrap: wrap
-      }
-
-      .sbar-item {
-        flex: 1 1 50%;
-        border-right: none;
-        border-bottom: 1px solid var(--borderO)
-      }
-
-      .sbar-item:nth-child(odd) {
-        border-right: 1px solid var(--borderO)
-      }
-
-      .sbar-item:last-child,
-      .sbar-item:nth-last-child(2):nth-child(odd) {
-        border-bottom: none
-      }
-
-      .hero {
-        padding: 2rem 1.2rem;
-        min-height: auto
-      }
-
-      .hero-title {
-        font-size: 2.6rem;
-        letter-spacing: -1px
-      }
-
-      .hero-btns {
-        flex-direction: column;
-        align-items: center
-      }
-
-      .hero-btns button {
-        width: 100%;
-        max-width: 280px;
-        justify-content: center
-      }
-
-      .hero-stats {
-        gap: 1.2rem
-      }
-
-      .vehicle-row {
-        grid-template-columns: repeat(2, 1fr)
-      }
-
-      .feat-grid {
-        grid-template-columns: 1fr
-      }
-
-      .hiw-steps {
-        grid-template-columns: 1fr;
-        gap: 2rem
-      }
-
-      .hiw-line {
-        display: none
-      }
-
-      .feat-block {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin-bottom: 3rem
-      }
-
-      .feat-block.rev {
-        direction: ltr
-      }
-
-      .feat-block-visual {
-        aspect-ratio: auto;
-        min-height: 200px;
-        padding: 1.5rem
-      }
-
-      .portal-grid {
-        grid-template-columns: 1fr;
-        padding: 0 1.2rem
-      }
-
-      .tech-grid {
-        grid-template-columns: repeat(2, 1fr)
-      }
-
-      .device-grid {
-        grid-template-columns: 1fr
-      }
-
-      .founder-card {
-        flex-direction: column;
-        gap: 1.2rem;
-        padding: 1.5rem;
-        text-align: center
-      }
-
-      .dev-grid {
-        grid-template-columns: 1fr
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-        padding: 0 1.2rem 3rem
-      }
-
-      .form-row {
-        grid-template-columns: 1fr
-      }
-
-      .pricing-grid {
-        grid-template-columns: 1fr
-      }
-
-      .cta-banner {
-        margin: 0 1.2rem 3rem;
-        padding: 2rem 1.5rem
-      }
-
-      .section {
-        padding: 3rem 1.2rem
-      }
-    }
-
-    @media(max-width:480px) {
-      .hero-title {
-        font-size: 2.1rem
-      }
-
-      .vehicle-row {
-        grid-template-columns: repeat(3, 1fr)
-      }
-
-      .v-ico {
-        width: 30px;
-        height: 30px
-      }
-
-      .v-lbl {
-        font-size: 0.72rem
-      }
-
-      .v-cell {
-        padding: 0.9rem 0.5rem
-      }
-
-      .tech-grid {
-        grid-template-columns: 1fr
-      }
-
-      .dev-card {
-        flex-direction: column;
-        gap: 0.8rem
-      }
-
-      .sbar-item {
-        flex: 1 1 100%;
-        border-right: none
-      }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
     }
   </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <div class="grid-bg"></div>
-  <div class="scan"></div>
-
-  <!-- FLOATING WHATSAPP -->
-  <button class="wa-float" onclick="window.open('https://wa.me/94701688777','_blank')" title="Chat on WhatsApp">
-    <div class="wa-tooltip">Chat with us on WhatsApp</div>
-    <svg viewBox="0 0 24 24">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
-  </button>
-
-  <!-- NAV -->
-  <nav id="nav">
-    <div class="nav-logo" onclick="showPage('home')">
-      <img src="IMG/logo.jpeg" alt="ShaloTrack" onerror="this.style.display='none'" />
-      <div class="nav-logo-text"><span class="s">SHALO</span><span class="t">TRACK</span></div>
-    </div>
-    <ul class="nav-links">
-      <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
-      <li><a onclick="showPage('features')" id="nav-features">Features</a></li>
-      <li><a onclick="showPage('platform')" id="nav-platform">Platform</a></li>
-      <li><a onclick="showPage('team')" id="nav-team">Team</a></li>
-      <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
-    </ul>
-    <button class="nav-cta" onclick="showPage('contact')">Get Started →</button>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a onclick="showPage('home');closeMenu()" id="mob-home" class="active">Home</a>
-    <a onclick="showPage('features');closeMenu()" id="mob-features">Features</a>
-    <a onclick="showPage('platform');closeMenu()" id="mob-platform">Platform</a>
-    <a onclick="showPage('team');closeMenu()" id="mob-team">Team</a>
-    <a onclick="showPage('contact');closeMenu()" id="mob-contact">Contact</a>
-    <button class="mob-cta" onclick="showPage('contact');closeMenu()">Get Started →</button>
-  </div>
-
-  <!-- STATS BAR -->
-  <div class="stats-bar" id="statsBar">
-    <div class="stats-bar-inner">
-      <div class="sbar-item">
-        <div class="sbar-dot"></div>
-        <div>
-          <div class="sbar-num"><em>25,000</em>+</div>
-          <div class="sbar-label">Active Devices</div>
-        </div>
-      </div>
-      <div class="sbar-item">
-        <div style="font-size:1.2rem">🌐</div>
-        <div>
-          <div class="sbar-num">Island<em>-Wide</em></div>
-          <div class="sbar-label">Coverage</div>
-        </div>
-      </div>
-      <div class="sbar-item">
-        <div style="font-size:1.2rem">⚡</div>
-        <div>
-          <div class="sbar-num">24<em>/7</em></div>
-          <div class="sbar-label">Live Monitoring</div>
-        </div>
-      </div>
-      <div class="sbar-item">
-        <div style="font-size:1.2rem">💬</div>
-        <div>
-          <div class="sbar-num">Fast<em> Support</em></div>
-          <div class="sbar-label">Local Sri Lankan Team</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════ HOME ══════════════ -->
-  <div class="page active" id="home">
-    <div class="hero">
-      <div class="hero-inner">
-        <div class="hero-eyebrow"><span class="ping-dot"></span>Signal Active · Sri Lanka 🇱🇰</div>
-        <h1 class="hero-title">
-          <span class="line1">Always</span>
-          <span class="line2">Connected.</span>
-        </h1>
-        <p class="hero-sub">Sri Lanka's smart GPS tracking and vehicle security platform — real-time monitoring, fleet
-          management, and intelligent alerts for businesses and individual owners.</p>
-        <div class="hero-btns">
-          <button class="btn-primary" onclick="showPage('contact')">
-            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/zap.svg"
-              style="width:16px;height:16px;filter:invert(1)" alt="" />
-            Get Started
-          </button>
-          <button class="btn-ghost" onclick="showPage('features')">Explore Features</button>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><span class="stat-num">25K<span>+</span></span><span class="stat-label">Active
-              Devices</span></div>
-          <div class="stat"><span class="stat-num">5<span>+</span></span><span class="stat-label">Vehicle Types</span>
-          </div>
-          <div class="stat"><span class="stat-num">24<span>/7</span></span><span class="stat-label">Live Tracking</span>
-          </div>
-          <div class="stat"><span class="stat-num">LK<span>🇱🇰</span></span><span class="stat-label">Built in Sri
-              Lanka</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- HOW IT WORKS -->
-    <div class="section">
-      <div class="sec-eyebrow">How It Works</div>
-      <h2 class="sec-title">Up and running in <span>3 simple steps</span></h2>
-      <p class="sec-sub">From installation to live tracking — ShaloTrack gets your vehicle protected and visible in no
-        time.</p>
-      <div class="hiw-steps" style="position:relative">
-        <div class="hiw-line"></div>
-        <div class="hiw-step">
-          <div class="hiw-num">
-            <span class="hiw-step-icon">🔧</span>
-            <div class="hiw-badge">1</div>
-          </div>
-          <div class="hiw-title">Install the Device</div>
-          <div class="hiw-desc">Our technician professionally installs the GPS tracker inside your vehicle — cars,
-            bikes, vans, or trucks. Takes under an hour.</div>
-          <span class="hiw-tag">Professional Install</span>
-        </div>
-        <div class="hiw-step">
-          <div class="hiw-num">
-            <span class="hiw-step-icon">📡</span>
-            <div class="hiw-badge">2</div>
-          </div>
-          <div class="hiw-title">Connect & Activate</div>
-          <div class="hiw-desc">The device connects to GPS satellites and transmits your vehicle's location securely to
-            our cloud platform in real time.</div>
-          <span class="hiw-tag">Instant Activation</span>
-        </div>
-        <div class="hiw-step">
-          <div class="hiw-num">
-            <span class="hiw-step-icon">📱</span>
-            <div class="hiw-badge">3</div>
-          </div>
-          <div class="hiw-title">Track from Anywhere</div>
-          <div class="hiw-desc">Open the ShaloTrack app and see your vehicle live on the map. Get instant alerts, view
-            history, and stay in control — always.</div>
-          <span class="hiw-tag">Live on App</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- VEHICLES -->
-    <div class="section" style="padding-top:0">
-      <div class="sec-eyebrow">What We Track</div>
-      <h2 class="sec-title">Every vehicle. <span>Every road.</span></h2>
-      <p class="sec-sub">From personal cars to full commercial fleets — ShaloTrack connects and monitors every asset in
-        real time.</p>
-      <div class="vehicle-row">
-        <div class="v-cell"><img class="v-ico" src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/car.svg"
-            alt="" />
-          <div class="v-lbl">Cars</div>
-        </div>
-        <div class="v-cell">
-          <svg class="v-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="5.5" cy="17.5" r="3.5" />
-            <circle cx="18.5" cy="17.5" r="3.5" />
-            <path d="M15 6h2l2 4H9l1-4h2m0 0V4m0 2h3" />
-            <path d="M5.5 14l3-4h5l2 4" />
+  <header class="site-header" id="siteHeader">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="ShaloTrack home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 42 42" fill="none">
+            <path d="M21 38s12-11.15 12-21A12 12 0 1 0 9 17c0 9.85 12 21 12 21Z" fill="currentColor" />
+            <path d="m14.6 26.2 11.7-11.7-4.8 10.8-2.7-3.1-4.2 4Z" fill="#fff" />
+            <path d="M29.6 7.3c2.4.4 4.25 1.35 5.65 2.8M31.2 3.3c3.3.55 6.15 1.85 8.35 4.05" stroke="#071A33" stroke-width="2" stroke-linecap="round" />
           </svg>
-          <div class="v-lbl">Motorcycles</div>
-        </div>
-        <div class="v-cell"><img class="v-ico" src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/bus.svg"
-            alt="" />
-          <div class="v-lbl">Vans</div>
-        </div>
-        <div class="v-cell"><img class="v-ico" src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/truck.svg"
-            alt="" />
-          <div class="v-lbl">Trucks</div>
-        </div>
-        <div class="v-cell"><img class="v-ico"
-            src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/building-2.svg" alt="" />
-          <div class="v-lbl">Fleets</div>
-        </div>
-        <div class="v-cell"><img class="v-ico"
-            src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/package.svg" alt="" />
-          <div class="v-lbl">Assets</div>
-        </div>
-      </div>
+        </span>
+        <span>SHALO<span class="brand-track">TRACK</span></span>
+      </a>
 
-      <!-- FEATURES -->
-      <div class="sec-eyebrow">Core Capabilities</div>
-      <h2 class="sec-title">Built for <span>speed & reliability</span></h2>
-      <p class="sec-sub">Easy vehicle tracking within 3 seconds after opening the app — built for normal Sri Lankan
-        users.</p>
-      <div class="feat-grid">
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/map-pin.svg"
-              alt="" /></div>
-          <h3>Real-Time Tracking</h3>
-          <p>Live GPS position, satellite view, traffic overlay, and vehicle follow mode — updated in real time.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/history.svg"
-              alt="" /></div>
-          <h3>History Playback</h3>
-          <p>Replay any route with stop reports, distance logs, and speed data — know exactly where your vehicle has
-            been.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/bell.svg"
-              alt="" /></div>
-          <h3>Smart Alerts</h3>
-          <p>Push notifications for ignition events, overspeed, geo-fence breaches, power cuts, and low battery.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/shield-off.svg"
-              alt="" /></div>
-          <h3>Engine Cut</h3>
-          <p>Remotely cut engine with PIN protection, confirmation popup, and safety condition checks.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/credit-card.svg"
-              alt="" /></div>
-          <h3>Subscriptions</h3>
-          <p>Manage plans, renewals, warranty periods, and device assignments — all in one place.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/satellite.svg"
-              alt="" /></div>
-          <h3>GPS Infrastructure</h3>
-          <p>GT06 & V5 protocol support, TCP server, IMEI management, and server IP configuration.</p>
-        </div>
-      </div>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links" id="primaryNav">
+          <li><a class="is-active" href="#top">Home</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#people">Our people</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="button button-primary nav-button nav-cta" href="#contact">Get a quote</a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-controls="primaryNav" aria-expanded="false"
+        aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </header>
 
-    <!-- CTA BANNER -->
-    <div style="padding:0 2rem;max-width:1100px;margin:0 auto 5rem">
-      <div class="cta-banner">
-        <h2>Ready to protect your <span>vehicle?</span></h2>
-        <p>Join 25,000+ vehicle owners and businesses across Sri Lanka who trust ShaloTrack for real-time GPS tracking
-          and vehicle security.</p>
-        <div class="cta-btns">
-          <button class="btn-primary" onclick="showPage('contact')">Get Started Today →</button>
-          <button class="btn-ghost" onclick="window.open('https://wa.me/94701688777','_blank')">Chat on
-            WhatsApp</button>
-        </div>
-      </div>
-    </div>
-
-    <footer>
-      <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
-      <div class="footer-sub">GPS TRACKING · VEHICLE SECURITY · FLEET MANAGEMENT · SRI LANKA 🇱🇰</div>
-    </footer>
-  </div>
-
-  <!-- ══════════════ FEATURES ══════════════ -->
-  <div class="page" id="features">
-    <div class="features-hero">
-      <div class="sec-eyebrow" style="text-align:center">Mobile Application</div>
-      <h1 class="sec-title" style="font-size:clamp(2rem,5vw,3.2rem);text-align:center">Everything you
-        need,<br /><span>in your pocket.</span></h1>
-      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem">The ShaloTrack Android app
-        puts complete vehicle control and live monitoring at your fingertips — fast, stable, and built for Sri Lankan
-        roads.</p>
-    </div>
-    <div class="feat-section">
-      <div class="feat-block">
-        <div class="feat-block-visual">
-          <div class="mock-phone">
-            <div class="mock-phone-bar"></div>
-            <div class="mock-phone-map">
-              <div class="mock-route"></div>
-              <div class="mock-pin"></div>
-            </div>
-            <div class="mock-info">
-              <div class="mock-info-row"><span class="mock-info-lbl">SPEED</span><span class="mock-info-val">62
-                  km/h</span></div>
-              <div class="mock-info-row"><span class="mock-info-lbl">STATUS</span><span class="mock-info-val"
-                  style="color:#22c55e">ONLINE</span></div>
-              <div class="mock-info-row"><span class="mock-info-lbl">IGNITION</span><span
-                  class="mock-info-val">ON</span></div>
-            </div>
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="heroTitle">
+      <div class="container hero-grid">
+        <div data-reveal>
+          <div class="eyebrow">GPS tracking built for Sri Lanka</div>
+          <h1 id="heroTitle">See every journey.<br><em>Secure every mile.</em></h1>
+          <p class="hero-copy">ShaloTrack gives owners and growing fleets a clear, reliable view of every vehicle - in
+            real time, from wherever they are.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact">
+              Protect your vehicle
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+            <a class="button button-secondary" href="#platform">Explore the platform</a>
           </div>
-        </div>
-        <div class="feat-block-content">
-          <span class="tag">Live Tracking</span>
-          <h2>Real-time map tracking with vehicle follow mode</h2>
-          <p>Watch your vehicles move on the map in real time. Switch between satellite and traffic views, enable follow
-            mode to keep your vehicle centered, and get instant speed and status updates.</p>
-          <ul class="feat-list">
-            <li>Real-time GPS map tracking</li>
-            <li>Vehicle follow mode</li>
-            <li>Satellite & traffic view</li>
-            <li>Online / offline status</li>
-            <li>Ignition ON/OFF & current speed</li>
-            <li>Last update timestamp</li>
+          <ul class="hero-assurance" aria-label="Service highlights">
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>Professional installation</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>Island-wide support</li>
           </ul>
         </div>
-      </div>
-      <div class="feat-block rev">
-        <div class="feat-block-visual">
-          <div class="mock-alerts">
-            <div class="alert-item">
-              <div class="alert-dot warn"></div>
-              <div class="alert-text">Overspeed — Toyota Hiace CBC-4421</div><span class="alert-time">2m ago</span>
+
+        <div class="hero-product" data-reveal>
+          <div class="tracking-card" aria-label="Illustration of the ShaloTrack real-time tracking dashboard">
+            <div class="app-topbar">
+              <div class="app-title">
+                <span class="app-title-mark"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17s5-4.66 5-8.5A5 5 0 1 0 5 8.5C5 12.34 10 17 10 17Z" stroke="currentColor" stroke-width="1.5" /><circle cx="10" cy="8.5" r="1.7" fill="currentColor" /></svg></span>
+                Live tracking
+              </div>
+              <span class="app-live"><i class="live-dot"></i>System online</span>
             </div>
-            <div class="alert-item">
-              <div class="alert-dot on"></div>
-              <div class="alert-text">Ignition ON — Nissan Leaf WP-8821</div><span class="alert-time">5m ago</span>
-            </div>
-            <div class="alert-item">
-              <div class="alert-dot off"></div>
-              <div class="alert-text">Device Offline — CAB-1192</div><span class="alert-time">12m ago</span>
-            </div>
-            <div class="alert-item">
-              <div class="alert-dot warn"></div>
-              <div class="alert-text">Geo-fence exit — Truck PQ-3345</div><span class="alert-time">18m ago</span>
-            </div>
-            <div class="alert-item">
-              <div class="alert-dot off"></div>
-              <div class="alert-text">Low battery — Bike NB-9901</div><span class="alert-time">1h ago</span>
-            </div>
-          </div>
-        </div>
-        <div class="feat-block-content">
-          <span class="tag">Smart Alerts</span>
-          <h2>Know instantly when something needs attention</h2>
-          <p>Firebase-powered push notifications reach you the moment something happens to any of your vehicles — no
-            need to keep the app open.</p>
-          <ul class="feat-list">
-            <li>Ignition ON/OFF alerts</li>
-            <li>Overspeed notifications</li>
-            <li>Geo-fence breach alerts</li>
-            <li>Device offline warnings</li>
-            <li>Power cut detection</li>
-            <li>Low battery alerts</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feat-block">
-        <div class="feat-block-visual">
-          <div class="mock-engine">
-            <div class="engine-ring">
-              <div class="engine-btn">ENGINE<br />CUT</div>
-            </div>
-            <div style="font-size:0.72rem;color:var(--textMuted)">Enter PIN to confirm</div>
-            <div class="engine-pin">
-              <div class="pin-dot filled"></div>
-              <div class="pin-dot filled"></div>
-              <div class="pin-dot filled"></div>
-              <div class="pin-dot"></div>
-            </div>
-            <div style="font-size:0.65rem;color:var(--textDim);text-align:center;max-width:150px;line-height:1.4">Safety
-              check: Vehicle speed must be below 5 km/h</div>
-          </div>
-        </div>
-        <div class="feat-block-content">
-          <span class="tag">Engine Cut</span>
-          <h2>Remotely stop your vehicle — safely</h2>
-          <p>The engine cut feature lets you immobilize your vehicle remotely with full safety checks. A PIN and
-            confirmation popup prevent accidental use.</p>
-          <ul class="feat-list">
-            <li>Remote engine cut command</li>
-            <li>PIN protection</li>
-            <li>Confirmation popup</li>
-            <li>Speed safety condition check</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feat-block rev">
-        <div class="feat-block-visual">
-          <div style="width:100%;display:flex;flex-direction:column;gap:10px">
-            <div style="background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:12px">
-              <div
-                style="font-size:0.65rem;color:var(--orange);font-family:'JetBrains Mono',monospace;margin-bottom:8px;letter-spacing:1px">
-                TODAY'S ROUTE</div>
-              <div
-                style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:8px;position:relative">
-                <div
-                  style="position:absolute;left:0;top:0;height:100%;width:72%;background:var(--orange);border-radius:2px">
+            <div class="map-frame">
+              <span class="water-shape"></span>
+              <span class="map-road road-a"></span><span class="map-road road-b"></span>
+              <span class="map-label label-a">Kirulapone</span><span class="map-label label-b">Colombo</span><span class="map-label label-c">Nugegoda</span>
+              <svg class="route-svg" viewBox="0 0 600 347" preserveAspectRatio="none" aria-hidden="true">
+                <path class="route-line" d="M109 282 C159 238, 201 257, 231 210 S301 198, 333 170 S369 144, 394 151" />
+              </svg>
+              <span class="map-pin pin-start"></span>
+              <span class="map-pin pin-current"><svg viewBox="0 0 20 20" fill="none"><path d="M3 12.7h14M5.4 12.7l1-4.9A2 2 0 0 1 8.36 6h3.28a2 2 0 0 1 1.96 1.8l1 4.9M5.5 12.7v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1m3.8 0v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+              <div class="vehicle-status">
+                <div class="vehicle-identity">
+                  <span class="vehicle-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M3 12.7h14M5.4 12.7l1-4.9A2 2 0 0 1 8.36 6h3.28a2 2 0 0 1 1.96 1.8l1 4.9M5.5 12.7v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1m3.8 0v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span><span class="vehicle-name">Toyota Hiace</span><span class="vehicle-meta"><i class="live-dot"></i>Online now</span></span>
                 </div>
-              </div>
-              <div style="display:flex;justify-content:space-between"><span
-                  style="font-size:0.65rem;color:var(--textDim);font-family:'JetBrains Mono',monospace">142
-                  km</span><span
-                  style="font-size:0.65rem;color:var(--textDim);font-family:'JetBrains Mono',monospace">4h 22m</span>
-              </div>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-              <div
-                style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center">
-                <div style="font-size:1rem;font-weight:700;color:#fff;font-family:'Syne',sans-serif">7</div>
-                <div style="font-size:0.6rem;color:var(--textDim);font-family:'JetBrains Mono',monospace">Stops</div>
-              </div>
-              <div
-                style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center">
-                <div style="font-size:1rem;font-weight:700;color:var(--orange);font-family:'Syne',sans-serif">88</div>
-                <div style="font-size:0.6rem;color:var(--textDim);font-family:'JetBrains Mono',monospace">Max km/h</div>
+                <div class="data-point"><div class="data-label">Speed</div><div class="data-value">62 km/h</div></div>
+                <div class="data-point"><div class="data-label">Updated</div><div class="data-value">Just now</div></div>
               </div>
             </div>
           </div>
+          <div class="floating-card alert-card">
+            <span class="floating-card-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17a2 2 0 0 0 2-2H8a2 2 0 0 0 2 2Zm5-4.5H5l1.3-1.7V8a3.7 3.7 0 0 1 7.4 0v2.8l1.3 1.7Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+            <span><strong>Safe-zone alert</strong><span>Vehicle has arrived</span></span>
+          </div>
+          <div class="floating-card activity-card">
+            <span class="floating-card-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M3.2 10h3l1.6-4.2 3.1 8.5 1.7-4.3h4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+            <span><strong>Journey summary</strong><span>42.8 km today</span></span>
+          </div>
         </div>
-        <div class="feat-block-content">
-          <span class="tag">History Playback</span>
-          <h2>Replay any journey, any day</h2>
-          <p>Go back in time and replay any vehicle's route with full detail — stop locations, idle time, speed graphs,
-            and total distance covered.</p>
-          <ul class="feat-list">
-            <li>Full route replay on map</li>
-            <li>Stop detection & duration</li>
-            <li>Distance reports</li>
-            <li>Speed reports & max speed</li>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="ShaloTrack highlights">
+      <div class="container trust-inner">
+        <div class="trust-title">Everything you need to stay in control</div>
+        <div class="trust-item"><strong>25,000+</strong> active devices</div>
+        <div class="trust-item"><strong>24/7</strong> live visibility</div>
+        <div class="trust-item"><strong>Island-wide</strong> coverage</div>
+      </div>
+    </section>
+
+    <section class="section" id="solutions" aria-labelledby="solutionsTitle">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div class="section-kicker">One connected view</div>
+          <h2 class="section-title" id="solutionsTitle">Made for the moments that <em>matter most.</em></h2>
+          <p class="section-intro">From a single car to a complex fleet, ShaloTrack turns location data into clear,
+            useful information you can act on.</p>
+        </div>
+        <div class="solutions-grid">
+          <article class="solution-card" data-reveal>
+            <div class="solution-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.52 7-12a7 7 0 1 0-14 0c0 5.48 7 12 7 12Z" stroke="currentColor" stroke-width="1.7" /><circle cx="12" cy="9" r="2.35" stroke="currentColor" stroke-width="1.7" /></svg></div>
+            <h3>Real-time location</h3>
+            <p>See where each vehicle is, how fast it is moving, and when its location was last updated - all from one simple view.</p>
+            <span class="card-index" aria-hidden="true">01</span>
+          </article>
+          <article class="solution-card" data-reveal>
+            <div class="solution-icon blue"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19h14M6.5 16V9M12 16V5M17.5 16v-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><path d="m4.5 9 5-5 5 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+            <h3>Journey intelligence</h3>
+            <p>Review trip history, stops, distance and speed in context, so every route tells a clearer story.</p>
+            <span class="card-index" aria-hidden="true">02</span>
+          </article>
+          <article class="solution-card" data-reveal>
+            <div class="solution-icon green"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21a2.3 2.3 0 0 0 2.25-2h-4.5A2.3 2.3 0 0 0 12 21Zm6-5.5H6l1.65-2.14V9.7a4.35 4.35 0 1 1 8.7 0v3.66L18 15.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+            <h3>Smart security alerts</h3>
+            <p>Receive timely alerts for events such as ignition changes, overspeeding, safe-zone movement and device status.</p>
+            <span class="card-index" aria-hidden="true">03</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="platform" aria-labelledby="platformTitle">
+      <div class="container platform-grid">
+        <div class="platform-copy" data-reveal>
+          <div class="section-heading">
+            <div class="section-kicker">The ShaloTrack platform</div>
+            <h2 class="section-title" id="platformTitle">Clarity at a glance. <em>Confidence on the road.</em></h2>
+            <p class="section-intro">Designed for everyday owners and fleet managers alike, our platform makes the right information easy to find and easy to understand.</p>
+          </div>
+          <ul class="feature-list">
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>Track one vehicle or an entire fleet from a single account</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>Use route history and alerts to make practical decisions quickly</li>
+            <li><span class="check"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>Stay connected through a secure, always-available cloud platform</li>
+          </ul>
+          <div class="platform-actions"><a class="button button-primary" href="#contact">Talk to our team</a></div>
+        </div>
+
+        <div class="dashboard-wrap" data-reveal aria-label="Illustration of the fleet management dashboard">
+          <span class="dash-orbit" aria-hidden="true"></span>
+          <div class="dashboard">
+            <div class="dashboard-head">
+              <div class="dashboard-brand"><span class="dashboard-brand-dot"></span>Fleet overview</div>
+              <div class="dashboard-tabs"><span class="selected">Live map</span><span>Reports</span></div>
+            </div>
+            <div class="dashboard-main">
+              <div class="dashboard-map">
+                <span class="dash-water"></span>
+                <svg class="dash-route" viewBox="0 0 500 355" preserveAspectRatio="none" aria-hidden="true"><polyline points="72,267 138,215 194,243 245,156 309,186 358,115" /></svg>
+                <span class="dash-vehicle"><svg viewBox="0 0 20 20" fill="none"><path d="M3 12.7h14M5.4 12.7l1-4.9A2 2 0 0 1 8.36 6h3.28a2 2 0 0 1 1.96 1.8l1 4.9M5.5 12.7v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1m3.8 0v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+              </div>
+              <aside class="dash-side" aria-label="Vehicles">
+                <div class="dash-side-title">Vehicles</div>
+                <div class="mini-vehicle active"><strong>Toyota Hiace</strong><span>Moving</span></div>
+                <div class="mini-vehicle"><strong>Nissan Leaf</strong><span>Parked</span></div>
+                <div class="mini-vehicle offline"><strong>Truck L-248</strong><span>Offline</span></div>
+              </aside>
+            </div>
+            <div class="dashboard-kpis">
+              <div class="dashboard-kpi"><span>Vehicles online</span><strong>18 of 20</strong></div>
+              <div class="dashboard-kpi"><span>Trips today</span><strong>42</strong></div>
+              <div class="dashboard-kpi"><span>Alerts resolved</span><strong>96%</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" aria-labelledby="securityTitle">
+      <div class="container security-grid">
+        <div class="security-copy" data-reveal>
+          <div class="section-heading">
+            <div class="section-kicker">Vehicle security, simplified</div>
+            <h2 class="section-title" id="securityTitle">Stay informed before a small event becomes a <em>bigger problem.</em></h2>
+            <p class="section-intro">The moments that matter are not always predictable. ShaloTrack keeps you connected with the vehicle activity you need to know about.</p>
+          </div>
+          <div class="security-stats" aria-label="Service capabilities">
+            <div class="security-stat"><strong>Live</strong><span>Location status</span></div>
+            <div class="security-stat"><strong>Instant</strong><span>Event alerts</span></div>
+            <div class="security-stat"><strong>Local</strong><span>Support team</span></div>
+          </div>
+        </div>
+        <div class="security-panel" data-reveal>
+          <div class="monitor-head">
+            <div class="monitor-heading"><span class="monitor-heading-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17a2 2 0 0 0 2-2H8a2 2 0 0 0 2 2Zm5-4.5H5l1.3-1.7V8a3.7 3.7 0 0 1 7.4 0v2.8l1.3 1.7Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>Recent activity</div>
+            <span class="monitor-status">Monitoring</span>
+          </div>
+          <ul class="activity-list">
+            <li class="activity-item"><span class="activity-icon safe"><svg viewBox="0 0 20 20" fill="none"><path d="m4 10 3.2 3.15L16 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span class="activity-info"><strong>Toyota Hiace arrived in a safe zone</strong><span>Colombo, Sri Lanka</span></span><span class="activity-time">Now</span></li>
+            <li class="activity-item"><span class="activity-icon alert"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3.1 17 16H3l7-12.9Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" /><path d="M10 7.4v3.8m0 2.1h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg></span><span class="activity-info"><strong>Speed threshold reached</strong><span>Nugegoda route</span></span><span class="activity-time">8m</span></li>
+            <li class="activity-item"><span class="activity-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M6.2 3.5h7.6v13H6.2zM8.1 6.6h3.8M8.1 9.7h3.8M8.1 12.8h2" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span class="activity-info"><strong>Journey report is ready to review</strong><span>Vehicle group: Western fleet</span></span><span class="activity-time">31m</span></li>
           </ul>
         </div>
       </div>
-    </div>
-    <div style="padding:0 2rem;max-width:1100px;margin:0 auto 5rem">
-      <div class="cta-banner">
-        <h2>Ready to see it <span>in action?</span></h2>
-        <p>Get in touch and our team will walk you through the ShaloTrack platform and set up your first device.</p>
-        <div class="cta-btns">
-          <button class="btn-primary" onclick="showPage('contact')">Contact Us →</button>
-          <button class="btn-ghost" onclick="showPage('platform')">View Platform</button>
-        </div>
-      </div>
-    </div>
-    <footer>
-      <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
-      <div class="footer-sub">GPS TRACKING · VEHICLE SECURITY · FLEET MANAGEMENT · SRI LANKA 🇱🇰</div>
-    </footer>
-  </div>
+    </section>
 
-  <!-- ══════════════ PLATFORM ══════════════ -->
-  <div class="page" id="platform">
-    <div class="platform-hero">
-      <div class="sec-eyebrow" style="text-align:center">Platform Ecosystem</div>
-      <h1 class="sec-title" style="font-size:clamp(2rem,5vw,3.2rem);text-align:center">Four portals. <span>One
-          ecosystem.</span></h1>
-      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem;margin-bottom:2.5rem">From
-        the driver's phone to the admin's dashboard — every part of the ShaloTrack platform works together seamlessly.
-      </p>
-    </div>
-    <div class="portal-grid">
-      <div class="portal-card">
-        <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/smartphone.svg"
-            alt="" /></div>
-        <h3>Mobile App</h3>
-        <p>Android-first customer app for live tracking, alerts, history playback, and subscription management.</p>
-        <div class="portal-tags"><span class="ptag">Android</span><span class="ptag">Kotlin</span><span
-            class="ptag">Firebase</span><span class="ptag">Google Maps</span></div>
-      </div>
-      <div class="portal-card">
-        <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/monitor.svg"
-            alt="" /></div>
-        <h3>Customer Portal</h3>
-        <p>Web-based portal for live tracking dashboard, vehicle monitoring, and detailed reports & analytics.</p>
-        <div class="portal-tags"><span class="ptag">PHP</span><span class="ptag">Bootstrap</span><span
-            class="ptag">JavaScript</span><span class="ptag">Maps API</span></div>
-      </div>
-      <div class="portal-card">
-        <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/shield-check.svg"
-            alt="" /></div>
-        <h3>Admin Panel</h3>
-        <p>Full control center — customer management, device management, IMEI control, subscriptions, dealers, and
-          revenue reports.</p>
-        <div class="portal-tags"><span class="ptag">Customer Mgmt</span><span class="ptag">Device Control</span><span
-            class="ptag">Revenue Reports</span></div>
-      </div>
-      <div class="portal-card">
-        <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/users.svg" alt="" />
+    <section class="section" id="how-it-works" aria-labelledby="howTitle">
+      <div class="container">
+        <div class="section-heading center" data-reveal>
+          <div class="section-kicker">Getting started</div>
+          <h2 class="section-title" id="howTitle">Protection in three <em>simple steps.</em></h2>
+          <p class="section-intro">We keep the process straightforward, so you can go from installation to live visibility without the complexity.</p>
         </div>
-        <h3>Dealer Portal</h3>
-        <p>Distributor login for device activation, customer registration, subscription activation, and device
-          assignment.</p>
-        <div class="portal-tags"><span class="ptag">Activation</span><span class="ptag">Registration</span><span
-            class="ptag">Assignment</span></div>
-      </div>
-      <div class="portal-card" style="grid-column:span 2">
-        <div class="portal-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/satellite.svg"
-            alt="" /></div>
-        <h3>GPS Infrastructure</h3>
-        <p>The backbone of the platform — a TCP GPS server processing real-time data from all connected devices 24/7,
-          with full protocol support and device command management.</p>
-        <div class="portal-tags"><span class="ptag">TCP Server</span><span class="ptag">GT06 Protocol</span><span
-            class="ptag">V5 Support</span><span class="ptag">2G Trackers</span><span class="ptag">IMEI Mgmt</span><span
-            class="ptag">Real-Time</span></div>
-      </div>
-    </div>
-    <div class="tech-section">
-      <div class="sec-eyebrow">Technology Stack</div>
-      <h2 class="sec-title">Built on <span>proven technology</span></h2>
-      <p class="sec-sub">Secure, scalable, API-ready architecture running on cloud infrastructure with full source code
-        ownership by ShaloTrack Lanka (Pvt) Ltd.</p>
-      <div class="tech-grid">
-        <div class="tech-card">
-          <div class="tech-card-label">Mobile</div>
-          <div class="tech-tags">
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kotlin.svg"
-                style="filter:invert(60%) sepia(60%) saturate(400%) hue-rotate(220deg)" alt="" /><span>Kotlin</span>
-            </div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/android.svg"
-                style="filter:invert(70%) sepia(50%) saturate(400%) hue-rotate(80deg)" alt="" /><span>Android SDK</span>
-            </div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/firebase.svg"
-                style="filter:invert(80%) sepia(60%) saturate(400%) hue-rotate(10deg)" alt="" /><span>Firebase
-                FCM</span></div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlemaps.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(180deg)" alt="" /><span>Google
-                Maps</span></div>
-          </div>
-        </div>
-        <div class="tech-card">
-          <div class="tech-card-label">Backend</div>
-          <div class="tech-tags">
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/dotnet.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(220deg)" alt="" /><span>.NET Web
-                API</span></div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/network.svg"
-                style="filter:invert(0.5)" alt="" /><span>TCP GPS Server</span></div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/zap.svg"
-                style="filter:invert(0.5)" alt="" /><span>REST APIs</span></div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/radio.svg"
-                style="filter:invert(0.5)" alt="" /><span>GPS Protocol Parser</span></div>
-          </div>
-        </div>
-        <div class="tech-card">
-          <div class="tech-card-label">Web</div>
-          <div class="tech-tags">
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/php.svg"
-                style="filter:invert(60%) sepia(20%) saturate(400%) hue-rotate(220deg)" alt="" /><span>PHP</span></div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/bootstrap.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(240deg)" alt="" /><span>Bootstrap</span>
-            </div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg"
-                style="filter:invert(80%) sepia(60%) saturate(400%) hue-rotate(10deg)" alt="" /><span>JavaScript</span>
-            </div>
-          </div>
-        </div>
-        <div class="tech-card">
-          <div class="tech-card-label">Cloud & DB</div>
-          <div class="tech-tags">
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/postgresql.svg"
-                style="filter:invert(50%) sepia(40%) saturate(400%) hue-rotate(180deg)" alt="" /><span>PostgreSQL</span>
-            </div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/supabase.svg"
-                style="filter:invert(70%) sepia(50%) saturate(400%) hue-rotate(100deg)" alt="" /><span>Supabase</span>
-            </div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftazure.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(180deg)" alt="" /><span>Microsoft
-                Azure</span></div>
-            <div class="tech-row"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg"
-                style="filter:invert(50%) sepia(60%) saturate(400%) hue-rotate(180deg)" alt="" /><span>Docker</span>
-            </div>
-          </div>
+        <div class="steps-grid">
+          <article class="step" data-reveal><div class="step-number">01</div><h3>Choose your setup</h3><p>Tell us about your vehicle or fleet and the level of visibility you need.</p></article>
+          <article class="step" data-reveal><div class="step-number">02</div><h3>Professional installation</h3><p>Our team installs and activates your GPS device securely and efficiently.</p></article>
+          <article class="step" data-reveal><div class="step-number">03</div><h3>Track with confidence</h3><p>Sign in to your platform, see live activity, and receive the alerts that matter.</p></article>
         </div>
       </div>
-    </div>
-    <div class="device-section">
-      <div class="sec-eyebrow">Device Compatibility</div>
-      <h2 class="sec-title">Supports today's devices. <span>Ready for tomorrow.</span></h2>
-      <p class="sec-sub" style="margin-bottom:2rem">Full support for current GPS hardware with a clear path to 4G and
-        future expansion.</p>
-      <div class="device-grid">
-        <div class="device-card">
-          <div class="device-num">01</div>
-          <div>
-            <h4>GT06 Protocol</h4>
-            <p>Full support for the industry-standard GT06 GPS tracker protocol with real-time command handling.</p>
-          </div>
-        </div>
-        <div class="device-card">
-          <div class="device-num">02</div>
-          <div>
-            <h4>V5 GPS Devices</h4>
-            <p>Native V5 device support with IMEI management, server IP configuration, and remote activation.</p>
-          </div>
-        </div>
-        <div class="device-card">
-          <div class="device-num">03</div>
-          <div>
-            <h4>2G GPS Trackers</h4>
-            <p>Compatible with the most widely deployed 2G trackers in Sri Lanka — reliable and proven.</p>
-          </div>
-        </div>
-        <div class="device-card">
-          <div class="device-num">04</div>
-          <div>
-            <h4>Future 4G Devices</h4>
-            <p>Architecture ready to onboard next-generation 4G trackers as the market evolves.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <footer>
-      <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
-      <div class="footer-sub">GPS TRACKING · VEHICLE SECURITY · FLEET MANAGEMENT · SRI LANKA 🇱🇰</div>
-    </footer>
-  </div>
+    </section>
 
-  <!-- ══════════════ TEAM ══════════════ -->
-  <div class="page" id="team">
-    <div class="team-hero">
-      <div class="sec-eyebrow" style="text-align:center">The People</div>
-      <h1 class="sec-title" style="font-size:clamp(2rem,5vw,3.2rem);text-align:center">Built by <span>Sri
-          Lankans</span><br />for Sri Lanka.</h1>
-      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem;margin-bottom:2.5rem">A
-        focused team of engineers and designers building the country's leading GPS tracking platform from the ground up.
-      </p>
-    </div>
-    <div class="founder-section">
-      <div class="founder-card">
-        <div class="founder-avatar">NA</div>
-        <div class="founder-info">
-          <div class="crown">👑 Founder & Owner</div>
-          <h2>N. A. Polwatte Gedara</h2>
-          <p>Founder & Owner · ShaloTrack Lanka (Pvt) Ltd · Driving the vision of Sri Lanka's leading GPS tracking and
-            fleet management platform.</p>
+    <section class="section people-section" id="people" aria-labelledby="peopleTitle">
+      <div class="container">
+        <div class="section-heading center" data-reveal>
+          <div class="section-kicker">The people behind ShaloTrack</div>
+          <h2 class="section-title" id="peopleTitle">Built by Sri Lankans, <em>for Sri Lanka.</em></h2>
+          <p class="section-intro">A focused owner-led team bringing together product vision, engineering, and the local knowledge behind every connected journey.</p>
         </div>
-      </div>
-    </div>
-    <div class="dev-team-section">
-      <div class="sec-eyebrow">Development Team</div>
-      <h2 class="sec-title" style="margin-bottom:1.5rem">The engineers <span>behind the platform</span></h2>
-      <div class="dev-grid">
-        <div class="dev-card">
-          <div class="dev-av av-o">SJ</div>
-          <div class="dev-info">
+
+        <article class="owner-card" data-reveal>
+          <div class="person-monogram" aria-label="N. A. Polwatte Gedara initials">NA</div>
+          <div class="owner-details">
+            <div class="owner-badge"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3 7 3 3 4-6 4 6 3-3v7.5A1.5 1.5 0 0 1 15.5 16h-11A1.5 1.5 0 0 1 3 14.5V7Z" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round" /><path d="M6 13h8" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" /></svg>Founder &amp; Owner</div>
+            <h3>N. A. Polwatte Gedara</h3>
+            <p>Founder &amp; Owner, ShaloTrack Lanka (Pvt) Ltd - driving the vision for a trusted Sri Lankan GPS tracking and fleet management platform.</p>
+          </div>
+          <div class="owner-statement"><strong>Owner-led vision</strong>Creating dependable vehicle visibility for everyday owners and ambitious local fleets.</div>
+        </article>
+
+        <div class="people-heading-row" data-reveal>
+          <div class="section-heading">
+            <div class="section-kicker">Development team</div>
+            <h2 class="section-title">The engineers <em>behind the platform.</em></h2>
+          </div>
+          <p class="people-support-copy">Each discipline contributes to a platform designed to be clear for customers and dependable in the real world.</p>
+        </div>
+
+        <div class="developer-grid">
+          <article class="developer-card" data-reveal>
+            <div class="developer-avatar avatar-swen" aria-label="Swen Jayathunga initials">SJ</div>
             <h3>Swen Jayathunga</h3>
-            <div class="dev-role">Software Engineer</div>
-            <div class="dev-tags"><span class="dev-tag">Backend</span><span class="dev-tag">System
-                Architecture</span><span class="dev-tag">Database Design</span><span class="dev-tag">GPS
-                Infrastructure</span></div>
-          </div>
-        </div>
-        <div class="dev-card">
-          <div class="dev-av av-n">NW</div>
-          <div class="dev-info">
+            <div class="developer-role">Software Engineer</div>
+            <div class="developer-tags"><span>Backend</span><span>System architecture</span><span>Database design</span><span>GPS infrastructure</span></div>
+          </article>
+          <article class="developer-card" data-reveal>
+            <div class="developer-avatar avatar-nethmi" aria-label="Nethmi Wijekoon initials">NW</div>
             <h3>Nethmi Wijekoon</h3>
-            <div class="dev-role">Software Engineer</div>
-            <div class="dev-tags"><span class="dev-tag">Frontend</span><span class="dev-tag">UI/UX Design</span><span
-                class="dev-tag">Quality Assurance</span></div>
-          </div>
-        </div>
-        <div class="dev-card">
-          <div class="dev-av av-o">NA</div>
-          <div class="dev-info">
+            <div class="developer-role">Software Engineer</div>
+            <div class="developer-tags"><span>Frontend</span><span>UI/UX design</span><span>Quality assurance</span></div>
+          </article>
+          <article class="developer-card" data-reveal>
+            <div class="developer-avatar avatar-nuwan" aria-label="Nuwan Akalanka initials">NA</div>
             <h3>Nuwan Akalanka</h3>
-            <div class="dev-role">Software Engineer</div>
-            <div class="dev-tags"><span class="dev-tag">Backend</span><span class="dev-tag">Database
-                Engineering</span><span class="dev-tag">System Analysis</span></div>
-          </div>
-        </div>
-        <div class="dev-card">
-          <div class="dev-av av-n">AR</div>
-          <div class="dev-info">
+            <div class="developer-role">Software Engineer</div>
+            <div class="developer-tags"><span>Backend</span><span>Database engineering</span><span>System analysis</span></div>
+          </article>
+          <article class="developer-card" data-reveal>
+            <div class="developer-avatar avatar-amoda" aria-label="Amoda Rashmika initials">AR</div>
             <h3>Amoda Rashmika</h3>
-            <div class="dev-role">Software Engineer</div>
-            <div class="dev-tags"><span class="dev-tag">DevOps</span><span class="dev-tag">Cloud
-                Infrastructure</span><span class="dev-tag">Security Engineering</span></div>
-          </div>
+            <div class="developer-role">Software Engineer</div>
+            <div class="developer-tags"><span>DevOps</span><span>Cloud infrastructure</span><span>Security engineering</span></div>
+          </article>
         </div>
-      </div>
-    </div>
-    <div class="vision-section">
-      <div class="vision-card">
-        <blockquote>To become <span>Sri Lanka's leading GPS tracking and fleet management technology provider</span> —
-          delivering secure, scalable, and innovative vehicle monitoring solutions.</blockquote>
-        <cite>— ShaloTrack Lanka (Pvt) Ltd · Always Connected 🇱🇰</cite>
-      </div>
-    </div>
-    <div style="padding:0 2rem 5rem;max-width:1100px;margin:0 auto">
-      <div class="sec-eyebrow">Roadmap</div>
-      <h2 class="sec-title" style="margin-bottom:1.5rem">Coming <span>next</span></h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/fuel.svg"
-              alt="" /></div>
-          <h3>Fuel Monitoring</h3>
-          <p>Real-time fuel level tracking and consumption analytics.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/video.svg"
-              alt="" /></div>
-          <h3>Dashcam Integration</h3>
-          <p>Connect dashcams for live video feeds and incident recording.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/bar-chart-2.svg"
-              alt="" /></div>
-          <h3>Fleet Reports</h3>
-          <p>Comprehensive fleet-wide performance and utilization reports.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/user-check.svg"
-              alt="" /></div>
-          <h3>Driver Behavior</h3>
-          <p>Monitor driving patterns, harsh braking, and risk scoring.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/credit-card.svg"
-              alt="" /></div>
-          <h3>Payment Gateway</h3>
-          <p>Integrated online payments for subscriptions and renewals.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card-ico"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.400.0/icons/smartphone.svg"
-              alt="" /></div>
-          <h3>iOS Application</h3>
-          <p>Full-featured iPhone app for the ShaloTrack platform.</p>
-        </div>
-      </div>
-    </div>
-    <footer>
-      <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
-      <div class="footer-sub">GPS TRACKING · VEHICLE SECURITY · FLEET MANAGEMENT · SRI LANKA 🇱🇰</div>
-    </footer>
-  </div>
 
-  <!-- ══════════════ CONTACT ══════════════ -->
-  <div class="page" id="contact">
-    <div class="contact-hero">
-      <div class="sec-eyebrow" style="text-align:center">Get In Touch</div>
-      <h1 class="sec-title" style="font-size:clamp(2rem,5vw,3.2rem);text-align:center">Let's get your vehicle
-        <span>protected.</span></h1>
-      <p style="font-size:0.95rem;color:var(--textMuted);text-align:center;margin-top:1rem;margin-bottom:2.5rem">Fill in
-        the form and our team will reach out within the hour. Or just tap the WhatsApp button — we're always available.
-      </p>
-    </div>
-
-    <!-- CONTACT GRID -->
-    <div class="contact-grid">
-      <!-- FORM -->
-      <div class="contact-form-card">
-        <div class="form-title">Send Us a Message</div>
-        <div class="form-sub">We'll reply via WhatsApp with everything you need to get started.</div>
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Your Name *</label><input type="text" class="form-input"
-              id="f-name" placeholder="Nimal Perera" /></div>
-          <div class="form-group"><label class="form-label">Phone *</label><input type="tel" class="form-input"
-              id="f-phone" placeholder="+94 7X XXX XXXX" /></div>
-        </div>
-        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input"
-            id="f-email" placeholder="nimal@email.com" /></div>
-        <div class="form-group"><label class="form-label">Vehicle Type</label>
-          <select class="form-input" id="f-vehicle">
-            <option value="">Select your vehicle type</option>
-            <option>Car / SUV</option>
-            <option>Motorcycle / Scooter</option>
-            <option>Van / Lorry</option>
-            <option>Three-Wheeler</option>
-            <option>Bus / Heavy Vehicle</option>
-            <option>Multiple Vehicles (Fleet)</option>
-          </select>
-        </div>
-        <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" id="f-msg"
-            placeholder="Tell us about your tracking needs..." style="min-height:90px"></textarea></div>
-        <button class="btn-wa-submit" onclick="submitToWA()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff">
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-          </svg>
-          Send via WhatsApp
-        </button>
+        <aside class="team-connect" data-reveal aria-label="Connect with ShaloTrack">
+          <div class="team-connect-copy"><strong>Connect with the ShaloTrack team</strong>Use our verified company channels for support, product enquiries, and partnerships.</div>
+          <div class="team-connect-links">
+            <a href="https://wa.me/94701688777" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.45A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.83 11.83 0 0 0 5.68 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.45Zm-8.44 18.35h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.89-9.89 9.89Z" /></svg>WhatsApp</a>
+            <a href="mailto:aloka@shalotrack.com"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5" /><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>Email</a>
+            <a href="tel:+94701688777"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.9 3.5 4.5 4.7c-.8.4-1.2 1.3-1 2.15C5.1 13.4 10.6 18.9 17.15 20.5c.85.2 1.75-.2 2.15-1l1.2-2.4-4.05-2.05-1.35 1.5a13.2 13.2 0 0 1-7.65-7.65l1.5-1.35L6.9 3.5Z" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" /></svg>Call us</a>
+          </div>
+        </aside>
       </div>
+    </section>
 
-      <!-- SIDEBAR -->
-      <div class="contact-sidebar">
-        <button class="wa-direct-btn" onclick="window.open('https://wa.me/94701688777','_blank')">
-          <div class="wa-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg></div>
-          <div>
-            <div class="wa-title">Chat on WhatsApp</div>
-            <div class="wa-sub">+94 70 168 8777 · Fast replies</div>
-          </div>
-        </button>
-        <div class="contact-info-card">
-          <div class="ci-icon">📞</div>
-          <div>
-            <div class="ci-label">Phone</div>
-            <div class="ci-value">+94 70 168 8777</div>
-            <div class="ci-sub">Mon – Sun · 8 AM – 8 PM</div>
-          </div>
-        </div>
-        <div class="contact-info-card">
-          <div class="ci-icon">📧</div>
-          <div>
-            <div class="ci-label">Email</div>
-            <div class="ci-value">aloka@shalotrack.com</div>
-            <div class="ci-sub">We reply within a few hours</div>
-          </div>
-        </div>
-        <div class="contact-info-card">
-          <div class="ci-icon">📍</div>
-          <div>
-            <div class="ci-label">Location</div>
-            <div class="ci-value">Colombo, Sri Lanka</div>
-            <div class="ci-sub">Island-wide service coverage</div>
-          </div>
-        </div>
-        <div class="map-placeholder">
-          <div class="map-inner">
-            <div class="map-pin-center">
-              <div style="font-size:2.5rem;margin-bottom:8px">📍</div>
-              <div style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:#fff">Colombo, Sri Lanka
-              </div>
-              <div
-                style="font-size:0.72rem;color:var(--textMuted);margin-top:4px;font-family:'JetBrains Mono',monospace">
-                ShaloTrack Lanka (Pvt) Ltd</div>
+    <section class="contact-section" id="contact" aria-labelledby="contactTitle">
+      <div class="container">
+        <div class="contact-panel" data-reveal>
+          <aside class="contact-aside">
+            <div class="section-kicker">Start a conversation</div>
+            <h2 id="contactTitle">Your vehicle deserves a clearer view.</h2>
+            <p>Tell us what you need and our Sri Lankan team will help you find the right tracking solution.</p>
+            <div class="contact-options">
+              <a class="contact-option" href="https://wa.me/94701688777" target="_blank" rel="noopener noreferrer">
+                <span class="contact-option-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.45A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.83 11.83 0 0 0 5.68 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.45Zm-8.44 18.35h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.89-9.89 9.89Zm5.42-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z" /></svg></span>
+                <span><small>Fastest way to reach us</small>Chat on WhatsApp</span>
+              </a>
+              <a class="contact-option" href="tel:+94701688777">
+                <span class="contact-option-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6.9 3.5 4.5 4.7c-.8.4-1.2 1.3-1 2.15C5.1 13.4 10.6 18.9 17.15 20.5c.85.2 1.75-.2 2.15-1l1.2-2.4-4.05-2.05-1.35 1.5a13.2 13.2 0 0 1-7.65-7.65l1.5-1.35L6.9 3.5Z" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                <span><small>Call our local team</small>+94 70 168 8777</span>
+              </a>
+              <a class="contact-option" href="mailto:aloka@shalotrack.com">
+                <span class="contact-option-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5" /><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                <span><small>Email us anytime</small>aloka@shalotrack.com</span>
+              </a>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </aside>
 
-    <!-- PRICING -->
-    <div class="pricing-section">
-      <div class="pricing-intro">
-        <div class="pricing-note">💰 Pricing Plans</div>
-        <h2 class="sec-title" style="text-align:center">Transparent plans for <span>every need</span></h2>
-        <p style="color:var(--textMuted);font-size:0.9rem;margin-top:0.5rem">All plans include device installation,
-          mobile app access, and local support. Contact us for exact pricing.</p>
-      </div>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <div class="price-badge std">Personal</div>
-          <div class="price-name">Individual</div>
-          <div class="price-desc">For personal vehicle owners who want to protect and monitor a single vehicle.</div>
-          <div class="price-amount">
-            <div class="price-tag">Starting from</div>
-            <div class="price-val">Contact for Pricing</div>
-          </div>
-          <ul class="price-features">
-            <li>1 vehicle</li>
-            <li>Real-time GPS tracking</li>
-            <li>Mobile app access</li>
-            <li>Smart alerts & notifications</li>
-            <li>Route history & playback</li>
-            <li>Local support</li>
-          </ul>
-          <button class="price-cta ghost"
-            onclick="window.open('https://wa.me/94701688777?text=Hi, I am interested in the Individual plan','_blank')">Enquire
-            Now</button>
-        </div>
-        <div class="price-card featured">
-          <div class="price-badge pop">Most Popular</div>
-          <div class="price-name">Business</div>
-          <div class="price-desc">For businesses with multiple vehicles needing fleet visibility and management.</div>
-          <div class="price-amount">
-            <div class="price-tag">Starting from</div>
-            <div class="price-val">Contact for Pricing</div>
-          </div>
-          <ul class="price-features">
-            <li>Up to 20 vehicles</li>
-            <li>Fleet management dashboard</li>
-            <li>Multi-vehicle tracking</li>
-            <li>Driver monitoring</li>
-            <li>Advanced alerts & reports</li>
-            <li>Priority support</li>
-          </ul>
-          <button class="price-cta primary"
-            onclick="window.open('https://wa.me/94701688777?text=Hi, I am interested in the Business plan','_blank')">Get
-            Started →</button>
-        </div>
-        <div class="price-card">
-          <div class="price-badge ent">Enterprise</div>
-          <div class="price-name">Fleet</div>
-          <div class="price-desc">For large fleets, logistics companies, and enterprises needing full control.</div>
-          <div class="price-amount">
-            <div class="price-tag">Custom</div>
-            <div class="price-val">Contact Sales</div>
-          </div>
-          <ul class="price-features">
-            <li>Unlimited vehicles</li>
-            <li>Custom admin portal</li>
-            <li>Dealer portal access</li>
-            <li>API integration</li>
-            <li>Dedicated account manager</li>
-            <li>SLA guarantee</li>
-          </ul>
-          <button class="price-cta ghost"
-            onclick="window.open('https://wa.me/94701688777?text=Hi, I need a custom Enterprise quote','_blank')">Talk
-            to Sales</button>
+          <form class="contact-form" id="contactForm" novalidate>
+            <h3 class="form-title">Request a callback</h3>
+            <p class="form-description">Send your details and we will open a WhatsApp conversation with your enquiry ready to send.</p>
+            <div class="form-grid">
+              <div class="form-group"><label class="form-label" for="name">Your name *</label><input class="form-control" id="name" name="name" type="text" autocomplete="name" placeholder="Nimal Perera" required></div>
+              <div class="form-group"><label class="form-label" for="phone">Phone number *</label><input class="form-control" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+94 7X XXX XXXX" required></div>
+              <div class="form-group"><label class="form-label" for="email">Email address</label><input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+              <div class="form-group"><label class="form-label" for="vehicle">Vehicle type</label><select class="form-control" id="vehicle" name="vehicle"><option value="">Select a vehicle type</option><option>Car / SUV</option><option>Motorcycle / Scooter</option><option>Van / Lorry</option><option>Three-wheeler</option><option>Bus / Heavy vehicle</option><option>Multiple vehicles / Fleet</option></select></div>
+              <div class="form-group full"><label class="form-label" for="message">How can we help?</label><textarea class="form-control" id="message" name="message" placeholder="Tell us a little about your vehicle tracking needs"></textarea></div>
+            </div>
+            <div class="form-footer"><p class="form-note">By continuing, you will be taken to WhatsApp to send your enquiry directly to ShaloTrack.</p><button class="button button-primary" type="submit">Send via WhatsApp <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></button></div>
+            <p class="form-status" id="formStatus" aria-live="polite"></p>
+          </form>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- FAQ -->
-    <div class="faq-section">
-      <div class="sec-eyebrow" style="text-align:center">FAQ</div>
-      <h2 class="sec-title" style="text-align:center">Common <span>questions</span></h2>
-      <p style="color:var(--textMuted);font-size:0.9rem;text-align:center;margin-bottom:0">Everything you need to know
-        before getting started with ShaloTrack.</p>
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How does GPS tracker installation
-              work?</span><span class="faq-arrow">▼</span></div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Our certified technician visits your location or you bring your vehicle to our
-              service point. The GPS device is professionally installed inside your vehicle — hidden and secure.
-              Installation typically takes 30–60 minutes. We then activate the device and connect it to your mobile app
-              before you leave.</div>
-          </div>
+    <section class="section faq-section" aria-labelledby="faqTitle">
+      <div class="container">
+        <div class="section-heading center" data-reveal>
+          <div class="section-kicker">Helpful answers</div>
+          <h2 class="section-title" id="faqTitle">Questions, <em>answered.</em></h2>
+          <p class="section-intro">Everything you need to know before getting started with ShaloTrack.</p>
         </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Which vehicles are
-              supported?</span><span class="faq-arrow">▼</span></div>
-          <div class="faq-a">
-            <div class="faq-a-inner">ShaloTrack supports all types of vehicles including cars, SUVs, motorcycles,
-              scooters, three-wheelers, vans, lorries, trucks, buses, and heavy vehicles. We also support asset tracking
-              for non-motorized equipment. If you're unsure, just contact us and we'll advise the right solution.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How long is the subscription
-              period?</span><span class="faq-arrow">▼</span></div>
-          <div class="faq-a">
-            <div class="faq-a-inner">We offer flexible subscription plans — typically monthly or annual. Annual plans
-              come with a discount compared to monthly billing. Your subscription covers the cloud platform, data
-              transmission, mobile app access, and ongoing support. Renewals are easy and can be done directly through
-              our team via WhatsApp.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Does the app work without internet on
-              the phone?</span><span class="faq-arrow">▼</span></div>
-          <div class="faq-a">
-            <div class="faq-a-inner">The ShaloTrack mobile app requires an internet connection (mobile data or WiFi) to
-              display live tracking data and receive alerts. The GPS device in your vehicle uses its own SIM card to
-              transmit location data to our servers — so your vehicle is always tracked even if you're offline, and data
-              is available once you reconnect.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Can I track multiple vehicles from one
-              account?</span><span class="faq-arrow">▼</span></div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Yes. Our Business and Fleet plans support multiple vehicles under a single account.
-              You can view all vehicles on the map simultaneously, switch between them, and receive alerts for any
-              vehicle in your fleet. Contact us for pricing based on the number of vehicles you need to track.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What happens if my GPS device goes
-              offline?</span><span class="faq-arrow">▼</span></div>
-          <div class="faq-a">
-            <div class="faq-a-inner">You'll receive an instant push notification on your phone when any device goes
-              offline. This could indicate a power cut, SIM issue, or tampering attempt. The app will show the last
-              known location and timestamp. Our support team is available to help diagnose and resolve any device issues
-              quickly.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Is my vehicle data private and
-              secure?</span><span class="faq-arrow">▼</span></div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Absolutely. All tracking data is encrypted and stored securely on our cloud
-              infrastructure (Microsoft Azure). Only you and authorized users can access your vehicle's data. We never
-              share or sell customer data to third parties. Your account is protected with secure authentication.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How do I get support if I have an
-              issue?</span><span class="faq-arrow">▼</span></div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Our local Sri Lankan support team is available via WhatsApp (+94 70 168 8777) and
-              phone from 8 AM to 8 PM, seven days a week. For technical issues, we aim to respond within the hour. You
-              can also email us at aloka@shalotrack.com for non-urgent queries.</div>
-          </div>
+        <div class="faq-list" data-reveal>
+          <details><summary>How does installation work?</summary><p>A ShaloTrack technician can install the GPS device at your location or service point. Installation is handled professionally, then the device is activated and connected to your account.</p></details>
+          <details><summary>Which vehicles can be tracked?</summary><p>ShaloTrack supports cars, SUVs, motorcycles, scooters, three-wheelers, vans, lorries, buses, heavy vehicles and multi-vehicle fleets. Contact us if you need guidance on the right setup.</p></details>
+          <details><summary>Can I manage more than one vehicle?</summary><p>Yes. Our platform is designed to show multiple vehicles in one account, helping owners and businesses see fleet activity, vehicle status and alerts from one place.</p></details>
+          <details><summary>What happens if a device goes offline?</summary><p>Your account can show the device's most recent information and alert you to an offline status, so you can follow up quickly with the right next step.</p></details>
         </div>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <footer>
-      <div class="footer-logo"><span class="s">SHALO</span><span class="t">TRACK</span></div>
-      <div class="footer-sub">GPS TRACKING · VEHICLE SECURITY · FLEET MANAGEMENT · SRI LANKA 🇱🇰</div>
-    </footer>
-  </div>
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#top" aria-label="Back to top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 42 42" fill="none"><path d="M21 38s12-11.15 12-21A12 12 0 1 0 9 17c0 9.85 12 21 12 21Z" fill="currentColor" /><path d="m14.6 26.2 11.7-11.7-4.8 10.8-2.7-3.1-4.2 4Z" fill="#fff" /></svg></span><span>SHALO<span class="brand-track">TRACK</span></span></a>
+      <div class="footer-copy">GPS tracking | Vehicle security | Fleet management</div>
+      <div class="footer-links"><a href="tel:+94701688777">Call us</a><a href="mailto:aloka@shalotrack.com">Email</a><a href="https://wa.me/94701688777" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/94701688777" target="_blank" rel="noopener noreferrer" aria-label="Chat with ShaloTrack on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.45A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.83 11.83 0 0 0 5.68 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.45Zm-8.44 18.35h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.89-9.89 9.89Zm5.42-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z" /></svg>
+  </a>
 
   <script>
-    // Page navigation
-    function showPage(id) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-links a,.mobile-menu a').forEach(a => a.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      ['nav-', 'mob-'].forEach(prefix => {
-        const el = document.getElementById(prefix + id);
-        if (el) el.classList.add('active');
+    (() => {
+      const header = document.getElementById('siteHeader');
+      const menuToggle = document.getElementById('menuToggle');
+      const primaryNav = document.getElementById('primaryNav');
+      const navLinks = [...primaryNav.querySelectorAll('a')];
+      const contactForm = document.getElementById('contactForm');
+      const formStatus = document.getElementById('formStatus');
+
+      const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+      updateHeader();
+      window.addEventListener('scroll', updateHeader, { passive: true });
+
+      const closeMenu = () => {
+        primaryNav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation menu');
+        document.body.classList.remove('menu-open');
+      };
+
+      menuToggle.addEventListener('click', () => {
+        const isOpen = primaryNav.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+        document.body.classList.toggle('menu-open', isOpen);
       });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Show/hide stats bar (hide on contact to give clean look)
-      document.getElementById('statsBar').style.display = 'block';
-    }
 
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-      document.getElementById('hamburger').classList.toggle('open');
-    }
-    function closeMenu() {
-      document.getElementById('mobileMenu').classList.remove('open');
-      document.getElementById('hamburger').classList.remove('open');
-    }
+      navLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-    // FAQ accordion
-    function toggleFaq(el) {
-      const item = el.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    }
+      const sections = navLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
 
-    // WhatsApp form submit
-    function submitToWA() {
-      const name = document.getElementById('f-name').value.trim();
-      const phone = document.getElementById('f-phone').value.trim();
-      const email = document.getElementById('f-email').value.trim();
-      const vehicle = document.getElementById('f-vehicle').value;
-      const msg = document.getElementById('f-msg').value.trim();
-      if (!name) { alert('Please enter your name.'); return }
-      if (!phone) { alert('Please enter your phone number.'); return }
-      const lines = [
-        '*New ShaloTrack Enquiry*',
-        '----------------------------',
-        '*Name:* ' + name,
-        '*Phone:* ' + phone,
-        email ? '*Email:* ' + email : null,
-        vehicle ? '*Vehicle:* ' + vehicle : null,
-        msg ? '*Message:* ' + msg : null,
-      ].filter(Boolean).join('\n');
-      window.open('https://wa.me/94701688777?text=' + encodeURIComponent(lines), '_blank');
-    }
+      if ('IntersectionObserver' in window) {
+        document.querySelectorAll('[data-reveal]').forEach(element => element.classList.add('reveal-pending'));
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('[data-reveal]').forEach(element => revealObserver.observe(element));
 
-    // Scroll-triggered animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)' }
+        const navigationObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`));
+          });
+        }, { rootMargin: '-42% 0px -52% 0px', threshold: 0 });
+        sections.forEach(section => navigationObserver.observe(section));
+      }
+
+      contactForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const data = new FormData(contactForm);
+        const name = data.get('name').trim();
+        const phone = data.get('phone').trim();
+        const email = data.get('email').trim();
+        const vehicle = data.get('vehicle');
+        const message = data.get('message').trim();
+
+        if (!name || !phone) {
+          formStatus.textContent = 'Please add your name and phone number before continuing.';
+          (!name ? document.getElementById('name') : document.getElementById('phone')).focus();
+          return;
+        }
+
+        const lines = [
+          'Hello ShaloTrack, I would like to know more about vehicle tracking.',
+          '',
+          `Name: ${name}`,
+          `Phone: ${phone}`,
+          email ? `Email: ${email}` : '',
+          vehicle ? `Vehicle type: ${vehicle}` : '',
+          message ? `Message: ${message}` : ''
+        ].filter(Boolean);
+
+        formStatus.textContent = '';
+        window.open(`https://wa.me/94701688777?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
       });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.feat-card,.v-cell,.portal-card,.dev-card,.device-card,.feat-block,.hiw-step,.price-card,.faq-item,.contact-info-card,.sbar-item').forEach(el => {
-      el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.5s ease,transform 0.5s ease';
-      observer.observe(el);
-    });
+    })();
   </script>
 </body>
 
