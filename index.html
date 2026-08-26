@@ -1,3195 +1,88 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#071a33">
-  <meta name="description"
-    content="ShaloTrack provides real-time GPS tracking, vehicle security, and fleet visibility for Sri Lankan drivers and businesses.">
-  <meta name="keywords"
-    content="GPS tracking Sri Lanka, vehicle tracking, fleet management, vehicle security, ShaloTrack">
+  <meta name="description" content="ShaloTrack provides real-time GPS tracking, vehicle security, and fleet visibility for Sri Lankan drivers and businesses.">
+  <meta name="keywords" content="GPS tracking Sri Lanka, vehicle tracking, fleet management, vehicle security, ShaloTrack">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://shalotrack.com/">
   <title>ShaloTrack | GPS Tracking & Vehicle Security</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script>document.documentElement.classList.add('aos-loading');</script>
-  <style>
-    :root {
-      --ink: #071a33;
-      --ink-2: #0b284e;
-      --ink-3: #123b68;
-      --blue: #1e5a86;
-      --orange: #d95a0c;
-      --orange-dark: #a8440a;
-      --orange-wash: #fbede3;
-      --surface: #f6f8fb;
-      --paper: #ffffff;
-      --line: #dce4ee;
-      --muted: #5c6f87;
-      --text: #102641;
-      --success: #1f9463;
-      --shadow-sm: 0 4px 14px rgba(7, 26, 51, .06);
-      --shadow: 0 14px 32px rgba(7, 26, 51, .14);
-      --radius-lg: 10px;
-      --radius-md: 8px;
-      --content: 1180px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      min-width: 320px;
-      background: var(--paper);
-      color: var(--text);
-      font-family: "Manrope", Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    body.menu-open {
-      overflow: hidden;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    :focus-visible {
-      outline: 3px solid rgba(217, 90, 12, .45);
-      outline-offset: 3px;
-    }
-
-    .skip-link {
-      position: fixed;
-      z-index: 1000;
-      top: -60px;
-      left: 16px;
-      padding: 10px 14px;
-      border-radius: 8px;
-      background: var(--paper);
-      color: var(--ink);
-      box-shadow: var(--shadow-sm);
-      text-decoration: none;
-    }
-
-    .skip-link:focus {
-      top: 16px;
-    }
-
-    .container {
-      width: min(calc(100% - 48px), var(--content));
-      max-width: none;
-      margin: 0 auto;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .site-header {
-      position: fixed;
-      z-index: 100;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 78px;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid transparent;
-      transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
-    }
-
-    .site-header.is-scrolled {
-      background: rgba(255, 255, 255, .94);
-      border-color: rgba(220, 228, 238, .9);
-      box-shadow: 0 4px 20px rgba(7, 26, 51, .05);
-      backdrop-filter: blur(16px);
-    }
-
-    .nav-shell {
-      width: min(calc(100% - 48px), var(--content));
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--ink);
-      text-decoration: none;
-      font-size: 1.22rem;
-      font-weight: 800;
-      letter-spacing: -.055em;
-      line-height: 1;
-      white-space: nowrap;
-    }
-
-    .brand-mark {
-      width: 37px;
-      height: 37px;
-      display: grid;
-      place-items: center;
-      color: var(--orange);
-    }
-
-    .brand-mark svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .brand-track {
-      color: var(--orange);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      margin: 0 0 0 auto;
-      padding: 0;
-      list-style: none;
-    }
-
-    .nav-links a {
-      position: relative;
-      padding: 8px 0;
-      color: #43566e;
-      font-size: .88rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: color .2s ease;
-    }
-
-    .nav-links a::after {
-      position: absolute;
-      right: 0;
-      bottom: 2px;
-      left: 0;
-      height: 2px;
-      background: var(--orange);
-      content: "";
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform .2s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.is-active {
-      color: var(--ink);
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.is-active::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 48px;
-      padding: 12px 20px;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      font-size: .9rem;
-      font-weight: 800;
-      line-height: 1;
-      text-align: center;
-      text-decoration: none;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    .button-primary {
-      background: var(--orange);
-      color: #fff;
-      box-shadow: 0 12px 22px rgba(217, 90, 12, .23);
-    }
-
-    .button-primary:hover {
-      background: var(--orange-dark);
-      box-shadow: 0 16px 30px rgba(217, 88, 23, .28);
-    }
-
-    .button-secondary {
-      border-color: #cbd6e3;
-      background: #fff;
-      color: var(--ink);
-    }
-
-    .button-secondary:hover {
-      border-color: var(--orange);
-      color: var(--orange-dark);
-    }
-
-    .button svg {
-      width: 17px;
-      height: 17px;
-      flex: 0 0 auto;
-    }
-
-    .nav-button {
-      min-height: 42px;
-      padding: 10px 16px;
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 42px;
-      height: 42px;
-      padding: 0;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: #fff;
-      color: var(--ink);
-    }
-
-    .menu-toggle span {
-      display: block;
-      width: 19px;
-      height: 2px;
-      margin: 4px auto;
-      border-radius: 2px;
-      background: currentColor;
-      transition: transform .2s ease, opacity .2s ease;
-    }
-
-    .menu-toggle[aria-expanded="true"] span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle[aria-expanded="true"] span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    .hero {
-      position: relative;
-      padding: 152px 0 84px;
-      overflow: hidden;
-      background: var(--ink) url("Assets/video/hero-poster.jpg") center / cover no-repeat;
-      color: #fff;
-    }
-
-    .hero-video {
-      position: absolute;
-      z-index: 0;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-scrim {
-      position: absolute;
-      z-index: 1;
-      inset: 0;
-      background:
-        linear-gradient(100deg, rgba(5, 16, 32, .93) 0%, rgba(6, 20, 40, .82) 42%, rgba(7, 26, 51, .58) 72%, rgba(7, 26, 51, .38) 100%),
-        linear-gradient(0deg, var(--ink) 0%, transparent 22%);
-    }
-
-    .hero::before {
-      position: absolute;
-      z-index: 1;
-      inset: 0;
-      background-image: linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
-      background-size: 48px 48px;
-      content: "";
-      mask-image: linear-gradient(to bottom, #000, transparent 82%);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      align-items: center;
-      --bs-gutter-x: clamp(38px, 6vw, 86px);
-      --bs-gutter-y: clamp(38px, 6vw, 86px);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 20px;
-      color: rgba(255, 255, 255, .85);
-      font-family: "DM Mono", monospace;
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 0 0 5px rgba(217, 90, 12, .13);
-      content: "";
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    .hero h1 {
-      max-width: 630px;
-      margin-bottom: 24px;
-      color: #fff;
-      font-size: clamp(3rem, 5.1vw, 5.3rem);
-      font-weight: 800;
-      letter-spacing: -.065em;
-      line-height: .98;
-    }
-
-    .hero h1 em {
-      color: #ff9c52;
-      font-style: normal;
-    }
-
-    .hero-copy {
-      max-width: 555px;
-      margin-bottom: 30px;
-      color: rgba(223, 232, 244, .82);
-      font-size: 1.05rem;
-      line-height: 1.75;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 34px;
-    }
-
-    .hero-assurance {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px 25px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      color: rgba(223, 232, 244, .78);
-      font-size: .79rem;
-      font-weight: 700;
-    }
-
-    .hero-assurance li {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .check {
-      display: inline-grid;
-      width: 17px;
-      height: 17px;
-      place-items: center;
-      border-radius: 50%;
-      background: #e0f6ec;
-      color: #168858;
-    }
-
-    .check svg {
-      width: 11px;
-      height: 11px;
-    }
-
-    .hero-product {
-      position: relative;
-      min-height: 478px;
-    }
-
-    .hero-product::before {
-      position: absolute;
-      z-index: 0;
-      top: 19%;
-      right: -10%;
-      width: 82%;
-      height: 72%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, .16), rgba(217, 90, 12, .1) 60%, transparent 75%);
-      content: "";
-      filter: blur(30px);
-    }
-
-    .tracking-card {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 630px);
-      margin-left: auto;
-      padding: 13px;
-      border: 1px solid rgba(255, 255, 255, .5);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, .96);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, .38);
-    }
-
-    .app-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 11px 15px;
-    }
-
-    .app-title {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--ink);
-      font-size: .77rem;
-      font-weight: 800;
-    }
-
-    .app-title-mark {
-      display: grid;
-      width: 25px;
-      height: 25px;
-      place-items: center;
-      border-radius: 7px;
-      background: var(--ink);
-      color: var(--orange);
-    }
-
-    .app-title-mark svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .app-live {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #4e6178;
-      font-family: "DM Mono", monospace;
-      font-size: .62rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 0 4px rgba(38, 177, 120, .13);
-    }
-
-    .map-frame {
-      position: relative;
-      height: 347px;
-      overflow: hidden;
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg, rgba(89, 132, 166, .10) 1px, transparent 1px),
-        linear-gradient(rgba(89, 132, 166, .10) 1px, transparent 1px),
-        linear-gradient(135deg, #eef6f5 0%, #eaf3fb 100%);
-      background-size: 38px 38px, 38px 38px, 100% 100%;
-    }
-
-    .map-label {
-      position: absolute;
-      z-index: 3;
-      color: #91a6b5;
-      font-family: "DM Mono", monospace;
-      font-size: .59rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .label-a {
-      top: 72px;
-      left: 59px;
-    }
-
-    .label-b {
-      top: 152px;
-      right: 54px;
-    }
-
-    .label-c {
-      bottom: 56px;
-      left: 181px;
-    }
-
-    .route-svg {
-      position: absolute;
-      z-index: 4;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-
-    .route-line {
-      fill: none;
-      stroke: var(--orange);
-      stroke-width: 4;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 6 8;
-      filter: drop-shadow(0 2px 1px rgba(159, 65, 17, .24));
-    }
-
-    .map-pin {
-      position: absolute;
-      z-index: 5;
-      display: grid;
-      width: 32px;
-      height: 32px;
-      place-items: center;
-      border: 3px solid #fff;
-      border-radius: 8px;
-      background: var(--orange);
-      box-shadow: 0 4px 12px rgba(167, 64, 13, .28);
-      color: #fff;
-    }
-
-    .map-pin svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .pin-current {
-      top: 118px;
-      left: 49%;
-    }
-
-    .pin-start {
-      bottom: 81px;
-      left: 19%;
-      width: 24px;
-      height: 24px;
-      background: var(--ink-3);
-    }
-
-    .vehicle-status {
-      position: absolute;
-      z-index: 6;
-      right: 15px;
-      bottom: 14px;
-      left: 15px;
-      display: grid;
-      grid-template-columns: 1.25fr .65fr .65fr;
-      gap: 11px;
-      padding: 14px;
-      border: 1px solid rgba(215, 225, 234, .94);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, .96);
-      box-shadow: 0 9px 22px rgba(10, 40, 75, .10);
-    }
-
-    .vehicle-identity {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .vehicle-icon {
-      display: grid;
-      width: 34px;
-      height: 34px;
-      flex: 0 0 auto;
-      place-items: center;
-      border: 1px solid rgba(217, 90, 12, .22);
-      border-radius: 6px;
-      background: rgba(217, 90, 12, .05);
-      color: var(--orange-dark);
-    }
-
-    .vehicle-icon svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .vehicle-name {
-      overflow: hidden;
-      color: var(--ink);
-      font-size: .74rem;
-      font-weight: 800;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .vehicle-meta {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: #708298;
-      font-size: .61rem;
-      font-weight: 700;
-    }
-
-    .vehicle-meta .live-dot {
-      width: 5px;
-      height: 5px;
-      box-shadow: none;
-    }
-
-    .data-point {
-      min-width: 0;
-      padding-left: 12px;
-      border-left: 1px solid var(--line);
-    }
-
-    .data-label {
-      margin-bottom: 2px;
-      color: #8191a4;
-      font-family: "DM Mono", monospace;
-      font-size: .54rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .data-value {
-      color: var(--ink);
-      font-size: .78rem;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .floating-card {
-      position: absolute;
-      z-index: 7;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 11px 13px;
-      border: 1px solid rgba(210, 222, 233, .92);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, .97);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .floating-card-icon {
-      display: grid;
-      width: 31px;
-      height: 31px;
-      flex: 0 0 auto;
-      place-items: center;
-      border: 1px solid rgba(31, 148, 99, .22);
-      border-radius: 6px;
-      background: rgba(31, 148, 99, .06);
-      color: var(--success);
-    }
-
-    .floating-card-icon svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .floating-card strong {
-      display: block;
-      color: var(--ink);
-      font-size: .69rem;
-      line-height: 1.2;
-    }
-
-    .floating-card span {
-      display: block;
-      margin-top: 2px;
-      color: #8191a4;
-      font-family: "DM Mono", monospace;
-      font-size: .55rem;
-    }
-
-    .alert-card {
-      top: 54px;
-      left: -37px;
-    }
-
-    .activity-card {
-      right: -17px;
-      bottom: 16px;
-      padding: 10px 12px;
-    }
-
-    .activity-card .floating-card-icon {
-      border-color: rgba(217, 90, 12, .22);
-      background: rgba(217, 90, 12, .05);
-      color: var(--orange-dark);
-    }
-
-    .trust-strip {
-      position: relative;
-      z-index: 2;
-      margin-top: -1px;
-      border-top: 1px solid #e7edf4;
-      border-bottom: 1px solid #e7edf4;
-      background: #fff;
-    }
-
-    .trust-inner {
-      --bs-gutter-x: 0;
-      --bs-gutter-y: 16px;
-      align-items: center;
-      min-height: 108px;
-    }
-
-    .trust-title {
-      color: #7b8ba0;
-      font-size: .74rem;
-      font-weight: 800;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 0 26px;
-      border-left: 1px solid #e7edf4;
-      color: #4d617a;
-      font-size: .82rem;
-      font-weight: 800;
-      text-align: center;
-    }
-
-    .trust-item strong {
-      margin-right: 7px;
-      color: var(--ink);
-      font-size: 1rem;
-    }
-
-    .section {
-      padding: 112px 0;
-    }
-
-    .section-soft {
-      background: var(--surface);
-    }
-
-    .section-dark {
-      position: relative;
-      overflow: hidden;
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .section-heading {
-      max-width: 650px;
-      margin-bottom: 48px;
-    }
-
-    .section-heading.center {
-      margin-right: auto;
-      margin-left: auto;
-      text-align: center;
-    }
-
-    .section-heading.center .eyebrow {
-      justify-content: center;
-    }
-
-    .section-kicker {
-      margin-bottom: 13px;
-      color: var(--orange);
-      font-family: "DM Mono", monospace;
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .1em;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      margin-bottom: 15px;
-      color: var(--ink);
-      font-size: clamp(2.1rem, 3.6vw, 3.45rem);
-      font-weight: 800;
-      letter-spacing: -.055em;
-      line-height: 1.07;
-    }
-
-    .section-dark .section-title {
-      color: #fff;
-    }
-
-    .section-title em {
-      color: var(--orange);
-      font-style: normal;
-    }
-
-    .section-intro {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.75;
-    }
-
-    .section-dark .section-intro {
-      color: #b8c8da;
-    }
-
-    .solutions-grid {
-      --bs-gutter-x: 18px;
-      --bs-gutter-y: 18px;
-    }
-
-    .solution-card {
-      position: relative;
-      min-height: 307px;
-      padding: 28px;
-      overflow: hidden;
-      border: 1px solid #e0e8f1;
-      border-radius: var(--radius-md);
-      background: #fff;
-      box-shadow: 0 8px 22px rgba(9, 39, 73, .035);
-      transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
-    }
-
-    .solution-card:hover {
-      border-color: rgba(217, 90, 12, .42);
-      box-shadow: var(--shadow-sm);
-      transform: translateY(-5px);
-    }
-
-    .solution-icon {
-      display: grid;
-      width: 46px;
-      height: 46px;
-      place-items: center;
-      margin-bottom: 32px;
-      border: 1px solid rgba(217, 90, 12, .22);
-      border-radius: 6px;
-      background: rgba(217, 90, 12, .05);
-      color: var(--orange-dark);
-    }
-
-    .solution-icon.blue {
-      border-color: rgba(30, 90, 134, .22);
-      background: rgba(30, 90, 134, .05);
-      color: var(--blue);
-    }
-
-    .solution-icon.green {
-      border-color: rgba(31, 148, 99, .22);
-      background: rgba(31, 148, 99, .05);
-      color: var(--success);
-    }
-
-    .solution-icon svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    .solution-card h3 {
-      margin-bottom: 10px;
-      color: var(--ink);
-      font-size: 1.08rem;
-      letter-spacing: -.025em;
-    }
-
-    .solution-card p {
-      max-width: 290px;
-      margin: 0;
-      color: var(--muted);
-      font-size: .88rem;
-      line-height: 1.72;
-    }
-
-    .card-index {
-      position: absolute;
-      right: 22px;
-      bottom: 14px;
-      color: #e5ebf1;
-      font-family: "DM Mono", monospace;
-      font-size: 3.4rem;
-      font-weight: 500;
-      letter-spacing: -.12em;
-      line-height: 1;
-    }
-
-    .platform-grid {
-      align-items: center;
-      --bs-gutter-x: clamp(42px, 7vw, 94px);
-      --bs-gutter-y: clamp(42px, 7vw, 94px);
-    }
-
-    .platform-copy .section-heading {
-      margin-bottom: 31px;
-    }
-
-    .feature-list {
-      display: grid;
-      gap: 15px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .feature-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 13px;
-      color: #50647d;
-      font-size: .9rem;
-      font-weight: 600;
-    }
-
-    .feature-list .check {
-      width: 20px;
-      height: 20px;
-      flex: 0 0 auto;
-      margin-top: 2px;
-    }
-
-    .platform-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
-    .dashboard-wrap {
-      position: relative;
-      padding: 12px;
-      border: 1px solid rgba(190, 208, 225, .55);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, .65);
-      box-shadow: 0 24px 55px rgba(7, 34, 65, .12);
-    }
-
-    .dashboard {
-      overflow: hidden;
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .dashboard-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 16px 18px;
-      border-bottom: 1px solid #e8eef4;
-    }
-
-    .dashboard-brand {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--ink);
-      font-size: .72rem;
-      font-weight: 800;
-    }
-
-    .dashboard-brand-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--orange);
-    }
-
-    .dashboard-tabs {
-      display: flex;
-      gap: 12px;
-      color: #91a0b2;
-      font-family: "DM Mono", monospace;
-      font-size: .56rem;
-      text-transform: uppercase;
-    }
-
-    .dashboard-tabs .selected {
-      color: var(--orange);
-    }
-
-    .dashboard-main {
-      display: grid;
-      grid-template-columns: 1fr 152px;
-      min-height: 355px;
-    }
-
-    .dashboard-map {
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(90deg, rgba(89, 132, 166, .09) 1px, transparent 1px),
-        linear-gradient(rgba(89, 132, 166, .09) 1px, transparent 1px),
-        #f0f6f8;
-      background-size: 31px 31px;
-    }
-
-    .dash-route {
-      position: absolute;
-      z-index: 2;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .dash-route polyline {
-      fill: none;
-      stroke: var(--orange);
-      stroke-width: 4;
-      stroke-dasharray: 7 8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .dash-vehicle {
-      position: absolute;
-      z-index: 3;
-      top: 42%;
-      left: 51%;
-      display: grid;
-      width: 36px;
-      height: 36px;
-      place-items: center;
-      border: 3px solid #fff;
-      border-radius: 8px;
-      background: var(--orange);
-      box-shadow: 0 4px 12px rgba(189, 74, 16, .3);
-      color: #fff;
-    }
-
-    .dash-vehicle svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .dash-side {
-      padding: 16px 12px;
-      border-left: 1px solid #e8eef4;
-      background: #fbfcfe;
-    }
-
-    .dash-side-title {
-      margin-bottom: 12px;
-      color: #8c9bad;
-      font-family: "DM Mono", monospace;
-      font-size: .55rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .mini-vehicle {
-      padding: 10px 8px;
-      margin-bottom: 7px;
-      border: 1px solid transparent;
-      border-radius: 6px;
-    }
-
-    .mini-vehicle.active {
-      border-color: #f7d8c5;
-      background: #fff8f3;
-    }
-
-    .mini-vehicle strong {
-      display: block;
-      margin-bottom: 3px;
-      color: var(--ink);
-      font-size: .62rem;
-      line-height: 1.2;
-    }
-
-    .mini-vehicle span {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      color: #8191a4;
-      font-size: .54rem;
-    }
-
-    .mini-vehicle span::before {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--success);
-      content: "";
-    }
-
-    .mini-vehicle.offline span::before {
-      background: #b7c0cc;
-    }
-
-    .dashboard-kpis {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid #e8eef4;
-    }
-
-    .dashboard-kpi {
-      padding: 13px 17px;
-      border-right: 1px solid #e8eef4;
-    }
-
-    .dashboard-kpi:last-child {
-      border-right: 0;
-    }
-
-    .dashboard-kpi span {
-      display: block;
-      margin-bottom: 3px;
-      color: #8b9aad;
-      font-family: "DM Mono", monospace;
-      font-size: .52rem;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-
-    .dashboard-kpi strong {
-      color: var(--ink);
-      font-size: .76rem;
-    }
-
-    .dash-orbit {
-      position: absolute;
-      z-index: -1;
-      top: -47px;
-      right: -58px;
-      width: 260px;
-      height: 260px;
-      border: 1px solid rgba(31, 118, 185, .14);
-      border-radius: 50%;
-    }
-
-    .dash-orbit::after {
-      position: absolute;
-      inset: 24px;
-      border: 1px solid rgba(217, 90, 12, .2);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .security-grid {
-      position: relative;
-      align-items: center;
-      --bs-gutter-x: clamp(42px, 7vw, 94px);
-      --bs-gutter-y: clamp(42px, 7vw, 94px);
-    }
-
-    .section-dark::before {
-      position: absolute;
-      top: -170px;
-      right: -150px;
-      width: 530px;
-      height: 530px;
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .section-dark::after {
-      position: absolute;
-      right: 2%;
-      bottom: 14%;
-      width: 160px;
-      height: 160px;
-      border: 1px solid rgba(217, 90, 12, .33);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .security-copy,
-    .security-panel {
-      position: relative;
-      z-index: 1;
-    }
-
-    .security-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 39px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(255, 255, 255, .16);
-    }
-
-    .security-stat strong {
-      display: block;
-      color: #fff;
-      font-size: clamp(1.35rem, 2vw, 1.8rem);
-      font-weight: 800;
-      letter-spacing: -.05em;
-    }
-
-    .security-stat span {
-      color: #97abc1;
-      font-family: "DM Mono", monospace;
-      font-size: .61rem;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-
-    .security-panel {
-      padding: 25px;
-      border: 1px solid rgba(255, 255, 255, .13);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, .055);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
-    }
-
-    .monitor-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 19px;
-      border-bottom: 1px solid rgba(255, 255, 255, .12);
-    }
-
-    .monitor-heading {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      color: #fff;
-      font-size: .86rem;
-      font-weight: 800;
-    }
-
-    .monitor-heading-icon {
-      display: grid;
-      width: 34px;
-      height: 34px;
-      place-items: center;
-      border-radius: 10px;
-      background: rgba(217, 90, 12, .17);
-      color: var(--orange);
-    }
-
-    .monitor-heading-icon svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .monitor-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #a7bacd;
-      font-family: "DM Mono", monospace;
-      font-size: .58rem;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-
-    .monitor-status::before {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #42ca92;
-      box-shadow: 0 0 0 4px rgba(66, 202, 146, .13);
-      content: "";
-    }
-
-    .activity-list {
-      display: grid;
-      gap: 4px;
-      margin: 14px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .activity-item {
-      display: grid;
-      grid-template-columns: 34px 1fr auto;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 8px;
-      border-radius: 8px;
-    }
-
-    .activity-item:hover {
-      background: rgba(255, 255, 255, .05);
-    }
-
-    .activity-icon {
-      display: grid;
-      width: 32px;
-      height: 32px;
-      place-items: center;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, .08);
-      color: #b8cce0;
-    }
-
-    .activity-icon.alert {
-      background: rgba(217, 90, 12, .14);
-      color: var(--orange);
-    }
-
-    .activity-icon.safe {
-      background: rgba(66, 202, 146, .12);
-      color: #42ca92;
-    }
-
-    .activity-icon svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .activity-info strong {
-      display: block;
-      color: #e7eff8;
-      font-size: .72rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    .activity-info span {
-      display: block;
-      margin-top: 2px;
-      color: #8fa3b9;
-      font-size: .6rem;
-    }
-
-    .activity-time {
-      color: #8197af;
-      font-family: "DM Mono", monospace;
-      font-size: .56rem;
-      white-space: nowrap;
-    }
-
-    .steps-grid {
-      --bs-gutter-x: 36px;
-      --bs-gutter-y: 36px;
-    }
-
-    .step {
-      position: relative;
-      padding: 10px 16px 0 0;
-    }
-
-    .step:not(:last-child)::after {
-      position: absolute;
-      top: 31px;
-      right: -17px;
-      width: calc(100% - 39px);
-      height: 1px;
-      background: #d9e3ed;
-      content: "";
-    }
-
-    .step-number {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      width: 62px;
-      height: 62px;
-      place-items: center;
-      margin-bottom: 23px;
-      border: 1px solid rgba(217, 90, 12, .28);
-      border-radius: 6px;
-      background: rgba(217, 90, 12, .05);
-      color: var(--orange-dark);
-      font-family: "DM Mono", monospace;
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    .step h3 {
-      margin-bottom: 9px;
-      color: var(--ink);
-      font-size: 1.08rem;
-      letter-spacing: -.03em;
-    }
-
-    .step p {
-      max-width: 295px;
-      margin: 0;
-      color: var(--muted);
-      font-size: .88rem;
-      line-height: 1.72;
-    }
-
-    .pricing-section {
-      position: relative;
-      overflow: hidden;
-      background: var(--surface);
-    }
-
-    .pricing-section::before {
-      position: absolute;
-      top: -180px;
-      right: -110px;
-      width: 420px;
-      height: 420px;
-      border: 1px solid rgba(20, 100, 165, .12);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .pricing-section .container {
-      position: relative;
-    }
-
-    .pricing-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 28px;
-      margin-bottom: 43px;
-    }
-
-    .pricing-heading .section-heading {
-      max-width: 610px;
-      margin: 0;
-    }
-
-    .pricing-heading .section-title {
-      margin-bottom: 0;
-    }
-
-    .pricing-note {
-      max-width: 285px;
-      margin: 0 0 5px;
-      color: var(--muted);
-      font-size: .83rem;
-      line-height: 1.7;
-    }
-
-    .pricing-grid {
-      align-items: stretch;
-      --bs-gutter-x: 17px;
-      --bs-gutter-y: 17px;
-    }
-
-    .price-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 454px;
-      padding: 28px;
-      overflow: hidden;
-      border: 1px solid #dce5ef;
-      border-radius: 9px;
-      background: #fff;
-      box-shadow: 0 10px 23px rgba(9, 39, 73, .04);
-      transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
-    }
-
-    .price-card:hover {
-      border-color: rgba(217, 90, 12, .45);
-      box-shadow: var(--shadow-sm);
-      transform: translateY(-5px);
-    }
-
-    .price-card.featured {
-      border-color: rgba(217, 90, 12, .55);
-      box-shadow: 0 20px 45px rgba(208, 86, 18, .13);
-    }
-
-    .price-card.featured::before {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--orange), #ffad6d);
-      content: "";
-    }
-
-    .price-label {
-      display: inline-flex;
-      align-self: flex-start;
-      margin-bottom: 19px;
-      padding: 5px 8px;
-      border-radius: 5px;
-      background: #f0f5fa;
-      color: #5d728c;
-      font-family: "DM Mono", monospace;
-      font-size: .6rem;
-      font-weight: 500;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .price-card.featured .price-label {
-      background: var(--orange-wash);
-      color: var(--orange-dark);
-    }
-
-    .price-card h3 {
-      margin-bottom: 8px;
-      color: var(--ink);
-      font-size: 1.34rem;
-      font-weight: 800;
-      letter-spacing: -.04em;
-    }
-
-    .price-description {
-      min-height: 47px;
-      margin: 0 0 20px;
-      color: var(--muted);
-      font-size: .82rem;
-      line-height: 1.65;
-    }
-
-    .price-quote {
-      margin-bottom: 23px;
-      padding: 14px 0;
-      border-top: 1px solid #e4ebf2;
-      border-bottom: 1px solid #e4ebf2;
-    }
-
-    .price-quote span {
-      display: block;
-      margin-bottom: 3px;
-      color: #8191a4;
-      font-family: "DM Mono", monospace;
-      font-size: .56rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .price-quote strong {
-      color: var(--ink);
-      font-size: .94rem;
-      font-weight: 800;
-    }
-
-    .price-features {
-      display: grid;
-      gap: 10px;
-      margin: 0 0 26px;
-      padding: 0;
-      color: #536981;
-      font-size: .76rem;
-      font-weight: 700;
-      list-style: none;
-    }
-
-    .price-features li {
-      position: relative;
-      padding-left: 23px;
-    }
-
-    .price-features li::before {
-      position: absolute;
-      top: 2px;
-      left: 0;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: #e1f5ec;
-      content: "";
-    }
-
-    .price-features li::after {
-      position: absolute;
-      top: 6px;
-      left: 5px;
-      width: 6px;
-      height: 3px;
-      border-bottom: 1.5px solid #178a5c;
-      border-left: 1.5px solid #178a5c;
-      content: "";
-      transform: rotate(-45deg);
-    }
-
-    .price-card .button {
-      width: 100%;
-      margin-top: auto;
-    }
-
-    .testimonials-section {
-      position: relative;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    .testimonials-section::after {
-      position: absolute;
-      right: -50px;
-      bottom: -135px;
-      width: 330px;
-      height: 330px;
-      border: 1px solid rgba(217, 90, 12, .14);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .testimonials-section .container {
-      position: relative;
-      z-index: 1;
-    }
-
-    .testimonials-grid {
-      align-items: center;
-      --bs-gutter-x: clamp(34px, 7vw, 92px);
-      --bs-gutter-y: clamp(34px, 7vw, 92px);
-    }
-
-    .testimonials-copy .section-heading {
-      margin-bottom: 0;
-    }
-
-    .story-panel {
-      position: relative;
-      padding: clamp(28px, 4vw, 48px);
-      overflow: hidden;
-      border: 1px solid #dbe6ef;
-      border-radius: 10px;
-      background: linear-gradient(145deg, #fbfdff, #f1f7fb);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .story-panel::before {
-      position: absolute;
-      top: -25px;
-      right: 24px;
-      color: #e1ebf3;
-      font-family: Georgia, serif;
-      font-size: 12rem;
-      line-height: 1;
-      content: "\201C";
-    }
-
-    .story-panel>* {
-      position: relative;
-      z-index: 1;
-    }
-
-    .story-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-bottom: 18px;
-      padding: 6px 9px;
-      border: 1px solid #dae4ee;
-      border-radius: 7px;
-      background: rgba(255, 255, 255, .78);
-      color: #5c7189;
-      font-family: "DM Mono", monospace;
-      font-size: .58rem;
-      font-weight: 500;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .story-status::before {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--orange);
-      content: "";
-    }
-
-    .story-panel h3 {
-      max-width: 490px;
-      margin-bottom: 13px;
-      color: var(--ink);
-      font-size: clamp(1.45rem, 2.5vw, 2rem);
-      font-weight: 800;
-      letter-spacing: -.05em;
-      line-height: 1.14;
-    }
-
-    .story-panel p {
-      max-width: 530px;
-      margin-bottom: 25px;
-      color: var(--muted);
-      font-size: .88rem;
-      line-height: 1.75;
-    }
-
-    .story-rules {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin: 0 0 26px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .story-rules li {
-      padding: 6px 8px;
-      border-radius: 6px;
-      background: #fff;
-      color: #61758d;
-      font-size: .64rem;
-      font-weight: 800;
-    }
-
-    .story-panel .button {
-      min-height: 43px;
-    }
-
-    .trust-section {
-      position: relative;
-      overflow: hidden;
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .trust-section::before {
-      position: absolute;
-      top: -160px;
-      left: -100px;
-      width: 400px;
-      height: 400px;
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .trust-section::after {
-      position: absolute;
-      right: 7%;
-      bottom: -90px;
-      width: 220px;
-      height: 220px;
-      border: 1px solid rgba(217, 90, 12, .35);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .trust-section .container {
-      position: relative;
-      z-index: 1;
-    }
-
-    .trust-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 28px;
-      margin-bottom: 41px;
-    }
-
-    .trust-heading .section-heading {
-      max-width: 650px;
-      margin: 0;
-    }
-
-    .trust-heading .section-title {
-      margin-bottom: 0;
-    }
-
-    .trust-caption {
-      max-width: 310px;
-      margin: 0 0 5px;
-      color: #aec0d3;
-      font-size: .82rem;
-      line-height: 1.7;
-    }
-
-    .trust-grid {
-      --bs-gutter-x: 16px;
-      --bs-gutter-y: 16px;
-    }
-
-    .trust-card {
-      min-height: 265px;
-      padding: 25px;
-      border: 1px solid rgba(255, 255, 255, .13);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, .055);
-    }
-
-    .trust-icon {
-      display: grid;
-      width: 43px;
-      height: 43px;
-      place-items: center;
-      margin-bottom: 21px;
-      border-radius: 8px;
-      background: rgba(217, 90, 12, .14);
-      color: #ffae7d;
-    }
-
-    .trust-icon.blue {
-      background: rgba(80, 159, 223, .16);
-      color: #8fc9fa;
-    }
-
-    .trust-icon.green {
-      background: rgba(66, 202, 146, .12);
-      color: #75e0ad;
-    }
-
-    .trust-icon svg {
-      width: 21px;
-      height: 21px;
-    }
-
-    .trust-card h3 {
-      margin-bottom: 9px;
-      color: #fff;
-      font-size: 1rem;
-      letter-spacing: -.025em;
-    }
-
-    .trust-card p {
-      margin: 0 0 15px;
-      color: #b6c8db;
-      font-size: .78rem;
-      line-height: 1.72;
-    }
-
-    .trust-card a {
-      color: #ffad7a;
-      font-size: .72rem;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .trust-card a:hover {
-      color: #fff;
-    }
-
-    .policy-draft {
-      display: inline-flex;
-      margin-top: 2px;
-      padding: 4px 6px;
-      border: 1px solid rgba(255, 174, 125, .29);
-      border-radius: 5px;
-      color: #ffae7d;
-      font-family: "DM Mono", monospace;
-      font-size: .52rem;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-
-    .people-section {
-      position: relative;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    .people-section::before {
-      position: absolute;
-      top: 130px;
-      left: -165px;
-      width: 410px;
-      height: 410px;
-      border: 1px solid rgba(30, 90, 134, .12);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .people-section .container {
-      position: relative;
-    }
-
-    .owner-card {
-      position: relative;
-      align-items: center;
-      --bs-gutter-x: 28px;
-      --bs-gutter-y: 28px;
-      margin-bottom: 70px;
-      padding: clamp(28px, 4vw, 46px);
-      overflow: hidden;
-      border: 1px solid rgba(37, 74, 112, .17);
-      border-radius: var(--radius-lg);
-      background: linear-gradient(116deg, var(--ink) 0%, #0b315d 65%, #104a7d 100%);
-      box-shadow: 0 22px 47px rgba(7, 26, 51, .18);
-    }
-
-    .owner-card::before {
-      position: absolute;
-      top: -145px;
-      right: -105px;
-      width: 360px;
-      height: 360px;
-      border: 1px solid rgba(255, 255, 255, .13);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .owner-card::after {
-      position: absolute;
-      right: 75px;
-      bottom: -90px;
-      width: 195px;
-      height: 195px;
-      border-radius: 50%;
-      background: rgba(217, 90, 12, .18);
-      content: "";
-    }
-
-    .owner-card>* {
-      position: relative;
-      z-index: 1;
-    }
-
-    .person-monogram {
-      display: grid;
-      width: 92px;
-      height: 92px;
-      flex: 0 0 auto;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, .25);
-      border-radius: 10px;
-      background: linear-gradient(145deg, #ff9658, var(--orange));
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 15px 26px rgba(0, 0, 0, .15);
-      color: #fff;
-      font-family: "DM Mono", monospace;
-      font-size: 1.55rem;
-      font-weight: 500;
-      letter-spacing: -.08em;
-    }
-
-    .owner-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-bottom: 11px;
-      color: #ffae7d;
-      font-family: "DM Mono", monospace;
-      font-size: .65rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .owner-badge svg {
-      width: 15px;
-      height: 15px;
-    }
-
-    .owner-details h3 {
-      margin: 0 0 5px;
-      color: #fff;
-      font-size: clamp(1.35rem, 2.5vw, 1.82rem);
-      font-weight: 800;
-      letter-spacing: -.045em;
-    }
-
-    .owner-details p {
-      max-width: 590px;
-      margin: 0;
-      color: #b9cbe0;
-      font-size: .88rem;
-      line-height: 1.72;
-    }
-
-    .owner-statement {
-      padding-left: 25px;
-      border-left: 1px solid rgba(255, 255, 255, .18);
-      color: #d8e6f4;
-      font-size: .88rem;
-      font-weight: 700;
-      line-height: 1.66;
-    }
-
-    .owner-statement strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #ffae7d;
-      font-family: "DM Mono", monospace;
-      font-size: .6rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .people-heading-row {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 30px;
-      margin-bottom: 27px;
-    }
-
-    .people-heading-row .section-heading {
-      max-width: 595px;
-      margin: 0;
-    }
-
-    .people-heading-row .section-title {
-      margin-bottom: 0;
-    }
-
-    .people-support-copy {
-      max-width: 325px;
-      margin: 0 0 5px;
-      color: var(--muted);
-      font-size: .86rem;
-      line-height: 1.72;
-    }
-
-    .developer-grid {
-      --bs-gutter-x: 15px;
-      --bs-gutter-y: 15px;
-    }
-
-    .developer-card {
-      min-height: 263px;
-      padding: 23px;
-      border: 1px solid #dfe8f1;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 8px 22px rgba(9, 39, 73, .035);
-      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
-    }
-
-    .developer-card:hover {
-      border-color: rgba(217, 90, 12, .42);
-      box-shadow: var(--shadow-sm);
-      transform: translateY(-4px);
-    }
-
-    .developer-avatar {
-      display: grid;
-      width: 52px;
-      height: 52px;
-      place-items: center;
-      margin-bottom: 22px;
-      border-radius: 8px;
-      color: #fff;
-      font-family: "DM Mono", monospace;
-      font-size: .87rem;
-      font-weight: 500;
-      letter-spacing: -.07em;
-    }
-
-    .avatar-swen {
-      background: linear-gradient(135deg, #d95a0c, #a8440a);
-    }
-
-    .avatar-nethmi {
-      background: linear-gradient(135deg, #2875af, #123e70);
-    }
-
-    .avatar-nuwan {
-      background: linear-gradient(135deg, #516f93, #1b3656);
-    }
-
-    .avatar-amoda {
-      background: linear-gradient(135deg, #178d70, #0d5a57);
-    }
-
-    .developer-card h3 {
-      margin-bottom: 4px;
-      color: var(--ink);
-      font-size: .96rem;
-      font-weight: 800;
-      letter-spacing: -.025em;
-    }
-
-    .developer-role {
-      margin-bottom: 17px;
-      color: #5e738d;
-      font-family: "DM Mono", monospace;
-      font-size: .62rem;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-
-    .developer-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .developer-tags span {
-      padding: 5px 7px;
-      border-radius: 5px;
-      background: #f1f5f9;
-      color: #546a84;
-      font-size: .61rem;
-      font-weight: 700;
-      line-height: 1.25;
-    }
-
-    .team-connect {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      margin-top: 20px;
-      padding: 19px 22px;
-      border: 1px solid #dce6ef;
-      border-radius: 8px;
-      background: #f8fbfd;
-    }
-
-    .team-connect-copy {
-      color: #5d7088;
-      font-size: .78rem;
-      font-weight: 700;
-    }
-
-    .team-connect-copy strong {
-      display: block;
-      margin-bottom: 2px;
-      color: var(--ink);
-      font-size: .86rem;
-    }
-
-    .team-connect-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-    }
-
-    .team-connect-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      min-height: 36px;
-      padding: 8px 10px;
-      border: 1px solid #cedce8;
-      border-radius: 8px;
-      background: #fff;
-      color: #3e5874;
-      font-size: .68rem;
-      font-weight: 800;
-      text-decoration: none;
-      transition: border-color .2s ease, color .2s ease, transform .2s ease;
-    }
-
-    .team-connect-links a:hover {
-      border-color: var(--orange);
-      color: var(--orange-dark);
-      transform: translateY(-1px);
-    }
-
-    .team-connect-links svg {
-      width: 15px;
-      height: 15px;
-    }
-
-    .contact-section {
-      padding: 0 0 112px;
-      background: var(--surface);
-    }
-
-    .contact-panel {
-      --bs-gutter-x: 0;
-      overflow: hidden;
-      border-radius: var(--radius-lg);
-      background: #fff;
-      box-shadow: var(--shadow);
-    }
-
-    .contact-aside {
-      position: relative;
-      padding: clamp(35px, 5vw, 60px);
-      overflow: hidden;
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .contact-aside::before {
-      position: absolute;
-      top: -110px;
-      right: -120px;
-      width: 300px;
-      height: 300px;
-      border: 1px solid rgba(255, 255, 255, .1);
-      border-radius: 50%;
-      content: "";
-    }
-
-    .contact-aside::after {
-      position: absolute;
-      right: 28px;
-      bottom: -55px;
-      width: 175px;
-      height: 175px;
-      border-radius: 50%;
-      background: rgba(217, 90, 12, .12);
-      content: "";
-    }
-
-    .contact-aside>* {
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-aside .section-kicker {
-      color: #ff9d64;
-    }
-
-    .contact-aside h2 {
-      max-width: 380px;
-      margin-bottom: 16px;
-      color: #fff;
-      font-size: clamp(2.2rem, 3.6vw, 3.3rem);
-      font-weight: 800;
-      letter-spacing: -.06em;
-      line-height: 1.04;
-    }
-
-    .contact-aside p {
-      max-width: 380px;
-      margin-bottom: 31px;
-      color: #b9c9dc;
-      font-size: .94rem;
-      line-height: 1.72;
-    }
-
-    .contact-options {
-      display: grid;
-      gap: 12px;
-    }
-
-    .contact-option {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      color: #e8eff7;
-      font-size: .82rem;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .contact-option:hover {
-      color: #fff;
-    }
-
-    .contact-option-icon {
-      display: grid;
-      width: 37px;
-      height: 37px;
-      flex: 0 0 auto;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, .15);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, .06);
-      color: #ff9d64;
-    }
-
-    .contact-option-icon svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .contact-option small {
-      display: block;
-      margin-bottom: 1px;
-      color: #91a7bd;
-      font-size: .64rem;
-      font-weight: 600;
-    }
-
-    .contact-form {
-      padding: clamp(35px, 5vw, 58px);
-    }
-
-    .form-title {
-      margin-bottom: 5px;
-      color: var(--ink);
-      font-size: 1.45rem;
-      font-weight: 800;
-      letter-spacing: -.04em;
-    }
-
-    .form-description {
-      margin-bottom: 26px;
-      color: var(--muted);
-      font-size: .85rem;
-    }
-
-    .form-grid {
-      --bs-gutter-x: 16px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 7px;
-      color: #425875;
-      font-size: .72rem;
-      font-weight: 800;
-    }
-
-    .form-control {
-      width: 100%;
-      min-height: 47px;
-      padding: 11px 13px;
-      border: 1px solid #d7e1eb;
-      border-radius: 6px;
-      background: #fff;
-      color: var(--ink);
-      font-size: .84rem;
-      outline: none;
-      transition: border-color .2s ease, box-shadow .2s ease;
-    }
-
-    textarea.form-control {
-      min-height: 101px;
-      resize: vertical;
-    }
-
-    .form-control::placeholder {
-      color: #a4b0bf;
-    }
-
-    .form-control:focus {
-      border-color: var(--orange);
-      box-shadow: 0 0 0 4px rgba(217, 90, 12, .11);
-    }
-
-    .form-control option {
-      color: var(--ink);
-    }
-
-    .form-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-top: 3px;
-    }
-
-    .form-note {
-      max-width: 220px;
-      margin: 0;
-      color: #8392a4;
-      font-size: .67rem;
-      line-height: 1.5;
-    }
-
-    .form-status {
-      min-height: 18px;
-      margin: 12px 0 0;
-      color: #c4460b;
-      font-size: .75rem;
-      font-weight: 700;
-    }
-
-    .faq-section {
-      padding-top: 0;
-    }
-
-    .faq-list {
-      max-width: 830px;
-      margin: 0 auto;
-    }
-
-    .faq-list details {
-      border-bottom: 1px solid #dce5ee;
-    }
-
-    .faq-list summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-      padding: 20px 0;
-      color: var(--ink);
-      cursor: pointer;
-      font-size: .96rem;
-      font-weight: 800;
-      list-style: none;
-    }
-
-    .faq-list summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .faq-list summary::after {
-      width: 22px;
-      height: 22px;
-      flex: 0 0 auto;
-      border: 1px solid #cfdbe7;
-      border-radius: 50%;
-      background: linear-gradient(var(--orange), var(--orange)) center / 9px 1.5px no-repeat, linear-gradient(var(--orange), var(--orange)) center / 1.5px 9px no-repeat;
-      content: "";
-      transition: transform .2s ease;
-    }
-
-    .faq-list details[open] summary::after {
-      transform: rotate(45deg);
-    }
-
-    .faq-list p {
-      max-width: 745px;
-      padding: 0 42px 21px 0;
-      margin: 0;
-      color: var(--muted);
-      font-size: .88rem;
-      line-height: 1.75;
-    }
-
-    footer {
-      padding: 38px 0;
-      border-top: 1px solid #e3eaf2;
-      background: #fff;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .footer-copy {
-      color: #8191a4;
-      font-size: .72rem;
-      line-height: 1.7;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
-      color: #647790;
-      font-size: .74rem;
-      font-weight: 700;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      color: var(--orange);
-    }
-
-    .whatsapp-float {
-      position: fixed;
-      z-index: 90;
-      right: 22px;
-      bottom: 22px;
-      display: grid;
-      width: 52px;
-      height: 52px;
-      place-items: center;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      background: #25d366;
-      box-shadow: 0 10px 28px rgba(21, 119, 66, .28);
-      color: #fff;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-
-    .whatsapp-float:hover {
-      box-shadow: 0 14px 32px rgba(21, 119, 66, .35);
-      transform: translateY(-3px);
-    }
-
-    .whatsapp-float svg {
-      width: 25px;
-      height: 25px;
-    }
-
-    [data-aos] {
-      opacity: 0;
-      transform: translate3d(0, 20px, 0);
-      transition: opacity .65s cubic-bezier(.19, 1, .22, 1), transform .65s cubic-bezier(.19, 1, .22, 1);
-      will-change: opacity, transform;
-    }
-
-    [data-aos="fade-left"] {
-      transform: translate3d(28px, 0, 0);
-    }
-
-    [data-aos="fade-right"] {
-      transform: translate3d(-28px, 0, 0);
-    }
-
-    [data-aos].aos-animate {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      will-change: auto;
-    }
-
-    html:not(.aos-loading) [data-aos],
-    html.aos-disabled [data-aos] {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-    }
-
-    .solution-card[data-aos].aos-animate:hover {
-      transform: translate3d(0, -5px, 0) !important;
-    }
-
-    .developer-card[data-aos].aos-animate:hover {
-      transform: translate3d(0, -4px, 0) !important;
-    }
-
-    .price-card[data-aos].aos-animate:hover {
-      transform: translate3d(0, -5px, 0) !important;
-    }
-
-    @media (max-width: 1050px) {
-      .nav-links {
-        gap: 20px;
-      }
-
-      .hero-copy {
-        max-width: 630px;
-      }
-
-      .hero-product {
-        width: min(100%, 650px);
-        min-height: 440px;
-        margin: 0 auto;
-      }
-
-      .tracking-card {
-        margin: 0 auto;
-      }
-
-      .platform-copy {
-        order: 1;
-      }
-
-      .dashboard-wrap {
-        max-width: 650px;
-        margin: 0 auto;
-      }
-
-      .security-panel {
-        max-width: 650px;
-      }
-
-
-    }
-
-    @media (max-width: 820px) {
-      .site-header {
-        height: 70px;
-      }
-
-      .nav-shell {
-        width: min(calc(100% - 32px), var(--content));
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        left: 0;
-        display: grid;
-        gap: 0;
-        max-height: 0;
-        padding: 0 24px;
-        overflow: hidden;
-        border-bottom: 1px solid transparent;
-        background: rgba(255, 255, 255, .98);
-        box-shadow: 0 15px 25px rgba(7, 26, 51, .08);
-        opacity: 0;
-        transition: max-height .25s ease, padding .25s ease, opacity .2s ease, border-color .25s ease;
-      }
-
-      .nav-links.is-open {
-        max-height: 360px;
-        padding: 12px 24px 20px;
-        border-color: var(--line);
-        opacity: 1;
-      }
-
-      .nav-links a {
-        display: block;
-        padding: 14px 0;
-      }
-
-      .nav-cta {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .hero {
-        padding-top: 125px;
-      }
-
-      .trust-inner {
-        padding: 22px 0;
-      }
-
-      .trust-title {
-        text-align: center;
-      }
-
-      .trust-item {
-        min-height: 32px;
-        padding: 0 10px;
-      }
-
-      .trust-item:first-of-type {
-        border-left: 0;
-      }
-
-      .solution-card {
-        min-height: 250px;
-      }
-
-      .solution-icon {
-        margin-bottom: 24px;
-      }
-
-      .contact-aside {
-        padding-bottom: 43px;
-      }
-
-      .steps-grid {
-        --bs-gutter-x: 25px;
-        --bs-gutter-y: 25px;
-      }
-
-      .step:not(:last-child)::after {
-        right: -11px;
-        width: calc(100% - 36px);
-      }
-
-      .people-heading-row {
-        align-items: start;
-        flex-direction: column;
-      }
-
-      .people-support-copy {
-        max-width: 570px;
-      }
-
-      .pricing-heading,
-      .trust-heading {
-        align-items: start;
-        flex-direction: column;
-      }
-
-      .pricing-note,
-      .trust-caption {
-        max-width: 570px;
-      }
-    }
-
-    @media (max-width: 610px) {
-      .container {
-        width: min(calc(100% - 32px), var(--content));
-      }
-
-      .hero {
-        padding-bottom: 60px;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.72rem, 12.5vw, 4.2rem);
-      }
-
-      .hero-copy {
-        font-size: .96rem;
-      }
-
-      .hero-actions .button {
-        width: 100%;
-      }
-
-      .hero-assurance {
-        display: grid;
-        gap: 11px;
-      }
-
-      .hero-product {
-        min-height: 366px;
-      }
-
-      .tracking-card {
-        padding: 9px;
-        border-radius: 8px;
-      }
-
-      .app-topbar {
-        padding: 6px 5px 10px;
-      }
-
-      .map-frame {
-        height: 276px;
-      }
-
-      .vehicle-status {
-        grid-template-columns: 1fr 1fr;
-        gap: 7px;
-        right: 9px;
-        bottom: 9px;
-        left: 9px;
-        padding: 10px;
-      }
-
-      .vehicle-identity {
-        grid-column: 1 / -1;
-      }
-
-      .data-point {
-        padding-left: 8px;
-      }
-
-      .alert-card {
-        top: 39px;
-        left: -8px;
-      }
-
-      .activity-card {
-        display: none;
-      }
-
-      .floating-card {
-        padding: 8px 9px;
-      }
-
-      .floating-card-icon {
-        width: 27px;
-        height: 27px;
-      }
-
-      .floating-card strong {
-        font-size: .61rem;
-      }
-
-      .floating-card span {
-        font-size: .49rem;
-      }
-
-      .trust-title {
-        margin-bottom: 2px;
-      }
-
-      .trust-item {
-        justify-content: flex-start;
-        min-height: auto;
-        padding: 5px 0;
-        border-left: 0;
-      }
-
-      .section {
-        padding: 76px 0;
-      }
-
-      .section-heading {
-        margin-bottom: 34px;
-      }
-
-      .section-title {
-        font-size: 2.25rem;
-      }
-
-      .dashboard-main {
-        grid-template-columns: 1fr;
-      }
-
-      .dashboard-map {
-        min-height: 270px;
-      }
-
-      .dash-side {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-        padding: 10px;
-        border-top: 1px solid #e8eef4;
-        border-left: 0;
-      }
-
-      .dash-side-title {
-        display: none;
-      }
-
-      .mini-vehicle {
-        margin: 0;
-        padding: 8px 5px;
-      }
-
-      .mini-vehicle strong {
-        font-size: .55rem;
-      }
-
-      .mini-vehicle span {
-        font-size: .47rem;
-      }
-
-      .dashboard-kpi {
-        padding: 10px 9px;
-      }
-
-      .dashboard-kpi strong {
-        font-size: .67rem;
-      }
-
-      .security-stats {
-        gap: 10px;
-      }
-
-      .security-stat strong {
-        font-size: 1.22rem;
-      }
-
-      .security-stat span {
-        font-size: .53rem;
-      }
-
-      .security-panel {
-        padding: 15px;
-      }
-
-      .activity-item {
-        grid-template-columns: 29px 1fr auto;
-        gap: 8px;
-        padding: 10px 3px;
-      }
-
-      .activity-icon {
-        width: 29px;
-        height: 29px;
-      }
-
-      .steps-grid {
-        --bs-gutter-x: 25px;
-        --bs-gutter-y: 25px;
-      }
-
-      .step {
-        padding: 0;
-      }
-
-      .step:not(:last-child)::after {
-        top: auto;
-        right: auto;
-        bottom: -16px;
-        left: 30px;
-        width: 1px;
-        height: 18px;
-      }
-
-      .step-number {
-        margin-bottom: 15px;
-      }
-
-      .owner-card {
-        --bs-gutter-x: 18px;
-        --bs-gutter-y: 18px;
-        padding: 27px;
-        margin-bottom: 49px;
-      }
-
-      .person-monogram {
-        width: 72px;
-        height: 72px;
-        border-radius: 9px;
-        font-size: 1.2rem;
-      }
-
-      .owner-statement {
-        padding-top: 18px;
-        padding-left: 0;
-        border-top: 1px solid rgba(255, 255, 255, .18);
-        border-left: 0;
-      }
-
-      .developer-card {
-        min-height: auto;
-        padding: 21px;
-      }
-
-      .team-connect {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 18px;
-      }
-
-      .team-connect-links {
-        width: 100%;
-      }
-
-      .team-connect-links a {
-        flex: 1;
-        justify-content: center;
-      }
-
-      .price-card {
-        min-height: auto;
-        padding: 24px;
-      }
-
-      .price-description {
-        min-height: auto;
-      }
-
-      .story-panel {
-        padding: 27px;
-      }
-
-      .story-panel::before {
-        top: -7px;
-        right: 13px;
-        font-size: 8rem;
-      }
-
-      .contact-section {
-        padding-bottom: 76px;
-      }
-
-      .contact-panel {
-        margin-right: -16px;
-        margin-left: -16px;
-        border-radius: 0;
-      }
-
-      .form-grid {
-        --bs-gutter-x: 0;
-      }
-
-      .form-footer {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .form-footer .button {
-        width: 100%;
-      }
-
-      .form-note {
-        max-width: none;
-      }
-
-      .faq-list summary {
-        font-size: .86rem;
-      }
-
-      .faq-list p {
-        padding-right: 5px;
-        font-size: .83rem;
-      }
-
-      .footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .whatsapp-float {
-        right: 15px;
-        bottom: 15px;
-        width: 48px;
-        height: 48px;
-      }
-    }
-
-    .scroll-progress {
-      position: fixed;
-      z-index: 300;
-      top: 0;
-      left: 0;
-      height: 3px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--orange), #ffb347);
-      box-shadow: 0 0 12px rgba(217, 90, 12, .5);
-    }
-
-    @keyframes live-pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 3px rgba(38, 177, 120, .1);
-      }
-
-      50% {
-        box-shadow: 0 0 0 5px rgba(38, 177, 120, .16);
-      }
-    }
-
-    .live-dot {
-      animation: live-pulse 2.6s ease-in-out infinite;
-    }
-
-    @keyframes radar-ping {
-      0% {
-        transform: scale(.85);
-        opacity: .35;
-      }
-
-      100% {
-        transform: scale(1.3);
-        opacity: 0;
-      }
-    }
-
-    .pin-current::before,
-    .dash-vehicle::before {
-      position: absolute;
-      z-index: -1;
-      inset: -8px;
-      border: 1.5px solid var(--orange);
-      border-radius: 50%;
-      content: "";
-      animation: radar-ping 3.6s cubic-bezier(.19, 1, .22, 1) infinite;
-    }
-
-    @keyframes route-flow {
-      to {
-        stroke-dashoffset: -14;
-      }
-    }
-
-    .route-line {
-      animation: route-flow 2.2s linear infinite;
-    }
-
-    @keyframes dash-flow {
-      to {
-        stroke-dashoffset: -15;
-      }
-    }
-
-    .dash-route polyline {
-      animation: dash-flow 2.2s linear infinite;
-    }
-
-    .hero-product {
-      perspective: 1300px;
-    }
-
-    .tracking-card {
-      transition: transform .18s ease-out;
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
-
-    .solution-card:hover {
-      box-shadow: 0 20px 44px rgba(217, 90, 12, .14);
-    }
-
-    .price-card:hover {
-      box-shadow: 0 20px 44px rgba(217, 90, 12, .14);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-
-      [data-aos] {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-
-      .live-dot,
-      .pin-current::before,
-      .dash-vehicle::before,
-      .route-line,
-      .dash-route polyline {
-        animation: none !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="CSS/index.css">
 </head>
-
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <header class="site-header" id="siteHeader">
-    <div class="nav-shell">
-      <a class="brand" href="#top" aria-label="ShaloTrack home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 42 42" fill="none">
-            <path d="M21 38s12-11.15 12-21A12 12 0 1 0 9 17c0 9.85 12 21 12 21Z" fill="currentColor" />
-            <path d="m14.6 26.2 11.7-11.7-4.8 10.8-2.7-3.1-4.2 4Z" fill="#fff" />
-            <path d="M29.6 7.3c2.4.4 4.25 1.35 5.65 2.8M31.2 3.3c3.3.55 6.15 1.85 8.35 4.05" stroke="#071A33"
-              stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </span>
-        <span>SHALO<span class="brand-track">TRACK</span></span>
-      </a>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-      <nav aria-label="Primary navigation">
-        <ul class="nav-links" id="primaryNav">
-          <li><a class="is-active" href="#top">Home</a></li>
-          <li><a href="#solutions">Solutions</a></li>
-          <li><a href="#platform">Platform</a></li>
-          <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="#pricing">Plans</a></li>
-          <li><a href="#people">Our Team</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+<!-- ── NAVBAR ── -->
+<header class="site-header" id="siteHeader">
+  <div class="nav-shell">
+    <a class="brand" href="#top" aria-label="ShaloTrack home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 42 42" fill="none">
+          <path d="M21 38s12-11.15 12-21A12 12 0 1 0 9 17c0 9.85 12 21 12 21Z" fill="currentColor"/>
+          <path d="m14.6 26.2 11.7-11.7-4.8 10.8-2.7-3.1-4.2 4Z" fill="#fff"/>
+          <path d="M29.6 7.3c2.4.4 4.25 1.35 5.65 2.8M31.2 3.3c3.3.55 6.15 1.85 8.35 4.05" stroke="#071A33" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span>SHALO<span class="brand-track">TRACK</span></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-links" id="primaryNav">
+        <li><a class="is-active" href="#top">Home</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#platform">Platform</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#pricing">Plans</a></li>
+        <li><a href="#people">Our Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn-st-primary nav-cta" href="#contact" style="padding:10px 18px;font-size:.85rem;">Get a quote</a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-controls="primaryNav" aria-expanded="false" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
 
-      <a class="button button-primary nav-button nav-cta" href="#contact">Get a quote</a>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-controls="primaryNav" aria-expanded="false"
-        aria-label="Open navigation menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+<main id="main-content">
 
-  <main id="main-content">
-    <section class="hero" id="top" aria-labelledby="heroTitle">
-      <video class="hero-video" autoplay muted loop playsinline poster="Assets/video/hero-poster.jpg"
-        aria-hidden="true">
-        <source src="Assets/video/hero-highway.mp4" type="video/mp4">
-      </video>
-      <div class="hero-scrim"></div>
-      <div class="container hero-grid row">
+  <!-- ── HERO ── -->
+  <section class="hero" id="top" aria-labelledby="heroTitle">
+    <video class="hero-video" autoplay muted loop playsinline poster="Assets/video/hero-poster.jpg" aria-hidden="true">
+      <source src="Assets/video/hero-highway.mp4" type="video/mp4">
+    </video>
+    <div class="hero-scrim"></div>
+    <div class="container hero-inner">
+      <div class="row align-items-center g-5">
+
         <div class="col-12 col-lg-6" data-aos="fade-up" data-aos-delay="80">
-          <div class="eyebrow">GPS tracking built for Sri Lanka</div>
-          <h1 id="heroTitle">See every journey.<br><em>Secure every mile.</em></h1>
-          <p class="hero-copy">ShaloTrack gives owners and growing fleets a clear, reliable view of every vehicle - in
-            real time, from wherever they are.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#contact">
+          <div class="st-eyebrow">GPS tracking built for Sri Lanka</div>
+          <h1 class="hero-title" id="heroTitle">See every journey.<br><em>Secure every mile.</em></h1>
+          <p class="hero-copy">ShaloTrack gives owners and growing fleets a clear, reliable view of every vehicle — in real time, from wherever they are.</p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a class="btn-st-primary" href="#contact">
               Protect your vehicle
-              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5" stroke="currentColor" stroke-width="1.8"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a class="button button-secondary" href="#platform">Explore the platform</a>
+            <a class="btn-st-secondary" href="#platform">Explore the platform</a>
           </div>
-          <ul class="hero-assurance" aria-label="Service highlights">
-            <li><span class="check"><svg viewBox="0 0 16 16" fill="none">
-                  <path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg></span>Professional installation</li>
-            <li><span class="check"><svg viewBox="0 0 16 16" fill="none">
-                  <path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg></span>Island-wide support</li>
+          <ul class="list-unstyled d-flex flex-wrap gap-3 mb-0" aria-label="Service highlights">
+            <li class="d-flex align-items-center gap-2 text-white-50 fw-bold" style="font-size:.79rem;">
+              <span class="st-check"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Professional installation
+            </li>
+            <li class="d-flex align-items-center gap-2 text-white-50 fw-bold" style="font-size:.79rem;">
+              <span class="st-check"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Island-wide support
+            </li>
           </ul>
         </div>
 
@@ -3197,274 +90,248 @@
           <div class="tracking-card" aria-label="Illustration of the ShaloTrack real-time tracking dashboard">
             <div class="app-topbar">
               <div class="app-title">
-                <span class="app-title-mark"><svg viewBox="0 0 20 20" fill="none">
-                    <path d="M10 17s5-4.66 5-8.5A5 5 0 1 0 5 8.5C5 12.34 10 17 10 17Z" stroke="currentColor"
-                      stroke-width="1.5" />
-                    <circle cx="10" cy="8.5" r="1.7" fill="currentColor" />
-                  </svg></span>
+                <span class="app-title-mark"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17s5-4.66 5-8.5A5 5 0 1 0 5 8.5C5 12.34 10 17 10 17Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8.5" r="1.7" fill="currentColor"/></svg></span>
                 Live tracking
               </div>
               <span class="app-live"><i class="live-dot"></i>System online</span>
             </div>
             <div class="map-frame">
-              <span class="map-label label-a">Kirulapone</span><span class="map-label label-b">Colombo</span><span
-                class="map-label label-c">Nugegoda</span>
+              <span class="map-label label-a">Kirulapone</span>
+              <span class="map-label label-b">Colombo</span>
+              <span class="map-label label-c">Nugegoda</span>
               <svg class="route-svg" viewBox="0 0 600 347" preserveAspectRatio="none" aria-hidden="true">
-                <path class="route-line" d="M109 282 C159 238, 201 257, 231 210 S301 198, 333 170 S369 144, 394 151" />
+                <path class="route-line" d="M109 282 C159 238, 201 257, 231 210 S301 198, 333 170 S369 144, 394 151"/>
               </svg>
               <span class="map-pin pin-start"></span>
-              <span class="map-pin pin-current"><svg viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M3 12.7h14M5.4 12.7l1-4.9A2 2 0 0 1 8.36 6h3.28a2 2 0 0 1 1.96 1.8l1 4.9M5.5 12.7v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1m3.8 0v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1"
-                    stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" />
-                </svg></span>
+              <span class="map-pin pin-current"><svg viewBox="0 0 20 20" fill="none"><path d="M3 12.7h14M5.4 12.7l1-4.9A2 2 0 0 1 8.36 6h3.28a2 2 0 0 1 1.96 1.8l1 4.9M5.5 12.7v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1m3.8 0v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               <div class="vehicle-status">
                 <div class="vehicle-identity">
-                  <span class="vehicle-icon"><svg viewBox="0 0 20 20" fill="none">
-                      <path
-                        d="M3 12.7h14M5.4 12.7l1-4.9A2 2 0 0 1 8.36 6h3.28a2 2 0 0 1 1.96 1.8l1 4.9M5.5 12.7v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1m3.8 0v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1"
-                        stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg></span>
-                  <span><span class="vehicle-name">Toyota Hiace</span><span class="vehicle-meta"><i
-                        class="live-dot"></i>Online now</span></span>
+                  <span class="vehicle-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M3 12.7h14M5.4 12.7l1-4.9A2 2 0 0 1 8.36 6h3.28a2 2 0 0 1 1.96 1.8l1 4.9M5.5 12.7v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1m3.8 0v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><span class="vehicle-name">Toyota Hiace</span><span class="vehicle-meta"><i class="live-dot"></i>Online now</span></span>
                 </div>
-                <div class="data-point">
-                  <div class="data-label">Speed</div>
-                  <div class="data-value">62 km/h</div>
-                </div>
-                <div class="data-point">
-                  <div class="data-label">Updated</div>
-                  <div class="data-value">Just now</div>
-                </div>
+                <div class="data-point"><div class="data-label">Speed</div><div class="data-value">62 km/h</div></div>
+                <div class="data-point"><div class="data-label">Updated</div><div class="data-value">Just now</div></div>
               </div>
             </div>
           </div>
           <div class="floating-card alert-card">
-            <span class="floating-card-icon"><svg viewBox="0 0 20 20" fill="none">
-                <path d="M10 17a2 2 0 0 0 2-2H8a2 2 0 0 0 2 2Zm5-4.5H5l1.3-1.7V8a3.7 3.7 0 0 1 7.4 0v2.8l1.3 1.7Z"
-                  stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-              </svg></span>
+            <span class="floating-card-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17a2 2 0 0 0 2-2H8a2 2 0 0 0 2 2Zm5-4.5H5l1.3-1.7V8a3.7 3.7 0 0 1 7.4 0v2.8l1.3 1.7Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span><strong>Safe-zone alert</strong><span>Vehicle has arrived</span></span>
           </div>
           <div class="floating-card activity-card">
-            <span class="floating-card-icon"><svg viewBox="0 0 20 20" fill="none">
-                <path d="M3.2 10h3l1.6-4.2 3.1 8.5 1.7-4.3h4.2" stroke="currentColor" stroke-width="1.7"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg></span>
+            <span class="floating-card-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M3.2 10h3l1.6-4.2 3.1 8.5 1.7-4.3h4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span><strong>Journey summary</strong><span>42.8 km today</span></span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="trust-strip" aria-label="ShaloTrack highlights">
-      <div class="container trust-inner row">
-        <div class="trust-title col-12 col-lg-3">Everything you need to stay in control</div>
-        <div class="trust-item col-12 col-sm-4 col-lg-3"><strong data-count-to="25000" data-suffix="+">25,000+</strong>
-          active devices</div>
-        <div class="trust-item col-12 col-sm-4 col-lg-3"><strong>24/7</strong> live visibility</div>
-        <div class="trust-item col-12 col-sm-4 col-lg-3"><strong>Island-wide</strong> coverage</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="solutions" aria-labelledby="solutionsTitle">
-      <div class="container">
-        <div class="section-heading" data-aos="fade-up">
-          <div class="section-kicker">One connected view</div>
-          <h2 class="section-title" id="solutionsTitle">Made for the moments that <em>matter most.</em></h2>
-          <p class="section-intro">From a single car to a complex fleet, ShaloTrack turns location data into clear,
-            useful information you can act on.</p>
-        </div>
-        <div class="solutions-grid row">
-          <article class="solution-card col-12 col-md-4" data-aos="fade-up">
-            <div class="solution-icon"><svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 21s7-6.52 7-12a7 7 0 1 0-14 0c0 5.48 7 12 7 12Z" stroke="currentColor"
-                  stroke-width="1.7" />
-                <circle cx="12" cy="9" r="2.35" stroke="currentColor" stroke-width="1.7" />
-              </svg></div>
-            <h3>Real-time location</h3>
-            <p>See where each vehicle is, how fast it is moving, and when its location was last updated - all from one
-              simple view.</p>
+  <!-- ── TRUST STRIP ── -->
+  <section class="trust-strip" aria-label="ShaloTrack highlights">
+    <div class="container">
+      <div class="trust-strip-inner">
+        <div class="col-12 col-lg-3 trust-label py-3">Everything you need to stay in control</div>
+        <div class="trust-stat col-12 col-sm-4 col-lg-3"><strong data-count-to="25000" data-suffix="+">25,000+</strong> active devices</div>
+        <div class="trust-stat col-12 col-sm-4 col-lg-3"><strong>24/7</strong> live visibility</div>
+        <div class="trust-stat col-12 col-sm-4 col-lg-3"><strong>Island-wide</strong> coverage</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOLUTIONS ── -->
+  <section class="py-5 py-lg-6" id="solutions" aria-labelledby="solutionsTitle" style="padding-top:6rem!important;padding-bottom:6rem!important;">
+    <div class="container">
+      <div class="mb-5" data-aos="fade-up">
+        <span class="st-kicker">One connected view</span>
+        <h2 class="st-title" id="solutionsTitle">Made for the moments that <em>matter most.</em></h2>
+        <p class="st-intro" style="max-width:600px;">From a single car to a complex fleet, ShaloTrack turns location data into clear, useful information you can act on.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-md-4" data-aos="fade-up">
+          <article class="solution-card h-100 p-4">
+            <div class="sol-icon mb-3"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.52 7-12a7 7 0 1 0-14 0c0 5.48 7 12 7 12Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="9" r="2.35" stroke="currentColor" stroke-width="1.7"/></svg></div>
+            <h3 class="fw-800 mb-2" style="font-size:1.08rem;letter-spacing:-.025em;color:var(--st-ink);">Real-time location</h3>
+            <p class="mb-0" style="color:var(--st-muted);font-size:.88rem;line-height:1.72;">See where each vehicle is, how fast it is moving, and when its location was last updated — all from one simple view.</p>
             <span class="card-index" aria-hidden="true">01</span>
           </article>
-          <article class="solution-card col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="solution-icon blue"><svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 19h14M6.5 16V9M12 16V5M17.5 16v-3" stroke="currentColor" stroke-width="1.8"
-                  stroke-linecap="round" />
-                <path d="m4.5 9 5-5 5 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg></div>
-            <h3>Journey intelligence</h3>
-            <p>Review trip history, stops, distance and speed in context, so every route tells a clearer story.</p>
+        </div>
+        <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <article class="solution-card h-100 p-4">
+            <div class="sol-icon blue mb-3"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19h14M6.5 16V9M12 16V5M17.5 16v-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m4.5 9 5-5 5 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 class="fw-800 mb-2" style="font-size:1.08rem;letter-spacing:-.025em;color:var(--st-ink);">Journey intelligence</h3>
+            <p class="mb-0" style="color:var(--st-muted);font-size:.88rem;line-height:1.72;">Review trip history, stops, distance and speed in context, so every route tells a clearer story.</p>
             <span class="card-index" aria-hidden="true">02</span>
           </article>
-          <article class="solution-card col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="solution-icon green"><svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 21a2.3 2.3 0 0 0 2.25-2h-4.5A2.3 2.3 0 0 0 12 21Zm6-5.5H6l1.65-2.14V9.7a4.35 4.35 0 1 1 8.7 0v3.66L18 15.5Z"
-                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-              </svg></div>
-            <h3>Smart security alerts</h3>
-            <p>Receive timely alerts for events such as ignition changes, overspeeding, safe-zone movement and device
-              status.</p>
+        </div>
+        <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <article class="solution-card h-100 p-4">
+            <div class="sol-icon green mb-3"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21a2.3 2.3 0 0 0 2.25-2h-4.5A2.3 2.3 0 0 0 12 21Zm6-5.5H6l1.65-2.14V9.7a4.35 4.35 0 1 1 8.7 0v3.66L18 15.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 class="fw-800 mb-2" style="font-size:1.08rem;letter-spacing:-.025em;color:var(--st-ink);">Smart security alerts</h3>
+            <p class="mb-0" style="color:var(--st-muted);font-size:.88rem;line-height:1.72;">Receive timely alerts for events such as ignition changes, overspeeding, safe-zone movement and device status.</p>
             <span class="card-index" aria-hidden="true">03</span>
           </article>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section section-soft" id="platform" aria-labelledby="platformTitle">
-      <div class="container platform-grid row">
-        <div class="platform-copy col-12 col-lg-6" data-aos="fade-right">
-          <div class="section-heading">
-            <div class="section-kicker">The ShaloTrack platform</div>
-            <h2 class="section-title" id="platformTitle">Clarity at a glance. <em>Confidence on the road.</em></h2>
-            <p class="section-intro">Designed for everyday owners and fleet managers alike, our platform makes the right
-              information easy to find and easy to understand.</p>
-          </div>
-          <ul class="feature-list">
-            <li><span class="check"><svg viewBox="0 0 16 16" fill="none">
-                  <path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg></span>Track one vehicle or an entire fleet from a single account</li>
-            <li><span class="check"><svg viewBox="0 0 16 16" fill="none">
-                  <path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg></span>Use route history and alerts to make practical decisions quickly</li>
-            <li><span class="check"><svg viewBox="0 0 16 16" fill="none">
-                  <path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg></span>Stay connected through a secure, always-available cloud platform</li>
+  <!-- ── PLATFORM ── -->
+  <section class="py-5 py-lg-6" id="platform" aria-labelledby="platformTitle" style="background:var(--st-surface);padding-top:6rem!important;padding-bottom:6rem!important;">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-lg-6" data-aos="fade-right">
+          <span class="st-kicker">The ShaloTrack platform</span>
+          <h2 class="st-title" id="platformTitle">Clarity at a glance. <em>Confidence on the road.</em></h2>
+          <p class="st-intro mb-4">Designed for everyday owners and fleet managers alike, our platform makes the right information easy to find and easy to understand.</p>
+          <ul class="list-unstyled d-grid gap-3 mb-4">
+            <li class="d-flex align-items-start gap-3" style="color:#50647d;font-size:.9rem;font-weight:600;">
+              <span class="st-check mt-1"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Track one vehicle or an entire fleet from a single account
+            </li>
+            <li class="d-flex align-items-start gap-3" style="color:#50647d;font-size:.9rem;font-weight:600;">
+              <span class="st-check mt-1"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Use route history and alerts to make practical decisions quickly
+            </li>
+            <li class="d-flex align-items-start gap-3" style="color:#50647d;font-size:.9rem;font-weight:600;">
+              <span class="st-check mt-1"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.1 2.65 2.55 5.1-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Stay connected through a secure, always-available cloud platform
+            </li>
           </ul>
-          <div class="platform-actions"><a class="button button-primary" href="#contact">Talk to our team</a></div>
+          <a class="btn-st-primary" href="#contact">Talk to our team</a>
         </div>
-
-        <div class="dashboard-wrap col-12 col-lg-6" data-aos="fade-left" data-aos-delay="100"
-          aria-label="Illustration of the fleet management dashboard">
-          <span class="dash-orbit" aria-hidden="true"></span>
-          <div class="dashboard">
-            <div class="dashboard-head">
-              <div class="dashboard-brand"><span class="dashboard-brand-dot"></span>Fleet overview</div>
-              <div class="dashboard-tabs"><span class="selected">Live map</span><span>Reports</span></div>
-            </div>
-            <div class="dashboard-main">
-              <div class="dashboard-map">
-                <svg class="dash-route" viewBox="0 0 500 355" preserveAspectRatio="none" aria-hidden="true">
-                  <polyline points="72,267 138,215 194,243 245,156 309,186 358,115" />
-                </svg>
-                <span class="dash-vehicle"><svg viewBox="0 0 20 20" fill="none">
-                    <path
-                      d="M3 12.7h14M5.4 12.7l1-4.9A2 2 0 0 1 8.36 6h3.28a2 2 0 0 1 1.96 1.8l1 4.9M5.5 12.7v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1m3.8 0v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1"
-                      stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg></span>
+        <div class="col-12 col-lg-6" data-aos="fade-left" data-aos-delay="100" aria-label="Illustration of the fleet management dashboard">
+          <div class="dashboard-wrap">
+            <div class="dashboard">
+              <div class="dashboard-head">
+                <div class="dashboard-brand"><span class="dashboard-brand-dot"></span>Fleet overview</div>
+                <div class="dashboard-tabs"><span class="selected">Live map</span><span>Reports</span></div>
               </div>
-              <aside class="dash-side" aria-label="Vehicles">
-                <div class="dash-side-title">Vehicles</div>
-                <div class="mini-vehicle active"><strong>Toyota Hiace</strong><span>Moving</span></div>
-                <div class="mini-vehicle"><strong>Nissan Leaf</strong><span>Parked</span></div>
-                <div class="mini-vehicle offline"><strong>Truck L-248</strong><span>Offline</span></div>
-              </aside>
-            </div>
-            <div class="dashboard-kpis">
-              <div class="dashboard-kpi"><span>Vehicles online</span><strong>18 of 20</strong></div>
-              <div class="dashboard-kpi"><span>Trips today</span><strong data-count-to="42">42</strong></div>
-              <div class="dashboard-kpi"><span>Alerts resolved</span><strong data-count-to="96"
-                  data-suffix="%">96%</strong></div>
+              <div class="dashboard-main">
+                <div class="dashboard-map">
+                  <svg class="dash-route" viewBox="0 0 500 355" preserveAspectRatio="none" aria-hidden="true">
+                    <polyline points="72,267 138,215 194,243 245,156 309,186 358,115"/>
+                  </svg>
+                  <span class="dash-vehicle"><svg viewBox="0 0 20 20" fill="none"><path d="M3 12.7h14M5.4 12.7l1-4.9A2 2 0 0 1 8.36 6h3.28a2 2 0 0 1 1.96 1.8l1 4.9M5.5 12.7v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1m3.8 0v1.1a1.3 1.3 0 0 0 1.3 1.3h.5a1.3 1.3 0 0 0 1.3-1.3v-1.1" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </div>
+                <aside class="dash-side" aria-label="Vehicles">
+                  <div class="dash-side-title">Vehicles</div>
+                  <div class="mini-vehicle active"><strong>Toyota Hiace</strong><span>Moving</span></div>
+                  <div class="mini-vehicle"><strong>Nissan Leaf</strong><span>Parked</span></div>
+                  <div class="mini-vehicle offline"><strong>Truck L-248</strong><span>Offline</span></div>
+                </aside>
+              </div>
+              <div class="dashboard-kpis">
+                <div class="dashboard-kpi"><span>Vehicles online</span><strong>18 of 20</strong></div>
+                <div class="dashboard-kpi"><span>Trips today</span><strong data-count-to="42">42</strong></div>
+                <div class="dashboard-kpi"><span>Alerts resolved</span><strong data-count-to="96" data-suffix="%">96%</strong></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section section-dark" aria-labelledby="securityTitle">
-      <div class="container security-grid row">
-        <div class="security-copy col-12 col-lg-6" data-aos="fade-right">
-          <div class="section-heading">
-            <div class="section-kicker">Vehicle security, simplified</div>
-            <h2 class="section-title" id="securityTitle">Stay informed before a small event becomes a <em>bigger
-                problem.</em></h2>
-            <p class="section-intro">The moments that matter are not always predictable. ShaloTrack keeps you connected
-              with the vehicle activity you need to know about.</p>
-          </div>
-          <div class="security-stats" aria-label="Service capabilities">
+  <!-- ── SECURITY ── -->
+  <section class="py-5 py-lg-6 section-dark" aria-labelledby="securityTitle" style="padding-top:6rem!important;padding-bottom:6rem!important;">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-lg-6" data-aos="fade-right">
+          <span class="st-kicker" style="color:#ff9d64;">Vehicle security, simplified</span>
+          <h2 class="st-title st-title-light" id="securityTitle">Stay informed before a small event becomes a <em>bigger problem.</em></h2>
+          <p class="st-intro st-intro-light mb-0">The moments that matter are not always predictable. ShaloTrack keeps you connected with the vehicle activity you need to know about.</p>
+          <div class="security-stats">
             <div class="security-stat"><strong>Live</strong><span>Location status</span></div>
             <div class="security-stat"><strong>Instant</strong><span>Event alerts</span></div>
             <div class="security-stat"><strong>Local</strong><span>Support team</span></div>
           </div>
         </div>
-        <div class="security-panel col-12 col-lg-6" data-aos="fade-left" data-aos-delay="100">
-          <div class="monitor-head">
-            <div class="monitor-heading"><span class="monitor-heading-icon"><svg viewBox="0 0 20 20" fill="none">
-                  <path d="M10 17a2 2 0 0 0 2-2H8a2 2 0 0 0 2 2Zm5-4.5H5l1.3-1.7V8a3.7 3.7 0 0 1 7.4 0v2.8l1.3 1.7Z"
-                    stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-                </svg></span>Recent activity</div>
-            <span class="monitor-status">Monitoring</span>
+        <div class="col-12 col-lg-6" data-aos="fade-left" data-aos-delay="100">
+          <div class="security-panel">
+            <div class="monitor-head">
+              <div class="monitor-heading">
+                <span class="monitor-heading-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17a2 2 0 0 0 2-2H8a2 2 0 0 0 2 2Zm5-4.5H5l1.3-1.7V8a3.7 3.7 0 0 1 7.4 0v2.8l1.3 1.7Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                Recent activity
+              </div>
+              <span class="monitor-status">Monitoring</span>
+            </div>
+            <ul class="activity-list">
+              <li class="activity-item">
+                <span class="activity-icon safe"><svg viewBox="0 0 20 20" fill="none"><path d="m4 10 3.2 3.15L16 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="activity-info"><strong>Toyota Hiace arrived in a safe zone</strong><span>Colombo, Sri Lanka</span></span>
+                <span class="activity-time">Now</span>
+              </li>
+              <li class="activity-item">
+                <span class="activity-icon alert"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3.1 17 16H3l7-12.9Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 7.4v3.8m0 2.1h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+                <span class="activity-info"><strong>Speed threshold reached</strong><span>Nugegoda route</span></span>
+                <span class="activity-time">8m</span>
+              </li>
+              <li class="activity-item">
+                <span class="activity-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M6.2 3.5h7.6v13H6.2zM8.1 6.6h3.8M8.1 9.7h3.8M8.1 12.8h2" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="activity-info"><strong>Journey report is ready to review</strong><span>Vehicle group: Western fleet</span></span>
+                <span class="activity-time">31m</span>
+              </li>
+            </ul>
           </div>
-          <ul class="activity-list">
-            <li class="activity-item"><span class="activity-icon safe"><svg viewBox="0 0 20 20" fill="none">
-                  <path d="m4 10 3.2 3.15L16 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg></span><span class="activity-info"><strong>Toyota Hiace arrived in a safe
-                  zone</strong><span>Colombo, Sri Lanka</span></span><span class="activity-time">Now</span></li>
-            <li class="activity-item"><span class="activity-icon alert"><svg viewBox="0 0 20 20" fill="none">
-                  <path d="M10 3.1 17 16H3l7-12.9Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
-                  <path d="M10 7.4v3.8m0 2.1h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                </svg></span><span class="activity-info"><strong>Speed threshold reached</strong><span>Nugegoda
-                  route</span></span><span class="activity-time">8m</span></li>
-            <li class="activity-item"><span class="activity-icon"><svg viewBox="0 0 20 20" fill="none">
-                  <path d="M6.2 3.5h7.6v13H6.2zM8.1 6.6h3.8M8.1 9.7h3.8M8.1 12.8h2" stroke="currentColor"
-                    stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
-                </svg></span><span class="activity-info"><strong>Journey report is ready to review</strong><span>Vehicle
-                  group: Western fleet</span></span><span class="activity-time">31m</span></li>
-          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="how-it-works" aria-labelledby="howTitle">
-      <div class="container">
-        <div class="section-heading center" data-aos="fade-up">
-          <div class="section-kicker">Getting started</div>
-          <h2 class="section-title" id="howTitle">Protection in three <em>simple steps.</em></h2>
-          <p class="section-intro">We keep the process straightforward, so you can go from installation to live
-            visibility without the complexity.</p>
-        </div>
-        <div class="steps-grid row">
-          <article class="step col-12 col-sm-4" data-aos="fade-up">
+  <!-- ── HOW IT WORKS ── -->
+  <section class="py-5 py-lg-6" id="how-it-works" aria-labelledby="howTitle" style="padding-top:6rem!important;padding-bottom:6rem!important;">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <span class="st-kicker">Getting started</span>
+        <h2 class="st-title" id="howTitle">Protection in three <em>simple steps.</em></h2>
+        <p class="st-intro mx-auto" style="max-width:560px;">We keep the process straightforward, so you can go from installation to live visibility without the complexity.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-4" data-aos="fade-up">
+          <div class="p-3">
             <div class="step-number">01</div>
-            <h3>Choose your setup</h3>
-            <p>Tell us about your vehicle or fleet and the level of visibility you need.</p>
-          </article>
-          <article class="step col-12 col-sm-4" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="fw-800 mb-2" style="font-size:1.08rem;letter-spacing:-.03em;color:var(--st-ink);">Choose your setup</h3>
+            <p class="mb-0" style="color:var(--st-muted);font-size:.88rem;line-height:1.72;">Tell us about your vehicle or fleet and the level of visibility you need.</p>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="p-3">
             <div class="step-number">02</div>
-            <h3>Professional installation</h3>
-            <p>Our team installs and activates your GPS device securely and efficiently.</p>
-          </article>
-          <article class="step col-12 col-sm-4" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="fw-800 mb-2" style="font-size:1.08rem;letter-spacing:-.03em;color:var(--st-ink);">Professional installation</h3>
+            <p class="mb-0" style="color:var(--st-muted);font-size:.88rem;line-height:1.72;">Our team installs and activates your GPS device securely and efficiently.</p>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="p-3">
             <div class="step-number">03</div>
-            <h3>Track with confidence</h3>
-            <p>Sign in to your platform, see live activity, and receive the alerts that matter.</p>
-          </article>
+            <h3 class="fw-800 mb-2" style="font-size:1.08rem;letter-spacing:-.03em;color:var(--st-ink);">Track with confidence</h3>
+            <p class="mb-0" style="color:var(--st-muted);font-size:.88rem;line-height:1.72;">Sign in to your platform, see live activity, and receive the alerts that matter.</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section pricing-section" id="pricing" aria-labelledby="pricingTitle">
-      <div class="container">
-        <div class="pricing-heading" data-aos="fade-up">
-          <div class="section-heading">
-            <div class="section-kicker">Plans &amp; installation</div>
-            <h2 class="section-title" id="pricingTitle">A clear starting point for <em>every vehicle.</em></h2>
-          </div>
-          <p class="pricing-note">Every setup is tailored to the vehicle, installation needs, and level of visibility
-            you require. Request a quote for the right recommendation.</p>
+  <!-- ── PRICING ── -->
+  <section class="py-5 py-lg-6" id="pricing" aria-labelledby="pricingTitle" style="background:var(--st-surface);padding-top:6rem!important;padding-bottom:6rem!important;">
+    <div class="container">
+      <div class="row align-items-end mb-5" data-aos="fade-up">
+        <div class="col-12 col-md-7">
+          <span class="st-kicker">Plans &amp; installation</span>
+          <h2 class="st-title mb-0" id="pricingTitle">A clear starting point for <em>every vehicle.</em></h2>
         </div>
-
-        <div class="pricing-grid row">
-          <article class="price-card col-12 col-sm-6 col-lg-4" data-aos="fade-up">
+        <div class="col-12 col-md-5 mt-3 mt-md-0">
+          <p class="mb-0" style="color:var(--st-muted);font-size:.83rem;line-height:1.7;">Every setup is tailored to the vehicle, installation needs, and level of visibility you require. Request a quote for the right recommendation.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up">
+          <article class="price-card">
             <span class="price-label">For individual owners</span>
-            <h3>Personal tracking</h3>
-            <p class="price-description">A focused GPS tracking setup for the vehicle you rely on every day.</p>
+            <h3 class="fw-800 mb-2" style="font-size:1.34rem;letter-spacing:-.04em;color:var(--st-ink);">Personal tracking</h3>
+            <p class="price-description mb-0" style="color:var(--st-muted);font-size:.82rem;line-height:1.65;">A focused GPS tracking setup for the vehicle you rely on every day.</p>
             <div class="price-quote"><span>Pricing</span><strong>Request a tailored quote</strong></div>
             <ul class="price-features">
               <li>Single-vehicle visibility</li>
@@ -3472,15 +339,14 @@
               <li>Smart vehicle alerts</li>
               <li>Mobile platform access</li>
             </ul>
-            <a class="button button-secondary" href="#contact" data-interest="Personal tracking">Plan my
-              installation</a>
+            <a class="btn-st-secondary" href="#contact" data-interest="Personal tracking">Plan my installation</a>
           </article>
-
-          <article class="price-card featured col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <article class="price-card featured">
             <span class="price-label">Most requested setup</span>
-            <h3>Fleet visibility</h3>
-            <p class="price-description">A practical view of multiple vehicles, operations, and key activity in one
-              place.</p>
+            <h3 class="fw-800 mb-2" style="font-size:1.34rem;letter-spacing:-.04em;color:var(--st-ink);">Fleet visibility</h3>
+            <p class="price-description mb-0" style="color:var(--st-muted);font-size:.82rem;line-height:1.65;">A practical view of multiple vehicles, operations, and key activity in one place.</p>
             <div class="price-quote"><span>Pricing</span><strong>Request a tailored quote</strong></div>
             <ul class="price-features">
               <li>Multi-vehicle tracking</li>
@@ -3488,14 +354,14 @@
               <li>Journey and activity insights</li>
               <li>Priority setup consultation</li>
             </ul>
-            <a class="button button-primary" href="#contact" data-interest="Fleet visibility">Discuss my fleet</a>
+            <a class="btn-st-primary" href="#contact" data-interest="Fleet visibility">Discuss my fleet</a>
           </article>
-
-          <article class="price-card col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <article class="price-card">
             <span class="price-label">For tailored operations</span>
-            <h3>Custom deployment</h3>
-            <p class="price-description">For growing operations that need a considered rollout across vehicles, teams,
-              or sites.</p>
+            <h3 class="fw-800 mb-2" style="font-size:1.34rem;letter-spacing:-.04em;color:var(--st-ink);">Custom deployment</h3>
+            <p class="price-description mb-0" style="color:var(--st-muted);font-size:.82rem;line-height:1.65;">For growing operations that need a considered rollout across vehicles, teams, or sites.</p>
             <div class="price-quote"><span>Pricing</span><strong>Talk to our team</strong></div>
             <ul class="price-features">
               <li>Tailored vehicle rollout</li>
@@ -3503,184 +369,182 @@
               <li>Operational support guidance</li>
               <li>Solution consultation</li>
             </ul>
-            <a class="button button-secondary" href="#contact" data-interest="Custom deployment">Request a
-              consultation</a>
+            <a class="btn-st-secondary" href="#contact" data-interest="Custom deployment">Request a consultation</a>
           </article>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section people-section" id="people" aria-labelledby="peopleTitle">
-      <div class="container">
-        <div class="section-heading center" data-aos="fade-up">
-          <div class="section-kicker">The people behind ShaloTrack</div>
-          <h2 class="section-title" id="peopleTitle">Built by Sri Lankans, <em>for Sri Lanka.</em></h2>
-          <p class="section-intro">A focused owner-led team bringing together product vision, engineering, and the local
-            knowledge behind every connected journey.</p>
-        </div>
+  <!-- ── PEOPLE ── -->
+  <section class="py-5 py-lg-6" id="people" aria-labelledby="peopleTitle" style="padding-top:6rem!important;padding-bottom:6rem!important;">
+    <div class="container">
 
-        <article class="owner-card row" data-aos="fade-up" data-aos-duration="820">
-          <div class="person-monogram col-12 col-lg-auto" aria-label="N. A. Polwatte Gedara initials">NA</div>
-          <div class="owner-details col-12 col-lg">
-            <div class="owner-badge"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="m3 7 3 3 4-6 4 6 3-3v7.5A1.5 1.5 0 0 1 15.5 16h-11A1.5 1.5 0 0 1 3 14.5V7Z"
-                  stroke="currentColor" stroke-width="1.45" stroke-linejoin="round" />
-                <path d="M6 13h8" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" />
-              </svg>Founder &amp; Owner</div>
-            <h3>N. A. Polwatte Gedara</h3>
-            <p>Founder &amp; Owner, ShaloTrack Lanka (Pvt) Ltd - driving the vision for a trusted Sri Lankan GPS
-              tracking and fleet management platform.</p>
+      <!-- Owner card -->
+      <div class="owner-card mb-5" data-aos="fade-up">
+        <div class="person-monogram">NA</div>
+        <div class="flex-grow-1">
+          <div class="owner-badge">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M10 1l2.7 5.5 6.1.9-4.4 4.3 1 6-5.4-2.8L4.6 17.7l1-6L1.2 7.4l6.1-.9L10 1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            Investor &amp; Owner
           </div>
-          <div class="owner-statement col-12 col-lg-3"><strong>Owner-led vision</strong>Creating dependable vehicle
-            visibility for
-            everyday owners and ambitious local fleets.</div>
-        </article>
-
-        <div class="people-heading-row" data-aos="fade-up">
-          <div class="section-heading">
-            <div class="section-kicker">Development team</div>
-            <h2 class="section-title">The engineers <em>behind the platform.</em></h2>
-          </div>
-          <p class="people-support-copy">Each discipline contributes to a platform designed to be clear for customers
-            and dependable in the real world.</p>
+          <h3 class="fw-800 mb-1" style="font-size:clamp(1.35rem,2.5vw,1.82rem);letter-spacing:-.045em;color:#fff;">Polwatte Gedara Nuwan Aloka</h3>
+          <p class="mb-0" style="color:#b9cbe0;font-size:.88rem;line-height:1.72;">ShaloTrack Lanka (Pvt) Ltd — driving the vision for reliable GPS tracking across Sri Lanka.</p>
         </div>
+        <div class="owner-statement">
+          <strong>Founder's note</strong>
+          ShaloTrack exists to give every vehicle owner in Sri Lanka the same confidence and visibility that was previously only available to large fleets.
+        </div>
+      </div>
 
-        <div class="developer-grid row">
-          <article class="developer-card col-12 col-sm-6 col-lg-3" data-aos="fade-up">
-            <div class="developer-avatar avatar-swen" aria-label="Swen Jayathunga initials">SJ</div>
-            <h3>Swen Jayathunga</h3>
-            <div class="developer-role">Systems Lead & Backend Developer</div>
-            <div class="developer-tags"><span>Backend Developer (Mobile + Gateway + API) </span><span>Systems
-                Architecture</span><span>Database designer</span><span>GPS infrastructure</span></div>
-          </article>
-          <article class="developer-card col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+      <!-- Team heading -->
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-4 mb-4" data-aos="fade-up">
+        <div>
+          <span class="st-kicker">Development team</span>
+          <h2 class="st-title mb-0" id="peopleTitle">The engineers <em>behind the platform.</em></h2>
+        </div>
+        <p class="mb-0" style="max-width:340px;color:var(--st-muted);font-size:.86rem;line-height:1.72;">Each discipline contributes to a platform designed to be clear for customers and dependable in the real world.</p>
+      </div>
+
+      <!-- Developer cards -->
+      <div class="row g-3 mb-4">
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up">
+          <div class="developer-card">
+            <div class="developer-avatar avatar-suwen" aria-label="Suwen Jayathunga initials">SJ</div>
+            <h3 class="fw-800 mb-1" style="font-size:.96rem;letter-spacing:-.025em;color:var(--st-ink);">Suwen Jayathunga</h3>
+            <div class="developer-role">Systems Lead &amp; Backend Developer</div>
+            <div class="developer-tags">
+              <span>Backend Developer (Mobile + Gateway + API)</span>
+              <span>Systems Architecture</span>
+              <span>Database Designer</span>
+              <span>GPS Infrastructure</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+          <div class="developer-card">
             <div class="developer-avatar avatar-nethmi" aria-label="Nethmi Wijekoon initials">NW</div>
-            <h3>Nethmi Wijekoon</h3>
+            <h3 class="fw-800 mb-1" style="font-size:.96rem;letter-spacing:-.025em;color:var(--st-ink);">Nethmi Wijekoon</h3>
             <div class="developer-role">Software Engineer</div>
-            <div class="developer-tags"><span>Frontend Developer (Mobile)</span><span>UI/UX Designer</span><span>Quality
-                Assurance Engineer</span></div>
-          </article>
-          <article class="developer-card col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
-            <div class="developer-avatar avatar-nuwan" aria-label="Nuwan Akalanka initials">NA</div>
-            <h3>Nuwan Akalanka</h3>
-            <div class="developer-role">Software Engineer</div>
-            <div class="developer-tags"><span>Frontend UI/UX Designer for Web-based Applications</span><span>Quality
-                Assurance Engineer</span><span>ERP Designer</span></div>
-          </article>
-          <article class="developer-card col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
-            <div class="developer-avatar avatar-amoda" aria-label="Amoda Rashmika initials">AR</div>
-            <h3>Amoda Rashmika</h3>
-            <div class="developer-role">Software Engineer</div>
-            <div class="developer-tags"><span>DevOps</span><span>Cloud infrastructure Engineer</span><span>Security &
-                Network Engineer</span></div>
-          </article>
+            <div class="developer-tags">
+              <span>Frontend Developer (Mobile)</span>
+              <span>UI/UX Designer</span>
+              <span>Quality Assurance Engineer</span>
+            </div>
+          </div>
         </div>
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+          <div class="developer-card">
+            <div class="developer-avatar avatar-nuwan" aria-label="Nuwan Akalanka initials">NA</div>
+            <h3 class="fw-800 mb-1" style="font-size:.96rem;letter-spacing:-.025em;color:var(--st-ink);">Nuwan Akalanka</h3>
+            <div class="developer-role">Software Engineer</div>
+            <div class="developer-tags">
+              <span>Frontend UI/UX (Web)</span>
+              <span>Quality Assurance Engineer</span>
+              <span>ERP Designer</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+          <div class="developer-card">
+            <div class="developer-avatar avatar-amoda" aria-label="Amoda Rashmika initials">AR</div>
+            <h3 class="fw-800 mb-1" style="font-size:.96rem;letter-spacing:-.025em;color:var(--st-ink);">Amoda Rashmika</h3>
+            <div class="developer-role">Software Engineer</div>
+            <div class="developer-tags">
+              <span>DevOps</span>
+              <span>Cloud Infrastructure Engineer</span>
+              <span>Security &amp; Network Engineer</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <aside class="team-connect" data-aos="fade-up" data-aos-delay="80" aria-label="Connect with ShaloTrack">
-          <div class="team-connect-copy"><strong>Connect with the ShaloTrack team</strong>Use our verified company
-            channels for support, product enquiries, and partnerships.</div>
-          <div class="team-connect-links">
-            <a href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"
-                fill="currentColor" aria-hidden="true">
-                <path
-                  d="M20.52 3.45A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.83 11.83 0 0 0 5.68 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.45Zm-8.44 18.35h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.89-9.89 9.89Z" />
-              </svg>WhatsApp</a>
-            <a href="mailto:aloka@shalotrack.com"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5" />
-                <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>Email</a>
-            <a href="tel:+94716553852"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M6.9 3.5 4.5 4.7c-.8.4-1.2 1.3-1 2.15C5.1 13.4 10.6 18.9 17.15 20.5c.85.2 1.75-.2 2.15-1l1.2-2.4-4.05-2.05-1.35 1.5a13.2 13.2 0 0 1-7.65-7.65l1.5-1.35L6.9 3.5Z"
-                  stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>Call us</a>
+      <!-- Team connect bar -->
+      <aside class="team-connect" data-aos="fade-up" data-aos-delay="80" aria-label="Connect with ShaloTrack">
+        <div>
+          <strong class="d-block mb-1" style="font-size:.86rem;color:var(--st-ink);">Connect with the ShaloTrack team</strong>
+          <span style="color:#5d7088;font-size:.78rem;font-weight:700;">Use our verified company channels for support, product enquiries, and partnerships.</span>
+        </div>
+        <div class="team-connect-links">
+          <a href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.45A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.83 11.83 0 0 0 5.68 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.45Z"/></svg>WhatsApp</a>
+          <a href="mailto:aloka@shalotrack.com"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Email</a>
+          <a href="tel:+94716553852"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.9 3.5 4.5 4.7c-.8.4-1.2 1.3-1 2.15C5.1 13.4 10.6 18.9 17.15 20.5c.85.2 1.75-.2 2.15-1l1.2-2.4-4.05-2.05-1.35 1.5a13.2 13.2 0 0 1-7.65-7.65l1.5-1.35L6.9 3.5Z" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"/></svg>Call us</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section class="py-5 py-lg-6" id="testimonials" aria-labelledby="testimonialsTitle" style="padding-top:6rem!important;padding-bottom:6rem!important;">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-lg-5" data-aos="fade-right">
+          <span class="st-kicker">Customer stories</span>
+          <h2 class="st-title" id="testimonialsTitle">Real feedback deserves to be <em>published responsibly.</em></h2>
+          <p class="st-intro">We are preparing a customer-story collection for ShaloTrack owners and fleet teams. Every published story will be verified and shared only with the customer's approval.</p>
+        </div>
+        <div class="col-12 col-lg-7" data-aos="fade-left" data-aos-delay="100">
+          <div class="story-panel">
+            <span class="story-status">Verified story collection in progress</span>
+            <h3 class="fw-800 mb-3" style="font-size:clamp(1.45rem,2.5vw,2rem);letter-spacing:-.05em;color:var(--st-ink);line-height:1.14;">Your ShaloTrack experience could help another owner make a confident decision.</h3>
+            <p style="color:var(--st-muted);font-size:.88rem;line-height:1.75;">We will feature genuine customer feedback once the quotation, customer name, and use case have been reviewed and approved for publication.</p>
+            <ul class="story-rules">
+              <li>Published with permission</li>
+              <li>Real use-case context</li>
+              <li>No fabricated reviews</li>
+            </ul>
+            <a class="btn-st-secondary" href="https://wa.me/94716553852?text=Hello%20ShaloTrack%2C%20I%20would%20like%20to%20share%20my%20experience." target="_blank" rel="noopener noreferrer">Share your experience</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="contact-section" id="contact" aria-labelledby="contactTitle">
+    <div class="container">
+      <div class="contact-panel row g-0" data-aos="fade-up" data-aos-duration="820">
+
+        <aside class="contact-aside col-12 col-md-5">
+          <span class="st-kicker" style="color:#ff9d64;">Plan your installation</span>
+          <h2 class="fw-800 mb-3" id="contactTitle" style="font-size:clamp(2.2rem,3.6vw,3.3rem);letter-spacing:-.06em;line-height:1.04;color:#fff;">Start with the right setup for your vehicle.</h2>
+          <p class="mb-4" style="color:#b9c9dc;font-size:.94rem;line-height:1.72;">Tell us what you need, where you are, and when you would prefer an installation. Our team will confirm the next best step with you.</p>
+          <div class="contact-options">
+            <a class="contact-option" href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer">
+              <span class="contact-option-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.45A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.83 11.83 0 0 0 5.68 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.45Zm-8.44 18.35h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.89-9.89 9.89Z"/></svg></span>
+              <span><small>Fastest way to reach us</small>Chat on WhatsApp</span>
+            </a>
+            <a class="contact-option" href="tel:+94716553852">
+              <span class="contact-option-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6.9 3.5 4.5 4.7c-.8.4-1.2 1.3-1 2.15C5.1 13.4 10.6 18.9 17.15 20.5c.85.2 1.75-.2 2.15-1l1.2-2.4-4.05-2.05-1.35 1.5a13.2 13.2 0 0 1-7.65-7.65l1.5-1.35L6.9 3.5Z" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span><small>Call our local team</small>+94 71 655 3852</span>
+            </a>
+            <a class="contact-option" href="mailto:aloka@shalotrack.com">
+              <span class="contact-option-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span><small>Email us anytime</small>aloka@shalotrack.com</span>
+            </a>
           </div>
         </aside>
-      </div>
-    </section>
 
-    <section class="section testimonials-section" id="testimonials" aria-labelledby="testimonialsTitle">
-      <div class="container testimonials-grid row">
-        <div class="testimonials-copy col-12 col-lg-5" data-aos="fade-right">
-          <div class="section-heading">
-            <div class="section-kicker">Customer stories</div>
-            <h2 class="section-title" id="testimonialsTitle">Real feedback deserves to be <em>published
-                responsibly.</em></h2>
-            <p class="section-intro">We are preparing a customer-story collection for ShaloTrack owners and fleet teams.
-              Every published story will be verified and shared only with the customer's approval.</p>
-          </div>
-        </div>
-
-        <!-- Replace this approved-story placeholder with customer-approved names, quotes, and context before publishing testimonials. -->
-        <div class="story-panel col-12 col-lg-7" data-aos="fade-left" data-aos-delay="100">
-          <span class="story-status">Verified story collection in progress</span>
-          <h3>Your ShaloTrack experience could help another owner make a confident decision.</h3>
-          <p>We will feature genuine customer feedback once the quotation, customer name, and use case have been
-            reviewed and approved for publication.</p>
-          <ul class="story-rules">
-            <li>Published with permission</li>
-            <li>Real use-case context</li>
-            <li>No fabricated reviews</li>
-          </ul>
-          <a class="button button-secondary"
-            href="https://wa.me/94716553852?text=Hello%20ShaloTrack%2C%20I%20would%20like%20to%20share%20my%20experience."
-            target="_blank" rel="noopener noreferrer">Share your experience</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact-section" id="contact" aria-labelledby="contactTitle">
-      <div class="container">
-        <div class="contact-panel row" data-aos="fade-up" data-aos-duration="820">
-          <aside class="contact-aside col-12 col-md-5">
-            <div class="section-kicker">Plan your installation</div>
-            <h2 id="contactTitle">Start with the right setup for your vehicle.</h2>
-            <p>Tell us what you need, where you are, and when you would prefer an installation. Our team will confirm
-              the next best step with you.</p>
-            <div class="contact-options">
-              <a class="contact-option" href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer">
-                <span class="contact-option-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M20.52 3.45A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.83 11.83 0 0 0 5.68 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.45Zm-8.44 18.35h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.89-9.89 9.89Zm5.42-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z" />
-                  </svg></span>
-                <span><small>Fastest way to reach us</small>Chat on WhatsApp</span>
-              </a>
-              <a class="contact-option" href="tel:+94716553852">
-                <span class="contact-option-icon"><svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M6.9 3.5 4.5 4.7c-.8.4-1.2 1.3-1 2.15C5.1 13.4 10.6 18.9 17.15 20.5c.85.2 1.75-.2 2.15-1l1.2-2.4-4.05-2.05-1.35 1.5a13.2 13.2 0 0 1-7.65-7.65l1.5-1.35L6.9 3.5Z"
-                      stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg></span>
-                <span><small>Call our local team</small>+94 71 655 3852</span>
-              </a>
-              <a class="contact-option" href="mailto:aloka@shalotrack.com">
-                <span class="contact-option-icon"><svg viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5" />
-                    <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg></span>
-                <span><small>Email us anytime</small>aloka@shalotrack.com</span>
-              </a>
-            </div>
-          </aside>
-
-          <form class="contact-form col-12 col-md-7" id="contactForm" novalidate>
-            <h3 class="form-title">Request an installation</h3>
-            <p class="form-description">This is an installation request, not a confirmed appointment. We will open
-              WhatsApp with your preferred details ready to send.</p>
-            <div class="form-grid row">
-              <div class="form-group col-12 col-sm-6"><label class="form-label" for="name">Your name *</label><input
-                  class="form-control" id="name" name="name" type="text" autocomplete="name" placeholder="Nimal Perera"
-                  required></div>
-              <div class="form-group col-12 col-sm-6"><label class="form-label" for="phone">Phone number *</label><input
-                  class="form-control" id="phone" name="phone" type="tel" autocomplete="tel"
-                  placeholder="+94 7X XXX XXXX" required></div>
-              <div class="form-group col-12 col-sm-6"><label class="form-label" for="email">Email address</label><input
-                  class="form-control" id="email" name="email" type="email" autocomplete="email"
-                  placeholder="you@example.com"></div>
-              <div class="form-group col-12 col-sm-6"><label class="form-label" for="vehicle">Vehicle
-                  type</label><select class="form-control" id="vehicle" name="vehicle">
+        <div class="contact-form-wrap col-12 col-md-7">
+          <h3 class="fw-800 mb-1" style="font-size:1.45rem;letter-spacing:-.04em;color:var(--st-ink);">Request an installation</h3>
+          <p class="mb-4" style="color:var(--st-muted);font-size:.85rem;">This is an installation request, not a confirmed appointment. We will open WhatsApp with your preferred details ready to send.</p>
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-12 col-sm-6">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="name">Your name *</label>
+                <input class="form-control" id="name" name="name" type="text" autocomplete="name" placeholder="Nimal Perera" required>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="phone">Phone number *</label>
+                <input class="form-control" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+94 7X XXX XXXX" required>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="email">Email address</label>
+                <input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="vehicle">Vehicle type</label>
+                <select class="form-select" id="vehicle" name="vehicle">
                   <option value="">Select a vehicle type</option>
                   <option>Car / SUV</option>
                   <option>Motorcycle / Scooter</option>
@@ -3688,336 +552,301 @@
                   <option>Three-wheeler</option>
                   <option>Bus / Heavy vehicle</option>
                   <option>Multiple vehicles / Fleet</option>
-                </select></div>
-              <div class="form-group col-12 col-sm-6"><label class="form-label" for="interest">I'm interested
-                  in</label><select class="form-control" id="interest" name="interest">
+                </select>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="interest">I'm interested in</label>
+                <select class="form-select" id="interest" name="interest">
                   <option value="">Choose a solution</option>
                   <option>Personal tracking</option>
                   <option>Fleet visibility</option>
                   <option>Custom deployment</option>
                   <option>Device renewal / support</option>
-                </select></div>
-              <div class="form-group col-12 col-sm-6"><label class="form-label" for="vehicleCount">Number of
-                  vehicles</label><select class="form-control" id="vehicleCount" name="vehicleCount">
+                </select>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="vehicleCount">Number of vehicles</label>
+                <select class="form-select" id="vehicleCount" name="vehicleCount">
                   <option value="">Select a range</option>
                   <option>1 vehicle</option>
                   <option>2 - 5 vehicles</option>
                   <option>6 - 20 vehicles</option>
                   <option>21 - 50 vehicles</option>
                   <option>More than 50 vehicles</option>
-                </select></div>
-              <div class="form-group col-12 col-sm-6"><label class="form-label" for="location">Preferred installation
-                  area</label><input class="form-control" id="location" name="location" type="text"
-                  autocomplete="address-level2" placeholder="Colombo, Kandy, Galle... "></div>
-              <div class="form-group col-12 col-sm-6"><label class="form-label" for="preferredDate">Preferred
-                  date</label><input class="form-control" id="preferredDate" name="preferredDate" type="date"></div>
-              <div class="form-group col-12 col-sm-6"><label class="form-label" for="preferredTime">Preferred
-                  time</label><select class="form-control" id="preferredTime" name="preferredTime">
+                </select>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="location">Preferred installation area</label>
+                <input class="form-control" id="location" name="location" type="text" autocomplete="address-level2" placeholder="Colombo, Kandy, Galle...">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="preferredDate">Preferred date</label>
+                <input class="form-control" id="preferredDate" name="preferredDate" type="date">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="preferredTime">Preferred time</label>
+                <select class="form-select" id="preferredTime" name="preferredTime">
                   <option value="">Select a time</option>
                   <option>Morning</option>
                   <option>Afternoon</option>
                   <option>Evening</option>
                   <option>Flexible</option>
-                </select></div>
-              <div class="form-group full col-12"><label class="form-label" for="message">How can we
-                  help?</label><textarea class="form-control" id="message" name="message"
-                  placeholder="Tell us a little about your vehicle tracking needs"></textarea></div>
-            </div>
-            <div class="form-footer">
-              <p class="form-note">By continuing, you will open WhatsApp to send your installation request directly to
-                ShaloTrack.</p><button class="button button-primary" type="submit">Request via WhatsApp <svg
-                  viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg></button>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-bold" style="font-size:.72rem;color:#425875;" for="message">How can we help?</label>
+                <textarea class="form-control" id="message" name="message" rows="3" placeholder="Tell us a little about your vehicle tracking needs"></textarea>
+              </div>
+              <div class="col-12 d-flex align-items-center justify-content-between flex-wrap gap-3">
+                <p class="mb-0" style="max-width:220px;color:#8392a4;font-size:.67rem;line-height:1.5;">By continuing, you will open WhatsApp to send your installation request directly to ShaloTrack.</p>
+                <button class="btn-st-primary" type="submit">
+                  Request via WhatsApp
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
             </div>
             <p class="form-status" id="formStatus" aria-live="polite"></p>
           </form>
         </div>
-      </div>
-    </section>
 
-    <section class="section faq-section" aria-labelledby="faqTitle">
-      <div class="container">
-        <div class="section-heading center" data-aos="fade-up">
-          <div class="section-kicker">Helpful answers</div>
-          <h2 class="section-title" id="faqTitle">Questions, <em>answered.</em></h2>
-          <p class="section-intro">Everything you need to know before getting started with ShaloTrack.</p>
-        </div>
-        <div class="faq-list" data-aos="fade-up" data-aos-delay="80">
-          <details>
-            <summary>How does installation work?</summary>
-            <p>A ShaloTrack technician can install the GPS device at your location or service point. Installation is
-              handled professionally, then the device is activated and connected to your account.</p>
-          </details>
-          <details>
-            <summary>Which vehicles can be tracked?</summary>
-            <p>ShaloTrack supports cars, SUVs, motorcycles, scooters, three-wheelers, vans, lorries, buses, heavy
-              vehicles and multi-vehicle fleets. Contact us if you need guidance on the right setup.</p>
-          </details>
-          <details>
-            <summary>Can I manage more than one vehicle?</summary>
-            <p>Yes. Our platform is designed to show multiple vehicles in one account, helping owners and businesses see
-              fleet activity, vehicle status and alerts from one place.</p>
-          </details>
-          <details>
-            <summary>What happens if a device goes offline?</summary>
-            <p>Your account can show the device's most recent information and alert you to an offline status, so you can
-              follow up quickly with the right next step.</p>
-          </details>
-        </div>
       </div>
-    </section>
-
-    <section class="section trust-section" id="trust" aria-labelledby="trustTitle">
-      <div class="container">
-        <div class="trust-heading" data-aos="fade-up">
-          <div class="section-heading">
-            <div class="section-kicker">Trust &amp; policy hub</div>
-            <h2 class="section-title" id="trustTitle">Clarity belongs in every <em>customer relationship.</em></h2>
-          </div>
-          <p class="trust-caption">Use this hub to understand the enquiry flow, request service information, and access
-            the policy frameworks being prepared for approval.</p>
-        </div>
-        <div class="trust-grid row">
-          <article class="trust-card col-12 col-sm-6 col-lg-4" id="privacy" data-aos="fade-up">
-            <span class="trust-icon blue"><svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 21s7-3.2 7-9.1V5.8L12 3 5 5.8v6.1C5 17.8 12 21 12 21Z" stroke="currentColor"
-                  stroke-width="1.6" stroke-linejoin="round" />
-                <path d="m8.7 11.8 2.2 2.2 4.4-4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg></span>
-            <h3>Privacy notice</h3>
-            <p>The enquiry form opens a WhatsApp message using the details you enter; this static page does not submit
-              the form to a separate website server.</p>
-            <span class="policy-draft">Draft framework awaiting approval</span><br>
-            <a href="privacy.html">Review privacy framework</a>
-          </article>
-          <article class="trust-card col-12 col-sm-6 col-lg-4" id="terms" data-aos="fade-up" data-aos-delay="100">
-            <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none">
-                <path d="M7 3h8l3 3v15H7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
-                <path d="M15 3v4h4M10 11h5M10 15h5M10 19h3" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" />
-              </svg></span>
-            <h3>Service terms</h3>
-            <p>Quotes, installation scope, subscriptions, and device terms should be confirmed in writing before a
-              service is activated.</p>
-            <span class="policy-draft">Draft framework awaiting approval</span><br>
-            <a href="terms.html">Review service terms framework</a>
-          </article>
-          <article class="trust-card col-12 col-sm-6 col-lg-4" id="warranty" data-aos="fade-up" data-aos-delay="200">
-            <span class="trust-icon green"><svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 21s7-3.2 7-9.1V5.8L12 3 5 5.8v6.1C5 17.8 12 21 12 21Z" stroke="currentColor"
-                  stroke-width="1.6" stroke-linejoin="round" />
-                <path d="M8.5 12h7M12 8.5V15.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-              </svg></span>
-            <h3>Warranty &amp; support</h3>
-            <p>Use our verified support channels for installation questions, account help, and to request the service
-              and warranty details that apply to your setup.</p>
-            <a href="warranty-and-support.html">View support framework</a>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <a class="brand" href="#top" aria-label="Back to top"><span class="brand-mark" aria-hidden="true"><svg
-            viewBox="0 0 42 42" fill="none">
-            <path d="M21 38s12-11.15 12-21A12 12 0 1 0 9 17c0 9.85 12 21 12 21Z" fill="currentColor" />
-            <path d="m14.6 26.2 11.7-11.7-4.8 10.8-2.7-3.1-4.2 4Z" fill="#fff" />
-          </svg></span><span>SHALO<span class="brand-track">TRACK</span></span></a>
-      <div class="footer-copy">GPS tracking | Vehicle security | Fleet management<br>&copy; <span
-          id="copyrightYear">2026</span> ShaloTrack Lanka (Pvt) Ltd. All rights reserved.</div>
-      <div class="footer-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a
-          href="warranty-and-support.html">Support</a><a href="https://wa.me/94716553852" target="_blank"
-          rel="noopener noreferrer">WhatsApp</a></div>
     </div>
-  </footer>
+  </section>
 
-  <a class="whatsapp-float" href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer"
-    aria-label="Chat with ShaloTrack on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path
-        d="M20.52 3.45A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.83 11.83 0 0 0 5.68 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.45Zm-8.44 18.35h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.89-9.89 9.89Zm5.42-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z" />
-    </svg>
-  </a>
+  <!-- ── FAQ ── -->
+  <section class="py-5 py-lg-6" aria-labelledby="faqTitle" style="padding-top:5rem!important;padding-bottom:5rem!important;">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <span class="st-kicker">Helpful answers</span>
+        <h2 class="st-title" id="faqTitle">Questions, <em>answered.</em></h2>
+        <p class="st-intro mx-auto" style="max-width:560px;">Everything you need to know before getting started with ShaloTrack.</p>
+      </div>
+      <div class="faq-list" style="max-width:830px;margin:0 auto;" data-aos="fade-up" data-aos-delay="80">
+        <details><summary>How does installation work?</summary><p>A ShaloTrack technician can install the GPS device at your location or service point. Installation is handled professionally, then the device is activated and connected to your account.</p></details>
+        <details><summary>Which vehicles can be tracked?</summary><p>ShaloTrack supports cars, SUVs, motorcycles, scooters, three-wheelers, vans, lorries, buses, heavy vehicles and multi-vehicle fleets. Contact us if you need guidance on the right setup.</p></details>
+        <details><summary>Can I manage more than one vehicle?</summary><p>Yes. Our platform is designed to show multiple vehicles in one account, helping owners and businesses see fleet activity, vehicle status and alerts from one place.</p></details>
+        <details><summary>What happens if a device goes offline?</summary><p>Your account can show the device's most recent information and alert you to an offline status, so you can follow up quickly with the right next step.</p></details>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    (() => {
-      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const revealTargets = [...document.querySelectorAll('[data-aos]')];
+  <!-- ── TRUST / POLICY ── -->
+  <section class="py-5 py-lg-6 section-dark" id="trust" aria-labelledby="trustTitle" style="padding-top:6rem!important;padding-bottom:6rem!important;">
+    <div class="container">
+      <div class="row align-items-end mb-5" data-aos="fade-up">
+        <div class="col-12 col-md-7">
+          <span class="st-kicker" style="color:#ff9d64;">Trust &amp; policy hub</span>
+          <h2 class="st-title st-title-light mb-0" id="trustTitle">Clarity belongs in every <em>customer relationship.</em></h2>
+        </div>
+        <div class="col-12 col-md-5 mt-3 mt-md-0">
+          <p class="mb-0" style="color:#aec0d3;font-size:.82rem;line-height:1.7;">Use this hub to understand the enquiry flow, request service information, and access the policy frameworks being prepared for approval.</p>
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-12 col-sm-6 col-lg-4" id="privacy" data-aos="fade-up">
+          <article class="trust-card">
+            <span class="trust-icon blue"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-3.2 7-9.1V5.8L12 3 5 5.8v6.1C5 17.8 12 21 12 21Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8.7 11.8 2.2 2.2 4.4-4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 class="fw-800 mb-2" style="font-size:1rem;letter-spacing:-.025em;color:#fff;">Privacy notice</h3>
+            <p style="color:#b6c8db;font-size:.78rem;line-height:1.72;">The enquiry form opens a WhatsApp message using the details you enter; this static page does not submit the form to a separate website server.</p>
+            <span class="policy-draft">Draft framework awaiting approval</span><br>
+            <a href="privacy.html" class="mt-2 d-inline-block">Review privacy framework</a>
+          </article>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4" id="terms" data-aos="fade-up" data-aos-delay="100">
+          <article class="trust-card">
+            <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h8l3 3v15H7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 3v4h4M10 11h5M10 15h5M10 19h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <h3 class="fw-800 mb-2" style="font-size:1rem;letter-spacing:-.025em;color:#fff;">Service terms</h3>
+            <p style="color:#b6c8db;font-size:.78rem;line-height:1.72;">Quotes, installation scope, subscriptions, and device terms should be confirmed in writing before a service is activated.</p>
+            <span class="policy-draft">Draft framework awaiting approval</span><br>
+            <a href="terms.html" class="mt-2 d-inline-block">Review service terms framework</a>
+          </article>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4" id="warranty" data-aos="fade-up" data-aos-delay="200">
+          <article class="trust-card">
+            <span class="trust-icon green"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-3.2 7-9.1V5.8L12 3 5 5.8v6.1C5 17.8 12 21 12 21Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 12h7M12 8.5V15.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <h3 class="fw-800 mb-2" style="font-size:1rem;letter-spacing:-.025em;color:#fff;">Warranty &amp; support</h3>
+            <p style="color:#b6c8db;font-size:.78rem;line-height:1.72;">Use our verified support channels for installation questions, account help, and to request the service and warranty details that apply to your setup.</p>
+            <a href="warranty-and-support.html" class="mt-2 d-inline-block">View support framework</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-        document.documentElement.classList.add('aos-disabled');
-      } else if (revealTargets.length) {
-        revealTargets.forEach(el => {
-          if (el.dataset.aosDelay) el.style.transitionDelay = `${el.dataset.aosDelay}ms`;
-          if (el.dataset.aosDuration) el.style.transitionDuration = `${el.dataset.aosDuration}ms`;
-        });
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('aos-animate');
-            observer.unobserve(entry.target);
-          });
-        }, { threshold: .16, rootMargin: '0px 0px -8% 0px' });
-        revealTargets.forEach(el => revealObserver.observe(el));
-      }
+</main>
 
-      const copyrightYear = document.getElementById('copyrightYear');
-      if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 42 42" fill="none"><path d="M21 38s12-11.15 12-21A12 12 0 1 0 9 17c0 9.85 12 21 12 21Z" fill="currentColor"/><path d="m14.6 26.2 11.7-11.7-4.8 10.8-2.7-3.1-4.2 4Z" fill="#fff"/></svg></span>
+        <span>SHALO<span class="brand-track">TRACK</span></span>
+      </a>
+      <p class="mb-0 text-center" style="color:#8191a4;font-size:.72rem;line-height:1.7;">GPS tracking | Vehicle security | Fleet management<br>&copy; <span id="copyrightYear">2026</span> ShaloTrack Lanka (Pvt) Ltd. All rights reserved.</p>
+      <div class="d-flex gap-3" style="color:#647790;font-size:.74rem;font-weight:700;">
+        <a href="privacy.html" style="text-decoration:none;color:inherit;">Privacy</a>
+        <a href="terms.html" style="text-decoration:none;color:inherit;">Terms</a>
+        <a href="warranty-and-support.html" style="text-decoration:none;color:inherit;">Support</a>
+        <a href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-      const header = document.getElementById('siteHeader');
-      const menuToggle = document.getElementById('menuToggle');
-      const primaryNav = document.getElementById('primaryNav');
-      const navLinks = [...primaryNav.querySelectorAll('a')];
-      const contactForm = document.getElementById('contactForm');
-      const formStatus = document.getElementById('formStatus');
-      const interestField = document.getElementById('interest');
-      const preferredDateField = document.getElementById('preferredDate');
-      const heroProduct = document.querySelector('.hero-product');
-      const trackingCard = document.querySelector('.tracking-card');
+<!-- ── WHATSAPP FLOAT ── -->
+<a class="whatsapp-float" href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer" aria-label="Chat with ShaloTrack on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.45A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.83 11.83 0 0 0 5.68 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.45Zm-8.44 18.35h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.89-9.89 9.89Zm5.42-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
+</a>
 
-      if (preferredDateField) {
-        preferredDateField.min = new Date().toISOString().split('T')[0];
-      }
+<script>
+  (() => {
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealTargets = [...document.querySelectorAll('[data-aos]')];
 
-      document.querySelectorAll('[data-interest]').forEach(link => {
-        link.addEventListener('click', () => {
-          if (interestField) interestField.value = link.dataset.interest;
-        });
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      document.documentElement.classList.add('aos-disabled');
+    } else if (revealTargets.length) {
+      revealTargets.forEach(el => {
+        if (el.dataset.aosDelay) el.style.transitionDelay = `${el.dataset.aosDelay}ms`;
+        if (el.dataset.aosDuration) el.style.transitionDuration = `${el.dataset.aosDuration}ms`;
       });
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('aos-animate');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: .16, rootMargin: '0px 0px -8% 0px' });
+      revealTargets.forEach(el => revealObserver.observe(el));
+    }
 
-      const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
-      updateHeader();
-      window.addEventListener('scroll', updateHeader, { passive: true });
+    const copyrightYear = document.getElementById('copyrightYear');
+    if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
 
-      const scrollProgress = document.getElementById('scrollProgress');
-      const updateScrollProgress = () => {
-        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        const ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
-        scrollProgress.style.width = `${Math.min(Math.max(ratio, 0), 1) * 100}%`;
-      };
-      updateScrollProgress();
-      window.addEventListener('scroll', updateScrollProgress, { passive: true });
-      window.addEventListener('resize', updateScrollProgress);
+    const header = document.getElementById('siteHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const primaryNav = document.getElementById('primaryNav');
+    const navLinks = [...primaryNav.querySelectorAll('a')];
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const interestField = document.getElementById('interest');
+    const preferredDateField = document.getElementById('preferredDate');
+    const heroProduct = document.querySelector('.hero-product');
+    const trackingCard = document.querySelector('.tracking-card');
 
-      document.querySelectorAll('[data-count-to]').forEach(el => {
-        const target = parseInt(el.dataset.countTo, 10);
-        const suffix = el.dataset.suffix || '';
-        if (prefersReducedMotion || Number.isNaN(target)) {
-          el.textContent = target.toLocaleString('en-US') + suffix;
-          return;
-        }
-        const duration = 1400;
-        const run = () => {
-          const start = performance.now();
-          const step = now => {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.round(target * eased).toLocaleString('en-US') + suffix;
-            if (progress < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
+    if (preferredDateField) preferredDateField.min = new Date().toISOString().split('T')[0];
+
+    document.querySelectorAll('[data-interest]').forEach(link => {
+      link.addEventListener('click', () => { if (interestField) interestField.value = link.dataset.interest; });
+    });
+
+    const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    const scrollProgress = document.getElementById('scrollProgress');
+    const updateScrollProgress = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
+      scrollProgress.style.width = `${Math.min(Math.max(ratio, 0), 1) * 100}%`;
+    };
+    updateScrollProgress();
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('resize', updateScrollProgress);
+
+    document.querySelectorAll('[data-count-to]').forEach(el => {
+      const target = parseInt(el.dataset.countTo, 10);
+      const suffix = el.dataset.suffix || '';
+      if (prefersReducedMotion || Number.isNaN(target)) { el.textContent = target.toLocaleString('en-US') + suffix; return; }
+      const duration = 1400;
+      const run = () => {
+        const start = performance.now();
+        const step = now => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased).toLocaleString('en-US') + suffix;
+          if (progress < 1) requestAnimationFrame(step);
         };
-        if ('IntersectionObserver' in window) {
-          const counterObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-              if (!entry.isIntersecting) return;
-              run();
-              counterObserver.disconnect();
-            });
-          }, { threshold: .4 });
-          counterObserver.observe(el);
-        } else {
-          run();
-        }
-      });
-
-      if (heroProduct && trackingCard && window.matchMedia('(pointer: fine)').matches && !prefersReducedMotion) {
-        heroProduct.addEventListener('mousemove', event => {
-          const rect = heroProduct.getBoundingClientRect();
-          const x = (event.clientX - rect.left) / rect.width - 0.5;
-          const y = (event.clientY - rect.top) / rect.height - 0.5;
-          trackingCard.style.transform = `rotateY(${x * 7}deg) rotateX(${y * -7}deg)`;
-        });
-        heroProduct.addEventListener('mouseleave', () => {
-          trackingCard.style.transform = '';
-        });
-      }
-
-      const closeMenu = () => {
-        primaryNav.classList.remove('is-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-label', 'Open navigation menu');
-        document.body.classList.remove('menu-open');
+        requestAnimationFrame(step);
       };
-
-      menuToggle.addEventListener('click', () => {
-        const isOpen = primaryNav.classList.toggle('is-open');
-        menuToggle.setAttribute('aria-expanded', String(isOpen));
-        menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
-        document.body.classList.toggle('menu-open', isOpen);
-      });
-
-      navLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-      const sections = navLinks
-        .map(link => document.querySelector(link.getAttribute('href')))
-        .filter(Boolean);
-
       if ('IntersectionObserver' in window) {
-        const navigationObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`));
-          });
-        }, { rootMargin: '-42% 0px -52% 0px', threshold: 0 });
-        sections.forEach(section => navigationObserver.observe(section));
-      }
+        const counterObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => { if (!entry.isIntersecting) return; run(); counterObserver.disconnect(); });
+        }, { threshold: .4 });
+        counterObserver.observe(el);
+      } else { run(); }
+    });
 
-      contactForm.addEventListener('submit', event => {
-        event.preventDefault();
-        const data = new FormData(contactForm);
-        const name = data.get('name').trim();
-        const phone = data.get('phone').trim();
-        const email = data.get('email').trim();
-        const vehicle = data.get('vehicle');
-        const interest = data.get('interest');
-        const vehicleCount = data.get('vehicleCount');
-        const location = data.get('location').trim();
-        const preferredDate = data.get('preferredDate');
-        const preferredTime = data.get('preferredTime');
-        const message = data.get('message').trim();
-
-        if (!name || !phone) {
-          formStatus.textContent = 'Please add your name and phone number before continuing.';
-          (!name ? document.getElementById('name') : document.getElementById('phone')).focus();
-          return;
-        }
-
-        const lines = [
-          'Hello ShaloTrack, I would like to request a GPS tracking installation or quote.',
-          '',
-          `Name: ${name}`,
-          `Phone: ${phone}`,
-          email ? `Email: ${email}` : '',
-          vehicle ? `Vehicle type: ${vehicle}` : '',
-          interest ? `Interested in: ${interest}` : '',
-          vehicleCount ? `Number of vehicles: ${vehicleCount}` : '',
-          location ? `Preferred installation area: ${location}` : '',
-          preferredDate ? `Preferred date: ${preferredDate}` : '',
-          preferredTime ? `Preferred time: ${preferredTime}` : '',
-          message ? `Message: ${message}` : ''
-        ].filter(Boolean);
-
-        formStatus.textContent = '';
-        window.open(`https://wa.me/94716553852?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
+    if (heroProduct && trackingCard && window.matchMedia('(pointer: fine)').matches && !prefersReducedMotion) {
+      heroProduct.addEventListener('mousemove', event => {
+        const rect = heroProduct.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        trackingCard.style.transform = `rotateY(${x * 7}deg) rotateX(${y * -7}deg)`;
       });
-    })();
-  </script>
-</body>
+      heroProduct.addEventListener('mouseleave', () => { trackingCard.style.transform = ''; });
+    }
 
+    const closeMenu = () => {
+      primaryNav.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      document.body.classList.remove('menu-open');
+    };
+    menuToggle.addEventListener('click', () => {
+      const isOpen = primaryNav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      document.body.classList.toggle('menu-open', isOpen);
+    });
+    navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    const sections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    if ('IntersectionObserver' in window) {
+      const navigationObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`));
+        });
+      }, { rootMargin: '-42% 0px -52% 0px', threshold: 0 });
+      sections.forEach(section => navigationObserver.observe(section));
+    }
+
+    contactForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const data = new FormData(contactForm);
+      const name = data.get('name').trim();
+      const phone = data.get('phone').trim();
+      const email = data.get('email').trim();
+      const vehicle = data.get('vehicle');
+      const interest = data.get('interest');
+      const vehicleCount = data.get('vehicleCount');
+      const location = data.get('location').trim();
+      const preferredDate = data.get('preferredDate');
+      const preferredTime = data.get('preferredTime');
+      const message = data.get('message').trim();
+      if (!name || !phone) {
+        formStatus.textContent = 'Please add your name and phone number before continuing.';
+        (!name ? document.getElementById('name') : document.getElementById('phone')).focus();
+        return;
+      }
+      const lines = [
+        'Hello ShaloTrack, I would like to request a GPS tracking installation or quote.', '',
+        `Name: ${name}`, `Phone: ${phone}`,
+        email ? `Email: ${email}` : '',
+        vehicle ? `Vehicle type: ${vehicle}` : '',
+        interest ? `Interested in: ${interest}` : '',
+        vehicleCount ? `Number of vehicles: ${vehicleCount}` : '',
+        location ? `Preferred installation area: ${location}` : '',
+        preferredDate ? `Preferred date: ${preferredDate}` : '',
+        preferredTime ? `Preferred time: ${preferredTime}` : '',
+        message ? `Message: ${message}` : ''
+      ].filter(Boolean);
+      formStatus.textContent = '';
+      window.open(`https://wa.me/94716553852?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
+    });
+  })();
+</script>
+</body>
 </html>
