@@ -1,665 +1,932 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#021f4a">
-<meta name="description" content="ShaloTrack — real-time GPS tracking, vehicle security and fleet visibility, built and supported in Sri Lanka.">
-<link rel="canonical" href="https://shalotrack.com/">
-<link rel="icon" type="image/png" sizes="32x32" href="IMG/favicon-32.png">
-<link rel="apple-touch-icon" href="IMG/apple-touch-icon.png">
-<meta property="og:image" content="IMG/logo.jpeg">
-<meta property="og:title" content="ShaloTrack — Always Connected">
-<meta property="og:description" content="Real-time GPS tracking, vehicle security and fleet management, built and supported in Sri Lanka.">
-<title>ShaloTrack — GPS Tracking &amp; Vehicle Security, Sri Lanka</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#021f4a">
+  <meta name="description"
+    content="ShaloTrack — real-time GPS tracking, vehicle security and fleet visibility, built and supported in Sri Lanka.">
+  <link rel="canonical" href="https://shalotrack.com/">
+  <link rel="icon" type="image/png" sizes="32x32" href="IMG/favicon-32.png">
+  <link rel="apple-touch-icon" href="IMG/apple-touch-icon.png">
+  <meta property="og:image" content="IMG/logo.jpeg">
+  <meta property="og:title" content="ShaloTrack — Always Connected">
+  <meta property="og:description"
+    content="Real-time GPS tracking, vehicle security and fleet management, built and supported in Sri Lanka.">
+  <title>ShaloTrack — GPS Tracking &amp; Vehicle Security, Sri Lanka</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://images.unsplash.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="stylesheet" href="CSS/index.css?v=5">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..800&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="CSS/index.css?v=9">
 </head>
+
 <body>
-<div class="scroll-progress" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
-<!-- ══════ NAV ══════ -->
-<header class="nav" id="nav">
-  <div class="shell nav-in">
-    <a class="wordmark" href="#top"><span class="vh">ShaloTrack — Always Connected</span></a>
+  <!-- ══════ NAV ══════ -->
+  <header class="nav" id="nav">
+    <div class="shell nav-in">
+      <a class="wordmark" href="#top"><span class="vh">ShaloTrack — Always Connected</span></a>
 
-    <nav aria-label="Primary">
-      <ul class="nav-menu" id="menu">
-        <li><a href="#what" class="on">What it does</a></li>
-        <li><a href="#platform">Platform</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#plans">Plans</a></li>
-        <li><a href="#people">People</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+      <nav aria-label="Primary">
+        <ul class="nav-menu" id="menu">
+          <li><a href="#what" class="on">What it does</a></li>
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#plans">Plans</a></li>
+          <li><a href="#people">People</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-    <a class="btn btn-line-paper nav-cta" href="#contact">Request a quote</a>
+      <a class="btn btn-line-paper nav-cta" href="#contact">Request a quote</a>
 
-    <button class="burger" id="burger" type="button" aria-controls="menu" aria-expanded="false" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+      <button class="burger" id="burger" type="button" aria-controls="menu" aria-expanded="false"
+        aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-<main id="top">
+  <main id="top">
 
-<!-- ══════ HERO ══════ -->
-<section class="hero">
-  <div class="hero-media">
-    <img src="https://images.unsplash.com/photo-1542705959-878ca346eb20?auto=format&amp;fit=crop&amp;w=2400&amp;q=80"
-         alt="Vehicles moving along a highway at dusk, headlights trailing" fetchpriority="high">
-  </div>
+    <!-- ══════ HERO ══════ -->
+    <section class="hero">
+      <div class="hero-media">
+        <video autoplay muted loop playsinline preload="auto" poster="Assets/video/hero-poster.jpg"
+          aria-label="Time-lapse of highway traffic light trails at night">
+          <source src="Assets/video/hero-highway.mp4" type="video/mp4">
+        </video>
+      </div>
 
-  <div class="hero-body">
-    <div class="shell">
-      <div class="row">
-        <div class="col-12 col-lg-11 col-xl-9">
-          <span class="tagline mb-4" data-r><i></i>Always Connected</span>
-          <h1 class="d1 hero-title mb-4" data-r>Every vehicle,<br>always <em>within sight.</em></h1>
-          <p class="hero-sub mb-5" data-r>Real-time GPS tracking for Sri Lankan owners and fleets. Position, speed and alerts — reported every twenty seconds, from the first mile to the last.</p>
+      <div class="hero-body">
+        <div class="shell">
+          <div class="row">
+            <div class="col-12 col-lg-11 col-xl-9">
+              <span class="tagline mb-4" data-r><i></i>Always Connected</span>
+              <h1 class="d1 hero-title mb-4" data-r>Every vehicle,<br>always <em>within sight.</em></h1>
+              <p class="hero-sub mb-5" data-r>Real-time GPS tracking for Sri Lankan owners and fleets. Position, speed
+                and alerts — reported every twenty seconds, from the first mile to the last.</p>
 
-          <div class="d-flex flex-wrap gap-3 mb-5" data-r>
-            <a class="btn btn-orange" href="#contact">
-              Book an installation
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a class="btn btn-line-paper" href="#platform">See how it works</a>
+              <div class="d-flex flex-wrap gap-3 mb-5" data-r>
+                <a class="btn btn-orange" href="#contact">
+                  Book an installation
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+                <a class="btn btn-line-paper" href="#platform">See how it works</a>
+              </div>
+            </div>
+          </div>
+
+          <hr class="rule-dk mb-4" data-r>
+
+          <div class="d-flex flex-wrap align-items-end justify-content-between gap-4" data-r>
+            <div class="pillars">
+              <div><b>GPS</b><span>Tracking</span></div>
+              <div><b>Vehicle</b><span>Security</span></div>
+              <div><b>Fleet</b><span>Management</span></div>
+            </div>
+            <span class="scroll-hint"><i></i>Scroll</span>
           </div>
         </div>
       </div>
+    </section>
 
-      <hr class="rule-dk mb-4" data-r>
-
-      <div class="d-flex flex-wrap align-items-end justify-content-between gap-4" data-r>
-        <div class="pillars">
-          <div><b>GPS</b><span>Tracking</span></div>
-          <div><b>Vehicle</b><span>Security</span></div>
-          <div><b>Fleet</b><span>Management</span></div>
-        </div>
-        <span class="scroll-hint"><i></i>Scroll</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ STATEMENT ══════ -->
-<section class="section" id="what">
-  <div class="shell">
-    <div class="row g-4 g-lg-5">
-      <div class="col-12 col-lg-7">
-        <span class="label mb-4 d-inline-block" data-r>01 — What it does</span>
-        <p class="statement" data-r>A vehicle is rarely just a vehicle. It is a livelihood, a school run, a delivery that has to arrive. <em>Always connected.</em></p>
-      </div>
-      <div class="col-12 col-lg-4 offset-lg-1 d-flex align-items-end">
-        <p class="body" data-r>ShaloTrack turns the raw position data coming off a GPS device into something a person can actually act on — where the vehicle is now, where it has been, and what just happened that you ought to know about.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ CAPABILITIES ══════ -->
-<section class="section-tight">
-  <div class="shell">
-
-    <article class="cap row g-4 g-lg-5 align-items-start" data-r>
-      <div class="col-12 col-lg-1"><span class="numeral">01</span></div>
-      <div class="col-12 col-lg-4">
-        <span class="label label-orange mb-3 d-block">Pillar one</span>
-        <h3 class="d3 mb-3">GPS <em>Tracking</em></h3>
-        <p class="body mb-4">Where each vehicle is, how fast it is moving, and the moment its last packet landed. One glance, no interpretation required.</p>
-        <a class="tlink" href="#platform">See the platform
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-      <div class="col-12 col-lg-6 offset-lg-1">
-        <figure class="cap-fig mb-0 wipe" data-r>
-          <img src="https://images.unsplash.com/photo-1536099629323-44806c1ea264?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="Overhead view of vehicles travelling along a multi-lane road" loading="lazy">
-        </figure>
-      </div>
-    </article>
-
-    <article class="cap row g-4 g-lg-5 align-items-start" data-r>
-      <div class="col-12 col-lg-1"><span class="numeral">02</span></div>
-      <div class="col-12 col-lg-4">
-        <span class="label label-orange mb-3 d-block">Pillar two</span>
-        <h3 class="d3 mb-3">Vehicle <em>Security</em></h3>
-        <p class="body mb-4">Ignition at an odd hour. Overspeed on the expressway. A device losing power. You hear about it while it still matters.</p>
-        <a class="tlink" href="#process">How it works
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-      <div class="col-12 col-lg-6 offset-lg-1">
-        <figure class="cap-fig mb-0 wipe" data-r>
-          <img src="https://images.unsplash.com/photo-1519817914152-22d216bb9170?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="An open road running through open country toward distant hills" loading="lazy">
-        </figure>
-      </div>
-    </article>
-
-    <article class="cap row g-4 g-lg-5 align-items-start" data-r>
-      <div class="col-12 col-lg-1"><span class="numeral">03</span></div>
-      <div class="col-12 col-lg-4">
-        <span class="label label-orange mb-3 d-block">Pillar three</span>
-        <h3 class="d3 mb-3">Fleet <em>Management</em></h3>
-        <p class="body mb-4">Every vehicle on one map, with trip history, offline detection and the reports a working operation actually runs on.</p>
-        <a class="tlink" href="#plans">View plans
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-      <div class="col-12 col-lg-6 offset-lg-1">
-        <figure class="cap-fig mb-0 wipe" data-r>
-          <img src="https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="Light breaking through trees over an empty road at dawn" loading="lazy">
-        </figure>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- ══════ PHOTO BAND ══════ -->
-<section class="band">
-  <img src="https://images.unsplash.com/photo-1542242476-5a3565835a38?auto=format&amp;fit=crop&amp;w=2400&amp;q=80" alt="A curved road disappearing into low cloud" loading="lazy">
-  <div class="band-cap">
-    <div class="shell">
-      <p class="band-quote mb-0" data-r>The road does not report back. <em>The device does.</em></p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ PLATFORM ══════ -->
-<section class="section on-navy" id="platform">
-  <div class="shell">
-    <div class="row g-4 g-lg-5 align-items-center">
-
-      <div class="col-12 col-lg-5">
-        <figure class="fig mb-0 wipe" data-r>
-          <img src="https://images.unsplash.com/photo-1486673748761-a8d18475c757?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="A straight road lined with trees stretching to the horizon" loading="lazy">
-          <figcaption class="fig-tag"><i></i>Live · 18 of 20 online</figcaption>
-        </figure>
-      </div>
-
-      <div class="col-12 col-lg-6 offset-lg-1">
-        <span class="label label-paper mb-4 d-inline-block" data-r>02 — The platform</span>
-        <h2 class="d2 mb-4" data-r>Built for the owner with one van, and the manager with <em>forty.</em></h2>
-        <p class="lede mb-5" data-r>The same account holds a single motorcycle or an entire fleet. Nothing is buried three menus deep, and nothing needs a training session.</p>
-
-        <ul class="checks mb-5" data-r>
-          <li><i></i><span><b>One account, every vehicle.</b> Add a second vehicle without a second login, and share live tracking with family or staff.</span></li>
-          <li><i></i><span><b>Sign in with your phone number.</b> A one-time code by SMS — no password to forget, leak, or reset.</span></li>
-          <li><i></i><span><b>Ninety days of history.</b> Every trip retained and replayable, exportable when you need a record.</span></li>
-        </ul>
-
-        <a class="btn btn-orange" href="#contact" data-r>
-          Talk to our team
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════ PROCESS ══════ -->
-<section class="section" id="process">
-  <div class="shell">
-    <div class="row g-4 g-lg-5 mb-5">
-      <div class="col-12 col-lg-6">
-        <span class="label mb-4 d-inline-block" data-r>03 — Process</span>
-        <h2 class="d2" data-r>Fitted, activated and reporting — <em>usually the same day.</em></h2>
-      </div>
-      <div class="col-12 col-lg-4 offset-lg-2 d-flex align-items-end">
-        <p class="body" data-r>No paperwork maze and no waiting weeks. A technician comes to you, or you come to us.</p>
-      </div>
-    </div>
-
-    <div class="row g-4 g-lg-5">
-      <div class="col-12 col-md-4">
-        <div class="step" data-r>
-          <span class="numeral">01</span>
-          <h3>Tell us the vehicle</h3>
-          <p class="body mb-0">What you drive and how much visibility you need. We recommend a setup; you decide.</p>
+    <!-- ══════ STATEMENT ══════ -->
+    <section class="section" id="what">
+      <div class="shell">
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-lg-7">
+            <span class="label mb-4 d-inline-block" data-r>01 — What it does</span>
+            <p class="statement" data-r>A vehicle is rarely just a vehicle. It is a livelihood, a school run, a delivery
+              that has to arrive. <em>Always connected.</em></p>
+          </div>
+          <div class="col-12 col-lg-4 offset-lg-1 d-flex align-items-end">
+            <p class="body" data-r>ShaloTrack turns the raw position data coming off a GPS device into something a
+              person can actually act on — where the vehicle is now, where it has been, and what just happened that you
+              ought to know about.</p>
+          </div>
         </div>
       </div>
-      <div class="col-12 col-md-4">
-        <div class="step" data-r>
-          <span class="numeral">02</span>
-          <h3>We fit it properly</h3>
-          <p class="body mb-0">A technician wires in the device, activates it, and confirms it is reporting before leaving.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="step" data-r>
-          <span class="numeral">03</span>
-          <h3>Track from anywhere</h3>
-          <p class="body mb-0">Sign in with your number. Live position, trip history and alerts from the first minute.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ══════ PLANS ══════ -->
-<section class="section on-mist" id="plans">
-  <div class="shell">
-    <div class="row g-4 g-lg-5 mb-5">
-      <div class="col-12 col-lg-6">
-        <span class="label mb-4 d-inline-block" data-r>04 — Plans</span>
-        <h2 class="d2" data-r>A clear starting point for <em>every vehicle.</em></h2>
-      </div>
-      <div class="col-12 col-lg-4 offset-lg-2 d-flex align-items-end">
-        <p class="body" data-r>Price depends on the vehicle, the install and the level of visibility. Tell us the situation and we quote it straight.</p>
-      </div>
-    </div>
+    <!-- ══════ CAPABILITIES ══════ -->
+    <section class="section-tight">
+      <div class="shell">
 
-    <div class="row g-4 g-lg-5">
-      <div class="col-12 col-md-6 col-lg-4">
-        <article class="plan" data-r>
-          <span class="label mb-3">For individual owners</span>
-          <h3>Personal</h3>
-          <p class="body plan-note mb-0">One vehicle, watched properly — the car, van or bike you depend on daily.</p>
-          <div class="plan-price"><span class="label mb-2 d-block">Pricing</span><b>Tailored quote</b></div>
-          <ul>
-            <li><i></i>Live position and route history</li>
-            <li><i></i>Ignition and overspeed alerts</li>
-            <li><i></i>Mobile app access</li>
-            <li><i></i>Share tracking with family</li>
-          </ul>
-          <a class="btn btn-line" href="#contact" data-interest="Personal">Plan my installation</a>
+        <article class="cap row g-4 g-lg-5 align-items-start" data-r>
+          <div class="col-12 col-lg-1"><span class="numeral">01</span></div>
+          <div class="col-12 col-lg-4">
+            <span class="label label-orange mb-3 d-block">Pillar one</span>
+            <h3 class="d3 mb-3">GPS <em>Tracking</em></h3>
+            <p class="body mb-4">Where each vehicle is, how fast it is moving, and the moment its last packet landed.
+              One glance, no interpretation required.</p>
+            <a class="tlink" href="#platform">See the platform
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+          <div class="col-12 col-lg-6 offset-lg-1">
+            <figure class="cap-fig mb-0 wipe">
+              <img
+                src="https://images.unsplash.com/photo-1536099629323-44806c1ea264?auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
+                alt="Overhead view of vehicles travelling along a multi-lane road" loading="lazy">
+            </figure>
+          </div>
         </article>
-      </div>
 
-      <div class="col-12 col-md-6 col-lg-4">
-        <article class="plan pick" data-r>
-          <span class="label label-orange mb-3">Most requested</span>
-          <h3>Fleet</h3>
-          <p class="body plan-note mb-0">Every vehicle on one map, with the status and history a working operation needs.</p>
-          <div class="plan-price"><span class="label mb-2 d-block">Pricing</span><b>Tailored quote</b></div>
-          <ul>
-            <li><i></i>Multi-vehicle live map</li>
-            <li><i></i>Offline and idle detection</li>
-            <li><i></i>Journey and activity reports</li>
-            <li><i></i>Priority setup consultation</li>
-          </ul>
-          <a class="btn btn-orange" href="#contact" data-interest="Fleet">Discuss my fleet</a>
+        <article class="cap row g-4 g-lg-5 align-items-start" data-r>
+          <div class="col-12 col-lg-1"><span class="numeral">02</span></div>
+          <div class="col-12 col-lg-4">
+            <span class="label label-orange mb-3 d-block">Pillar two</span>
+            <h3 class="d3 mb-3">Vehicle <em>Security</em></h3>
+            <p class="body mb-4">Ignition at an odd hour. Overspeed on the expressway. A device losing power. You hear
+              about it while it still matters.</p>
+            <a class="tlink" href="#process">How it works
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+          <div class="col-12 col-lg-6 offset-lg-1">
+            <figure class="cap-fig mb-0 wipe">
+              <img
+                src="https://images.unsplash.com/photo-1519817914152-22d216bb9170?auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
+                alt="An open road running through open country toward distant hills" loading="lazy">
+            </figure>
+          </div>
         </article>
-      </div>
 
-      <div class="col-12 col-md-6 col-lg-4">
-        <article class="plan" data-r>
-          <span class="label mb-3">For tailored operations</span>
-          <h3>Custom</h3>
-          <p class="body plan-note mb-0">For operations rolling out across many vehicles, teams or sites at once.</p>
-          <div class="plan-price"><span class="label mb-2 d-block">Pricing</span><b>Talk to our team</b></div>
-          <ul>
-            <li><i></i>Staged vehicle rollout</li>
-            <li><i></i>Account and access planning</li>
-            <li><i></i>Operational support guidance</li>
-            <li><i></i>Solution consultation</li>
-          </ul>
-          <a class="btn btn-line" href="#contact" data-interest="Custom">Request a consultation</a>
+        <article class="cap row g-4 g-lg-5 align-items-start" data-r>
+          <div class="col-12 col-lg-1"><span class="numeral">03</span></div>
+          <div class="col-12 col-lg-4">
+            <span class="label label-orange mb-3 d-block">Pillar three</span>
+            <h3 class="d3 mb-3">Fleet <em>Management</em></h3>
+            <p class="body mb-4">Every vehicle on one map, with trip history, offline detection and the reports a
+              working operation actually runs on.</p>
+            <a class="tlink" href="#plans">View plans
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+          <div class="col-12 col-lg-6 offset-lg-1">
+            <figure class="cap-fig mb-0 wipe">
+              <img
+                src="https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
+                alt="Light breaking through trees over an empty road at dawn" loading="lazy">
+            </figure>
+          </div>
         </article>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══════ PEOPLE ══════ -->
-<section class="section" id="people">
-  <div class="shell">
-
-    <div class="row g-4 g-lg-5 align-items-center mb-5 pb-4">
-      <div class="col-12 col-md-5 col-lg-4">
-        <div class="mono wipe" data-r>NA</div>
       </div>
-      <div class="col-12 col-md-7 col-lg-7 offset-lg-1">
-        <span class="label label-orange mb-3 d-inline-block" data-r>05 — Investor &amp; Owner</span>
-        <h2 class="d3 mb-3" data-r>Polwatte Gedara<br>Nuwan Aloka</h2>
-        <p class="lede mb-4" data-r>“Fleet-grade visibility shouldn't be something only large companies can afford. Every owner in this country deserves to know where their vehicle is.”</p>
-        <p class="small mb-0" data-r>ShaloTrack (Pvt) Ltd — built and supported in Sri Lanka.</p>
-      </div>
-    </div>
+    </section>
 
-    <hr class="rule mb-5">
-
-    <div class="row g-4 g-lg-5 mb-5">
-      <div class="col-12 col-lg-6">
-        <h2 class="d3" data-r>The engineers behind it</h2>
-      </div>
-      <div class="col-12 col-lg-4 offset-lg-2 d-flex align-items-end">
-        <p class="body" data-r>Four disciplines, one product — from the binary protocol on the device to the map in your hand.</p>
-      </div>
-    </div>
-
-    <div class="row g-4 g-lg-5 people-grid">
-      <div class="col-6 col-lg-3">
-        <div class="person" data-r>
-          <div class="person-av av-1">SJ</div>
-          <h3>Suwen Jayathunga</h3>
-          <div class="role">Systems Lead</div>
-          <p>TCP gateway, .NET API and Android backend. Owns the path a packet takes from device to screen.</p>
+    <!-- ══════ PHOTO BAND ══════ -->
+    <section class="band">
+      <img src="https://images.unsplash.com/photo-1542242476-5a3565835a38?auto=format&amp;fit=crop&amp;w=2400&amp;q=80"
+        alt="A curved road disappearing into low cloud" loading="lazy">
+      <div class="band-blur" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="band-cap">
+        <div class="shell">
+          <p class="band-quote mb-0" data-r>The road does not report back. <em>The device does.</em></p>
         </div>
       </div>
-      <div class="col-6 col-lg-3">
-        <div class="person" data-r>
-          <div class="person-av av-2">NW</div>
-          <h3>Nethmi Wijekoon</h3>
-          <div class="role">Mobile &amp; UI</div>
-          <p>The Android experience — interface, interaction and the quality bar for what ships.</p>
+    </section>
+
+    <!-- ══════ PLATFORM ══════ -->
+    <section class="section on-navy" id="platform">
+      <div class="shell">
+        <div class="row g-4 g-lg-5 align-items-center">
+
+          <div class="col-12 col-lg-5">
+            <figure class="fig mb-0 wipe" data-r>
+              <img
+                src="https://images.unsplash.com/photo-1486673748761-a8d18475c757?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                alt="A straight road lined with trees stretching to the horizon" loading="lazy">
+              <figcaption class="fig-tag"><i></i>Live · 18 of 20 online</figcaption>
+            </figure>
+          </div>
+
+          <div class="col-12 col-lg-6 offset-lg-1">
+            <span class="label label-paper mb-4 d-inline-block" data-r>02 — The platform</span>
+            <h2 class="d2 mb-4" data-r>Built for the owner with one van, and the manager with <em>forty.</em></h2>
+            <p class="lede mb-5" data-r>The same account holds a single motorcycle or an entire fleet. Nothing is buried
+              three menus deep, and nothing needs a training session.</p>
+
+            <ul class="checks mb-5" data-r>
+              <li><i></i><span><b>One account, every vehicle.</b> Add a second vehicle without a second login, and share
+                  live tracking with family or staff.</span></li>
+              <li><i></i><span><b>Sign in with your phone number.</b> A one-time code by SMS — no password to forget,
+                  leak, or reset.</span></li>
+              <li><i></i><span><b>Ninety days of history.</b> Every trip retained and replayable, exportable when you
+                  need a record.</span></li>
+            </ul>
+
+            <a class="btn btn-orange" href="#contact" data-r>
+              Talk to our team
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+
         </div>
       </div>
-      <div class="col-6 col-lg-3">
-        <div class="person" data-r>
-          <div class="person-av av-3">NA</div>
-          <h3>Nuwan Akalanka</h3>
-          <div class="role">Web &amp; QA</div>
-          <p>The admin portal and web interfaces, plus the testing that keeps releases honest.</p>
+    </section>
+
+    <!-- ══════ PROCESS ══════ -->
+    <section class="section" id="process">
+      <div class="shell">
+        <div class="row g-4 g-lg-5 mb-5">
+          <div class="col-12 col-lg-6">
+            <span class="label mb-4 d-inline-block" data-r>03 — Process</span>
+            <h2 class="d2" data-r>Fitted, activated and reporting — <em>usually the same day.</em></h2>
+          </div>
+          <div class="col-12 col-lg-4 offset-lg-2 d-flex align-items-end">
+            <p class="body" data-r>No paperwork maze and no waiting weeks. A technician comes to you, or you come to us.
+            </p>
+          </div>
+        </div>
+
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-md-4">
+            <div class="step" data-r>
+              <span class="numeral">01</span>
+              <h3>Tell us the vehicle</h3>
+              <p class="body mb-0">What you drive and how much visibility you need. We recommend a setup; you decide.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="step" data-r>
+              <span class="numeral">02</span>
+              <h3>We fit it properly</h3>
+              <p class="body mb-0">A technician wires in the device, activates it, and confirms it is reporting before
+                leaving.</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="step" data-r>
+              <span class="numeral">03</span>
+              <h3>Track from anywhere</h3>
+              <p class="body mb-0">Sign in with your number. Live position, trip history and alerts from the first
+                minute.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-6 col-lg-3">
-        <div class="person" data-r>
-          <div class="person-av av-4">AR</div>
-          <h3>Amoda Rashmika</h3>
-          <div class="role">Infrastructure</div>
-          <p>Cloud, deployment and monitoring. Keeps the platform reachable at three in the morning.</p>
+    </section>
+
+    <!-- ══════ PLANS ══════ -->
+    <section class="section on-mist" id="plans">
+      <div class="shell">
+        <div class="row g-4 g-lg-5 mb-5">
+          <div class="col-12 col-lg-6">
+            <span class="label mb-4 d-inline-block" data-r>04 — Plans</span>
+            <h2 class="d2" data-r>A clear starting point for <em>every vehicle.</em></h2>
+          </div>
+          <div class="col-12 col-lg-4 offset-lg-2 d-flex align-items-end">
+            <p class="body" data-r>Price depends on the vehicle, the install and the level of visibility. Tell us the
+              situation and we quote it straight.</p>
+          </div>
+        </div>
+
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="plan" data-r>
+              <span class="label mb-3">For individual owners</span>
+              <h3>Personal</h3>
+              <p class="body plan-note mb-0">One vehicle, watched properly — the car, van or bike you depend on daily.
+              </p>
+              <div class="plan-price"><span class="label mb-2 d-block">Pricing</span><b>Tailored quote</b></div>
+              <ul>
+                <li><i></i>Live position and route history</li>
+                <li><i></i>Ignition and overspeed alerts</li>
+                <li><i></i>Mobile app access</li>
+                <li><i></i>Share tracking with family</li>
+              </ul>
+              <a class="btn btn-line" href="#contact" data-interest="Personal">Plan my installation</a>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="plan pick" data-r>
+              <span class="label label-orange mb-3">Most requested</span>
+              <h3>Fleet</h3>
+              <p class="body plan-note mb-0">Every vehicle on one map, with the status and history a working operation
+                needs.</p>
+              <div class="plan-price"><span class="label mb-2 d-block">Pricing</span><b>Tailored quote</b></div>
+              <ul>
+                <li><i></i>Multi-vehicle live map</li>
+                <li><i></i>Offline and idle detection</li>
+                <li><i></i>Journey and activity reports</li>
+                <li><i></i>Priority setup consultation</li>
+              </ul>
+              <a class="btn btn-orange" href="#contact" data-interest="Fleet">Discuss my fleet</a>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="plan" data-r>
+              <span class="label mb-3">For tailored operations</span>
+              <h3>Custom</h3>
+              <p class="body plan-note mb-0">For operations rolling out across many vehicles, teams or sites at once.
+              </p>
+              <div class="plan-price"><span class="label mb-2 d-block">Pricing</span><b>Talk to our team</b></div>
+              <ul>
+                <li><i></i>Staged vehicle rollout</li>
+                <li><i></i>Account and access planning</li>
+                <li><i></i>Operational support guidance</li>
+                <li><i></i>Solution consultation</li>
+              </ul>
+              <a class="btn btn-line" href="#contact" data-interest="Custom">Request a consultation</a>
+            </article>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ══════ CONTACT ══════ -->
-<section class="section on-navy" id="contact">
-  <div class="shell">
-    <div class="row g-4 g-lg-5">
+    <!-- ══════ PEOPLE ══════ -->
+    <section class="section" id="people">
+      <div class="shell">
 
-      <div class="col-12 col-lg-5">
-        <span class="label label-paper mb-4 d-inline-block" data-r>06 — Contact</span>
-        <h2 class="d2 mb-4" data-r>Start with the right setup for <em>your vehicle.</em></h2>
-        <p class="lede mb-5" data-r>Tell us what you drive, where you are and when suits you. We confirm the next step — usually the same day.</p>
+        <div class="flipcard owner-flip mb-5" data-r>
+          <button class="flip" type="button" aria-pressed="false"
+            aria-label="Polwatte Gedara Nuwan Aloka, Investor and Owner. Press to read his note on why ShaloTrack exists.">
+            <div class="flip-inner">
 
-        <div data-r>
-          <a class="contact-line" href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.8 11.8 0 0 0 5.69 1.45c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.48-8.4Zm-8.42 18.3a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89a9.83 9.83 0 0 1 9.88 9.89c0 5.45-4.44 9.9-9.89 9.9Z"/></svg>
-            <span class="flex-grow-1"><span class="cl-k">Fastest way to reach us</span><b>Chat on WhatsApp</b></span>
-          </a>
-          <a class="contact-line" href="tel:+94716553852">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.9 3.5 4.5 4.7c-.8.4-1.2 1.3-1 2.15C5.1 13.4 10.6 18.9 17.15 20.5c.85.2 1.75-.2 2.15-1l1.2-2.4-4.05-2.05-1.35 1.5a13.2 13.2 0 0 1-7.65-7.65l1.5-1.35L6.9 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-            <span class="flex-grow-1"><span class="cl-k">Call the local team</span><b>+94 71 655 3852</b></span>
-          </a>
-          <a class="contact-line" href="mailto:aloka@shalotrack.com">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4 7.5 8 5.5 8-5.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-            <span class="flex-grow-1"><span class="cl-k">Email anytime</span><b>aloka@shalotrack.com</b></span>
-          </a>
+              <div class="flip-face owner-face-front">
+                <div class="row align-items-center g-4">
+                  <div class="col-12 col-md-auto">
+                    <div class="mono">NA</div>
+                  </div>
+                  <div class="col-12 col-md">
+                    <div class="owner-role"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path
+                          d="M10 1.6l2.6 5.3 5.8.85-4.2 4.1.99 5.8-5.19-2.73-5.2 2.73.99-5.8-4.2-4.1 5.8-.85L10 1.6Z"
+                          stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+                      </svg>Investor &amp; Owner</div>
+                    <h2 class="d3 mb-2">Polwatte Gedara<br>Nuwan Aloka</h2>
+                    <p class="body mb-0">ShaloTrack (Pvt) Ltd — building GPS tracking that Sri Lankan owners can
+                      actually rely on.</p>
+                  </div>
+                </div>
+                <span class="flip-cue"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M4 10a6 6 0 0 1 10.2-4.24M16 10a6 6 0 0 1-10.2 4.24M14.2 3.4v2.6h-2.6M5.8 16.6V14h2.6"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>Press for his note</span>
+              </div>
+
+              <div class="flip-face owner-face-back">
+                <span class="badge-id">ID · 001 — FOUNDER</span>
+                <p class="owner-quote">“Fleet-grade visibility shouldn't be something only large companies can afford.
+                  <em>Every owner in this country deserves to know where their vehicle is.</em>”</p>
+                <div class="badge-sign">
+                  <span class="badge-sign-name">P. G. Nuwan Aloka</span>
+                  <span class="badge-sign-role">ShaloTrack (Pvt) Ltd — built and supported in Sri Lanka</span>
+                </div>
+              </div>
+
+            </div>
+          </button>
         </div>
-      </div>
 
-      <div class="col-12 col-lg-6 offset-lg-1">
-        <form id="form" novalidate data-r>
-          <div class="row g-4">
-            <div class="col-12 col-sm-6 field">
-              <label for="name">Your name *</label>
-              <input id="name" name="name" type="text" autocomplete="name" placeholder="Nimal Perera" required>
-            </div>
-            <div class="col-12 col-sm-6 field">
-              <label for="phone">Phone *</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+94 7X XXX XXXX" required>
-            </div>
-            <div class="col-12 col-sm-6 field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
-            </div>
-            <div class="col-12 col-sm-6 field">
-              <label for="vehicle">Vehicle type</label>
-              <select id="vehicle" name="vehicle">
-                <option value="">Select…</option>
-                <option>Car / SUV</option>
-                <option>Motorcycle / Scooter</option>
-                <option>Three-wheeler</option>
-                <option>Van / Lorry</option>
-                <option>Bus / Heavy vehicle</option>
-                <option>Fleet — multiple vehicles</option>
-              </select>
-            </div>
-            <div class="col-12 col-sm-6 field">
-              <label for="interest">Interested in</label>
-              <select id="interest" name="interest">
-                <option value="">Select…</option>
-                <option>Personal</option>
-                <option>Fleet</option>
-                <option>Custom</option>
-                <option>Device renewal / support</option>
-              </select>
-            </div>
-            <div class="col-12 col-sm-6 field">
-              <label for="count">Number of vehicles</label>
-              <select id="count" name="count">
-                <option value="">Select…</option>
-                <option>1 vehicle</option>
-                <option>2–5 vehicles</option>
-                <option>6–20 vehicles</option>
-                <option>21–50 vehicles</option>
-                <option>More than 50</option>
-              </select>
-            </div>
-            <div class="col-12 col-sm-6 field">
-              <label for="area">Installation area</label>
-              <input id="area" name="area" type="text" autocomplete="address-level2" placeholder="Colombo, Kandy, Galle…">
-            </div>
-            <div class="col-12 col-sm-6 field">
-              <label for="date">Preferred date</label>
-              <input id="date" name="date" type="date">
-            </div>
-            <div class="col-12 field">
-              <label for="msg">Anything else</label>
-              <textarea id="msg" name="msg" rows="2" placeholder="Tell us a little about your tracking needs"></textarea>
-            </div>
+        <hr class="rule mb-5">
 
-            <div class="col-12 d-flex flex-wrap align-items-center justify-content-between gap-3 pt-3">
-              <p class="small mb-0" style="max-width:30ch;">Continuing opens WhatsApp with your request written out.</p>
-              <button class="btn btn-orange" type="submit">
-                Send request
-                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="row g-4 g-lg-5 mb-5">
+          <div class="col-12 col-lg-6">
+            <h2 class="d3" data-r>The engineers behind it</h2>
+          </div>
+          <div class="col-12 col-lg-4 offset-lg-2 d-flex align-items-end">
+            <p class="body" data-r>Four disciplines, one product — from the binary protocol on the device to the map in
+              your hand. Press a badge to see where each person focuses.</p>
+          </div>
+        </div>
+
+        <div class="row g-4 g-lg-5 people-grid">
+
+          <div class="col-6 col-lg-3">
+            <div class="flipcard" data-r>
+              <button class="flip" type="button" aria-pressed="false"
+                aria-label="Suwen Jayathunga, Systems Lead. Press to see focus areas.">
+                <div class="flip-inner">
+                  <div class="flip-face flip-front">
+                    <div class="person-av av-1">SJ</div>
+                    <h3>Suwen Jayathunga</h3>
+                    <span class="role">Systems Lead</span>
+                    <span class="flip-cue"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M4 10a6 6 0 0 1 10.2-4.24M16 10a6 6 0 0 1-10.2 4.24M14.2 3.4v2.6h-2.6M5.8 16.6V14h2.6"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>Tap to flip</span>
+                  </div>
+                  <div class="flip-face flip-back">
+                    <span class="badge-id">ID · 002</span>
+                    <span class="badge-role">Systems Lead</span>
+                    <div class="flip-tags">
+                      <span>TCP Gateway</span><span>.NET API</span><span>Android Backend</span><span>Systems
+                        Architecture</span>
+                    </div>
+                    <p class="flip-note">Owns the path a packet takes from device to screen.</p>
+                  </div>
+                </div>
               </button>
             </div>
-            <div class="col-12"><p class="form-msg mb-0" id="formMsg" aria-live="polite"></p></div>
           </div>
-        </form>
+
+          <div class="col-6 col-lg-3">
+            <div class="flipcard" data-r>
+              <button class="flip" type="button" aria-pressed="false"
+                aria-label="Nethmi Wijekoon, Mobile and UI. Press to see focus areas.">
+                <div class="flip-inner">
+                  <div class="flip-face flip-front">
+                    <div class="person-av av-2">NW</div>
+                    <h3>Nethmi Wijekoon</h3>
+                    <span class="role">Mobile &amp; UI</span>
+                    <span class="flip-cue"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M4 10a6 6 0 0 1 10.2-4.24M16 10a6 6 0 0 1-10.2 4.24M14.2 3.4v2.6h-2.6M5.8 16.6V14h2.6"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>Tap to flip</span>
+                  </div>
+                  <div class="flip-face flip-back">
+                    <span class="badge-id">ID · 003</span>
+                    <span class="badge-role">Mobile &amp; UI</span>
+                    <div class="flip-tags">
+                      <span>Android UI/UX</span><span>Interaction Design</span><span>Quality Assurance</span>
+                    </div>
+                    <p class="flip-note">The Android experience — interface, interaction and the quality bar for what
+                      ships.</p>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-3">
+            <div class="flipcard" data-r>
+              <button class="flip" type="button" aria-pressed="false"
+                aria-label="Nuwan Akalanka, Web and QA. Press to see focus areas.">
+                <div class="flip-inner">
+                  <div class="flip-face flip-front">
+                    <div class="person-av av-3">NA</div>
+                    <h3>Nuwan Akalanka</h3>
+                    <span class="role">Web &amp; QA</span>
+                    <span class="flip-cue"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M4 10a6 6 0 0 1 10.2-4.24M16 10a6 6 0 0 1-10.2 4.24M14.2 3.4v2.6h-2.6M5.8 16.6V14h2.6"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>Tap to flip</span>
+                  </div>
+                  <div class="flip-face flip-back">
+                    <span class="badge-id">ID · 004</span>
+                    <span class="badge-role">Web &amp; QA</span>
+                    <div class="flip-tags">
+                      <span>Admin Portal (Laravel)</span><span>Web UI/UX</span><span>Quality Assurance</span>
+                    </div>
+                    <p class="flip-note">The admin portal and web interfaces, plus the testing that keeps releases
+                      honest.</p>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-3">
+            <div class="flipcard" data-r>
+              <button class="flip" type="button" aria-pressed="false"
+                aria-label="Amoda Rashmika, Infrastructure. Press to see focus areas.">
+                <div class="flip-inner">
+                  <div class="flip-face flip-front">
+                    <div class="person-av av-4">AR</div>
+                    <h3>Amoda Rashmika</h3>
+                    <span class="role">Infrastructure</span>
+                    <span class="flip-cue"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M4 10a6 6 0 0 1 10.2-4.24M16 10a6 6 0 0 1-10.2 4.24M14.2 3.4v2.6h-2.6M5.8 16.6V14h2.6"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>Tap to flip</span>
+                  </div>
+                  <div class="flip-face flip-back">
+                    <span class="badge-id">ID · 005</span>
+                    <span class="badge-role">Infrastructure</span>
+                    <div class="flip-tags">
+                      <span>Cloud Infrastructure</span><span>DevOps / SRE</span><span>Security &amp; Network</span>
+                    </div>
+                    <p class="flip-note">Cloud, deployment and monitoring. Keeps the platform reachable at three in the
+                      morning.</p>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ CONTACT ══════ -->
+    <section class="section on-navy" id="contact">
+      <div class="shell">
+        <div class="row g-4 g-lg-5">
+
+          <div class="col-12 col-lg-5">
+            <span class="label label-paper mb-4 d-inline-block" data-r>06 — Contact</span>
+            <h2 class="d2 mb-4" data-r>Start with the right setup for <em>your vehicle.</em></h2>
+            <p class="lede mb-5" data-r>Tell us what you drive, where you are and when suits you. We confirm the next
+              step — usually the same day.</p>
+
+            <div data-r>
+              <a class="contact-line" href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M20.5 3.5A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.8 11.8 0 0 0 5.69 1.45c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.48-8.4Zm-8.42 18.3a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89a9.83 9.83 0 0 1 9.88 9.89c0 5.45-4.44 9.9-9.89 9.9Z" />
+                </svg>
+                <span class="flex-grow-1"><span class="cl-k">Fastest way to reach us</span><b>Chat on
+                    WhatsApp</b></span>
+              </a>
+              <a class="contact-line" href="tel:+94716553852">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M6.9 3.5 4.5 4.7c-.8.4-1.2 1.3-1 2.15C5.1 13.4 10.6 18.9 17.15 20.5c.85.2 1.75-.2 2.15-1l1.2-2.4-4.05-2.05-1.35 1.5a13.2 13.2 0 0 1-7.65-7.65l1.5-1.35L6.9 3.5Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                </svg>
+                <span class="flex-grow-1"><span class="cl-k">Call the local team</span><b>+94 71 655 3852</b></span>
+              </a>
+              <a class="contact-line" href="mailto:aloka@shalotrack.com">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="5.5" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.5" />
+                  <path d="m4 7.5 8 5.5 8-5.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                </svg>
+                <span class="flex-grow-1"><span class="cl-k">Email anytime</span><b>aloka@shalotrack.com</b></span>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6 offset-lg-1">
+            <form id="form" novalidate data-r>
+              <div class="row g-4">
+                <div class="col-12 col-sm-6 field">
+                  <label for="name">Your name *</label>
+                  <input id="name" name="name" type="text" autocomplete="name" placeholder="Nimal Perera" required>
+                </div>
+                <div class="col-12 col-sm-6 field">
+                  <label for="phone">Phone *</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+94 7X XXX XXXX" required>
+                </div>
+                <div class="col-12 col-sm-6 field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+                </div>
+                <div class="col-12 col-sm-6 field">
+                  <label for="vehicle">Vehicle type</label>
+                  <select id="vehicle" name="vehicle">
+                    <option value="">Select…</option>
+                    <option>Car / SUV</option>
+                    <option>Motorcycle / Scooter</option>
+                    <option>Three-wheeler</option>
+                    <option>Van / Lorry</option>
+                    <option>Bus / Heavy vehicle</option>
+                    <option>Fleet — multiple vehicles</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 field">
+                  <label for="interest">Interested in</label>
+                  <select id="interest" name="interest">
+                    <option value="">Select…</option>
+                    <option>Personal</option>
+                    <option>Fleet</option>
+                    <option>Custom</option>
+                    <option>Device renewal / support</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 field">
+                  <label for="count">Number of vehicles</label>
+                  <select id="count" name="count">
+                    <option value="">Select…</option>
+                    <option>1 vehicle</option>
+                    <option>2–5 vehicles</option>
+                    <option>6–20 vehicles</option>
+                    <option>21–50 vehicles</option>
+                    <option>More than 50</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 field">
+                  <label for="area">Installation area</label>
+                  <input id="area" name="area" type="text" autocomplete="address-level2"
+                    placeholder="Colombo, Kandy, Galle…">
+                </div>
+                <div class="col-12 col-sm-6 field">
+                  <label for="date">Preferred date</label>
+                  <input id="date" name="date" type="date">
+                </div>
+                <div class="col-12 field">
+                  <label for="msg">Anything else</label>
+                  <textarea id="msg" name="msg" rows="2"
+                    placeholder="Tell us a little about your tracking needs"></textarea>
+                </div>
+
+                <div class="col-12 d-flex flex-wrap align-items-center justify-content-between gap-3 pt-3">
+                  <p class="small mb-0" style="max-width:30ch;">Continuing opens WhatsApp with your request written out.
+                  </p>
+                  <button class="btn btn-orange" type="submit">
+                    Send request
+                    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="col-12">
+                  <p class="form-msg mb-0" id="formMsg" aria-live="polite"></p>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ FAQ ══════ -->
+    <section class="section" id="faq">
+      <div class="shell">
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-lg-4">
+            <span class="label mb-4 d-inline-block" data-r>07 — Questions</span>
+            <h2 class="d3" data-r>Answered plainly.</h2>
+          </div>
+          <div class="col-12 col-lg-7 offset-lg-1">
+            <div class="faq" data-r>
+              <details>
+                <summary>How does installation work?</summary>
+                <div class="ans">
+                  <p class="body mb-0">A technician fits the device at your location or our service point. It is wired
+                    in, activated and linked to your account before they leave. Most installations take under an hour.
+                  </p>
+                </div>
+              </details>
+              <details>
+                <summary>Which vehicles can be tracked?</summary>
+                <div class="ans">
+                  <p class="body mb-0">Cars, SUVs, motorcycles, scooters, three-wheelers, vans, lorries, buses, heavy
+                    vehicles and mixed fleets. If you are unsure what suits yours, send the details and we advise before
+                    quoting.</p>
+                </div>
+              </details>
+              <details>
+                <summary>How do I sign in?</summary>
+                <div class="ans">
+                  <p class="body mb-0">With your phone number. We send a one-time code by SMS, so there is no password
+                    to forget or leak. Email verification is available as a second option.</p>
+                </div>
+              </details>
+              <details>
+                <summary>Can I manage more than one vehicle?</summary>
+                <div class="ans">
+                  <p class="body mb-0">Yes. One account holds as many vehicles as you need, and you can share live
+                    tracking for a single vehicle with family or staff without giving away access to the rest.</p>
+                </div>
+              </details>
+              <details>
+                <summary>What happens if a device goes offline?</summary>
+                <div class="ans">
+                  <p class="body mb-0">Your account shows the last confirmed position and time, and flags the vehicle as
+                    offline so you can follow up. Usually it is underground parking, a disconnected power feed, or an
+                    area with no mobile coverage.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════ FOOTER ══════ -->
+  <footer class="foot">
+    <div class="shell">
+      <div class="row g-4 g-lg-5 mb-5">
+        <div class="col-12 col-lg-5">
+          <a class="wordmark mb-4" href="#top"><span class="vh">ShaloTrack</span></a>
+          <p class="body mb-4" style="max-width:34ch;">Built and supported in Sri Lanka.</p>
+          <div class="foot-pillars"><span>GPS Tracking</span><span>Vehicle Security</span><span>Fleet Management</span>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="label label-paper col-label">Explore</div>
+          <div class="d-flex flex-column gap-3">
+            <a href="#what">What it does</a>
+            <a href="#platform">Platform</a>
+            <a href="#plans">Plans</a>
+            <a href="#people">People</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="label label-paper col-label">Contact</div>
+          <div class="d-flex flex-column gap-3">
+            <a href="tel:+94716553852">+94 71 655 3852</a>
+            <a href="mailto:aloka@shalotrack.com">aloka@shalotrack.com</a>
+            <a href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </div>
+        </div>
       </div>
 
-    </div>
-  </div>
-</section>
+      <hr class="rule-dk mb-4">
 
-<!-- ══════ FAQ ══════ -->
-<section class="section" id="faq">
-  <div class="shell">
-    <div class="row g-4 g-lg-5">
-      <div class="col-12 col-lg-4">
-        <span class="label mb-4 d-inline-block" data-r>07 — Questions</span>
-        <h2 class="d3" data-r>Answered plainly.</h2>
-      </div>
-      <div class="col-12 col-lg-7 offset-lg-1">
-        <div class="faq" data-r>
-          <details>
-            <summary>How does installation work?</summary>
-            <div class="ans"><p class="body mb-0">A technician fits the device at your location or our service point. It is wired in, activated and linked to your account before they leave. Most installations take under an hour.</p></div>
-          </details>
-          <details>
-            <summary>Which vehicles can be tracked?</summary>
-            <div class="ans"><p class="body mb-0">Cars, SUVs, motorcycles, scooters, three-wheelers, vans, lorries, buses, heavy vehicles and mixed fleets. If you are unsure what suits yours, send the details and we advise before quoting.</p></div>
-          </details>
-          <details>
-            <summary>How do I sign in?</summary>
-            <div class="ans"><p class="body mb-0">With your phone number. We send a one-time code by SMS, so there is no password to forget or leak. Email verification is available as a second option.</p></div>
-          </details>
-          <details>
-            <summary>Can I manage more than one vehicle?</summary>
-            <div class="ans"><p class="body mb-0">Yes. One account holds as many vehicles as you need, and you can share live tracking for a single vehicle with family or staff without giving away access to the rest.</p></div>
-          </details>
-          <details>
-            <summary>What happens if a device goes offline?</summary>
-            <div class="ans"><p class="body mb-0">Your account shows the last confirmed position and time, and flags the vehicle as offline so you can follow up. Usually it is underground parking, a disconnected power feed, or an area with no mobile coverage.</p></div>
-          </details>
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <p class="small mb-0">© <span id="yr">2026</span> ShaloTrack (Pvt) Ltd. All rights reserved.</p>
+        <div class="d-flex flex-wrap gap-4">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="warranty-and-support.html">Support</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-</main>
+  <a class="wa" href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path
+        d="M20.5 3.5A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.8 11.8 0 0 0 5.69 1.45c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.48-8.4Zm-8.42 18.3a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89a9.83 9.83 0 0 1 9.88 9.89c0 5.45-4.44 9.9-9.89 9.9Zm5.42-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z" />
+    </svg>
+  </a>
 
-<!-- ══════ FOOTER ══════ -->
-<footer class="foot">
-  <div class="shell">
-    <div class="row g-4 g-lg-5 mb-5">
-      <div class="col-12 col-lg-5">
-        <a class="wordmark mb-4" href="#top"><span class="vh">ShaloTrack</span></a>
-        <p class="body mb-4" style="max-width:34ch;">Built and supported in Sri Lanka.</p>
-        <div class="foot-pillars"><span>GPS Tracking</span><span>Vehicle Security</span><span>Fleet Management</span></div>
-      </div>
-      <div class="col-6 col-lg-3">
-        <div class="label label-paper col-label">Explore</div>
-        <div class="d-flex flex-column gap-3">
-          <a href="#what">What it does</a>
-          <a href="#platform">Platform</a>
-          <a href="#plans">Plans</a>
-          <a href="#people">People</a>
-        </div>
-      </div>
-      <div class="col-6 col-lg-4">
-        <div class="label label-paper col-label">Contact</div>
-        <div class="d-flex flex-column gap-3">
-          <a href="tel:+94716553852">+94 71 655 3852</a>
-          <a href="mailto:aloka@shalotrack.com">aloka@shalotrack.com</a>
-          <a href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        </div>
-      </div>
-    </div>
+  <script>
+    (() => {
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) document.documentElement.classList.add('no-anim');
 
-    <hr class="rule-dk mb-4">
+      /* Respect reduced-motion on the hero: stop the loop, hold the poster frame */
+      const heroVideo = document.querySelector('.hero-media video');
+      if (heroVideo && reduced) {
+        heroVideo.removeAttribute('autoplay');
+        heroVideo.pause();
+        heroVideo.currentTime = 0;
+      }
 
-    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-      <p class="small mb-0">© <span id="yr">2026</span> ShaloTrack (Pvt) Ltd. All rights reserved.</p>
-      <div class="d-flex flex-wrap gap-4">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="warranty-and-support.html">Support</a>
-      </div>
-    </div>
-  </div>
-</footer>
+      /* Spotlight on person tiles: a soft light that tracks the cursor.
+         Mouse-only, motion-respecting — skipped entirely on touch devices
+         and for anyone who has asked for reduced motion. */
+      if (!reduced && matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('.person-av').forEach(tile => {
+          tile.addEventListener('mousemove', e => {
+            const r = tile.getBoundingClientRect();
+            tile.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+            tile.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+          });
+        });
 
-<a class="wa" href="https://wa.me/94716553852" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12.08 0C5.52 0 .18 5.34.18 11.9c0 2.1.55 4.14 1.59 5.94L.08 24l6.31-1.65a11.8 11.8 0 0 0 5.69 1.45c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.48-8.4Zm-8.42 18.3a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89a9.83 9.83 0 0 1 9.88 9.89c0 5.45-4.44 9.9-9.89 9.9Zm5.42-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
-</a>
+        /* Tilt on capability photos: a subtle 3D follow, same rotation math
+           as motion-primitives' Tilt component (rotationFactor 15, i.e. the
+           photo tips up to 15deg toward the cursor at the edges). */
+        const ROTATION = 15;
+        document.querySelectorAll('.cap-fig').forEach(fig => {
+          fig.addEventListener('mousemove', e => {
+            const r = fig.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            fig.style.setProperty('--rx', (-py * ROTATION) + 'deg');
+            fig.style.setProperty('--ry', (px * ROTATION) + 'deg');
+          });
+          fig.addEventListener('mouseleave', () => {
+            fig.style.setProperty('--rx', '0deg');
+            fig.style.setProperty('--ry', '0deg');
+          });
+        });
+      }
 
-<script>
-(() => {
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) document.documentElement.classList.add('no-anim');
-
-  /* Reveal on scroll.
-     Skipped when the browser supports scroll-driven animations — CSS then
-     runs them on the compositor thread and none of this executes. */
-  const nativeScroll = CSS.supports('animation-timeline', 'view()');
-  const items = [...document.querySelectorAll('[data-r], .wipe')];
-  if (nativeScroll && !reduced) {
-    document.querySelectorAll('.wipe').forEach(el => el.classList.add('in'));
-  } else if (!reduced && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((es, o) => {
-      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); } });
-    }, { threshold: .12, rootMargin: '0px 0px -5% 0px' });
-    items.forEach((el, i) => {
-      const sibs = [...(el.parentElement?.children || [])].indexOf(el);
-      el.style.transitionDelay = Math.min(sibs, 4) * 70 + 'ms';
-      io.observe(el);
-    });
-  } else {
-    items.forEach(el => el.classList.add('in'));
-  }
-
-  /* Sticky nav */
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('stuck', scrollY > innerHeight * .72);
-  onScroll();
-  addEventListener('scroll', onScroll, { passive: true });
-
-  /* Mobile menu */
-  const burger = document.getElementById('burger');
-  const menu = document.getElementById('menu');
-  const shut = () => {
-    menu.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', 'Open menu');
-    document.body.classList.remove('nav-open');
-  };
-  burger.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    document.body.classList.toggle('nav-open', open);
-  });
-  const links = [...menu.querySelectorAll('a')];
-  links.forEach(a => a.addEventListener('click', shut));
-
-  /* Active section */
-  const secs = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-  if ('IntersectionObserver' in window) {
-    const io2 = new IntersectionObserver(es => {
-      es.forEach(e => {
-        if (!e.isIntersecting) return;
-        links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+      /* Flip badges — team + owner. Click/tap toggles aria-pressed, which the
+         CSS reads to run the rotateY transform. Runs on every device (touch
+         included) — this is a tap interaction, not a hover one, unlike the
+         spotlight and tilt above. A brief .flipping class on the outer
+         .flipcard replays the one-shot light-sweep on every turn. */
+      document.querySelectorAll('.flip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const open = btn.getAttribute('aria-pressed') === 'true';
+          btn.setAttribute('aria-pressed', String(!open));
+          const card = btn.closest('.flipcard');
+          if (card && !reduced) {
+            card.classList.remove('flipping');
+            void card.offsetWidth; // restart the animation if it's already mid-run
+            card.classList.add('flipping');
+            setTimeout(() => card.classList.remove('flipping'), 800);
+          }
+        });
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    secs.forEach(s => io2.observe(s));
-  }
 
-  document.getElementById('yr').textContent = new Date().getFullYear();
+      /* Reveal on scroll.
+         Skipped when the browser supports scroll-driven animations — CSS then
+         runs them on the compositor thread and none of this executes. */
+      const nativeScroll = CSS.supports('animation-timeline', 'view()');
+      const items = [...document.querySelectorAll('[data-r], .wipe')];
+      if (nativeScroll && !reduced) {
+        document.querySelectorAll('.wipe').forEach(el => el.classList.add('in'));
+      } else if (!reduced && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((es, o) => {
+          es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); } });
+        }, { threshold: .12, rootMargin: '0px 0px -5% 0px' });
+        items.forEach((el, i) => {
+          const sibs = [...(el.parentElement?.children || [])].indexOf(el);
+          el.style.transitionDelay = Math.min(sibs, 4) * 70 + 'ms';
+          io.observe(el);
+        });
+      } else {
+        items.forEach(el => el.classList.add('in'));
+      }
 
-  /* Plan → interest prefill */
-  const interest = document.getElementById('interest');
-  document.querySelectorAll('[data-interest]').forEach(a =>
-    a.addEventListener('click', () => { if (interest) interest.value = a.dataset.interest; })
-  );
+      /* Sticky nav */
+      const nav = document.getElementById('nav');
+      const onScroll = () => nav.classList.toggle('stuck', scrollY > innerHeight * .72);
+      onScroll();
+      addEventListener('scroll', onScroll, { passive: true });
 
-  /* Date floor */
-  const dateEl = document.getElementById('date');
-  if (dateEl) dateEl.min = new Date().toISOString().split('T')[0];
+      /* Mobile menu */
+      const burger = document.getElementById('burger');
+      const menu = document.getElementById('menu');
+      const shut = () => {
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Open menu');
+        document.body.classList.remove('nav-open');
+      };
+      burger.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        burger.setAttribute('aria-expanded', String(open));
+        burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        document.body.classList.toggle('nav-open', open);
+      });
+      const links = [...menu.querySelectorAll('a')];
+      links.forEach(a => a.addEventListener('click', shut));
 
-  /* Form → WhatsApp */
-  const form = document.getElementById('form');
-  const msg = document.getElementById('formMsg');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const d = new FormData(form);
-    const g = k => (d.get(k) || '').trim();
-    const name = g('name'), phone = g('phone');
-    if (!name || !phone) {
-      msg.textContent = 'Add your name and phone number so we can reach you.';
-      document.getElementById(!name ? 'name' : 'phone').focus();
-      return;
-    }
-    const lines = [
-      'Hello ShaloTrack — I would like to request a GPS tracking installation or quote.', '',
-      'Name: ' + name,
-      'Phone: ' + phone,
-      g('email')   && 'Email: ' + g('email'),
-      g('vehicle') && 'Vehicle: ' + g('vehicle'),
-      g('interest')&& 'Interested in: ' + g('interest'),
-      g('count')   && 'Vehicles: ' + g('count'),
-      g('area')    && 'Area: ' + g('area'),
-      g('date')    && 'Preferred date: ' + g('date'),
-      g('msg')     && 'Notes: ' + g('msg')
-    ].filter(Boolean);
-    msg.textContent = '';
-    open('https://wa.me/94716553852?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
-  });
-})();
-</script>
+      /* Active section */
+      const secs = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      if ('IntersectionObserver' in window) {
+        const io2 = new IntersectionObserver(es => {
+          es.forEach(e => {
+            if (!e.isIntersecting) return;
+            links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        secs.forEach(s => io2.observe(s));
+      }
+
+      document.getElementById('yr').textContent = new Date().getFullYear();
+
+      /* Plan → interest prefill */
+      const interest = document.getElementById('interest');
+      document.querySelectorAll('[data-interest]').forEach(a =>
+        a.addEventListener('click', () => { if (interest) interest.value = a.dataset.interest; })
+      );
+
+      /* Date floor */
+      const dateEl = document.getElementById('date');
+      if (dateEl) dateEl.min = new Date().toISOString().split('T')[0];
+
+      /* Form → WhatsApp */
+      const form = document.getElementById('form');
+      const msg = document.getElementById('formMsg');
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const d = new FormData(form);
+        const g = k => (d.get(k) || '').trim();
+        const name = g('name'), phone = g('phone');
+        if (!name || !phone) {
+          msg.textContent = 'Add your name and phone number so we can reach you.';
+          document.getElementById(!name ? 'name' : 'phone').focus();
+          return;
+        }
+        const lines = [
+          'Hello ShaloTrack — I would like to request a GPS tracking installation or quote.', '',
+          'Name: ' + name,
+          'Phone: ' + phone,
+          g('email') && 'Email: ' + g('email'),
+          g('vehicle') && 'Vehicle: ' + g('vehicle'),
+          g('interest') && 'Interested in: ' + g('interest'),
+          g('count') && 'Vehicles: ' + g('count'),
+          g('area') && 'Area: ' + g('area'),
+          g('date') && 'Preferred date: ' + g('date'),
+          g('msg') && 'Notes: ' + g('msg')
+        ].filter(Boolean);
+        msg.textContent = '';
+        open('https://wa.me/94716553852?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+      });
+    })();
+  </script>
 </body>
+
 </html>
