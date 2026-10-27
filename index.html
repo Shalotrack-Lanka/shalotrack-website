@@ -580,15 +580,15 @@
               <div class="row g-4">
                 <div class="col-12 col-sm-6 field">
                   <label for="name">Your name *</label>
-                  <input id="name" name="name" type="text" autocomplete="name" placeholder="Nimal Perera" required>
+                  <input id="name" name="name" type="text" autocomplete="name" placeholder="Nimal Perera" maxlength="80" required>
                 </div>
                 <div class="col-12 col-sm-6 field">
                   <label for="phone">Phone *</label>
-                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+94 7X XXX XXXX" required>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+94 7X XXX XXXX" maxlength="20" required>
                 </div>
                 <div class="col-12 col-sm-6 field">
                   <label for="email">Email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="120">
                 </div>
                 <div class="col-12 col-sm-6 field">
                   <label for="vehicle">Vehicle type</label>
@@ -626,7 +626,7 @@
                 <div class="col-12 col-sm-6 field">
                   <label for="area">Installation area</label>
                   <input id="area" name="area" type="text" autocomplete="address-level2"
-                    placeholder="Colombo, Kandy, Galle…">
+                    placeholder="Colombo, Kandy, Galle…" maxlength="80">
                 </div>
                 <div class="col-12 col-sm-6 field">
                   <label for="date">Preferred date</label>
@@ -634,7 +634,7 @@
                 </div>
                 <div class="col-12 field">
                   <label for="msg">Anything else</label>
-                  <textarea id="msg" name="msg" rows="2"
+                  <textarea id="msg" name="msg" rows="2" maxlength="500"
                     placeholder="Tell us a little about your tracking needs"></textarea>
                 </div>
 
@@ -893,37 +893,115 @@
         a.addEventListener('click', () => { if (interest) interest.value = a.dataset.interest; })
       );
 
-      /* Date floor */
+      /* Date floor — local calendar day (toISOString is UTC and lags
+         Sri Lanka by up to 5.5h after midnight) */
+      const pad = n => String(n).padStart(2, '0');
+      const todayLocal = () => {
+        const t = new Date();
+        return t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(t.getDate());
+      };
       const dateEl = document.getElementById('date');
-      if (dateEl) dateEl.min = new Date().toISOString().split('T')[0];
+      if (dateEl) dateEl.min = todayLocal();
 
-      /* Form → WhatsApp */
+      /* Form → WhatsApp
+         Everything is validated and cleaned here before it is placed in the
+         WhatsApp link. There is no server, so nothing is stored or sent
+         anywhere else. If a backend is ever added, repeat these checks there. */
       const form = document.getElementById('form');
       const msg = document.getElementById('formMsg');
+      const LIMITS = { name: 80, phone: 20, email: 120, area: 80, msg: 500 };
+      const MAX_URL_TEXT = 3500; // encoded length of the WhatsApp text
+
+      /* Remove control characters and invisible bidi/zero-width characters that
+         can be used to disguise text. ZWJ/ZWNJ (U+200C/D) are kept — Sinhala
+         and Tamil need them. */
+      const INVISIBLE = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F​‎‏‪-‮⁠-⁩﻿]/g;
+      const clean = (s, multiline) => {
+        s = String(s || '').normalize('NFC').replace(/\r\n?/g, '\n').replace(INVISIBLE, '');
+        s = multiline
+          ? s.replace(/[^\S\n]+/g, ' ').replace(/ ?\n ?/g, '\n').replace(/\n{3,}/g, '\n\n')
+          : s.replace(/\s+/g, ' ');
+        return s.trim();
+      };
+
+      /* Sri Lankan numbers → +94XXXXXXXXX (mobile or landline). Other
+         international numbers are accepted in +E.164 form. */
+      const normalisePhone = raw => {
+        const p = raw.replace(/[\s\-().]/g, '');
+        let m = p.match(/^(?:\+94|0094|0)([1-9]\d{8})$/);
+        if (m) return '+94' + m[1];
+        m = p.match(/^\+([1-9]\d{7,14})$/);
+        return m ? '+' + m[1] : null;
+      };
+      const EMAIL = /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[^\s@<>()[\]\\,;:"]{2,}$/;
+      const allowed = id => [...document.getElementById(id).options].map(o => o.value || o.text);
+
+      const fail = (id, text) => {
+        form.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+        const el = document.getElementById(id);
+        el.setAttribute('aria-invalid', 'true');
+        msg.textContent = text;
+        el.focus();
+      };
+
+      form.addEventListener('input', e => e.target.removeAttribute?.('aria-invalid'));
+
       form.addEventListener('submit', e => {
         e.preventDefault();
+        form.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
         const d = new FormData(form);
-        const g = k => (d.get(k) || '').trim();
-        const name = g('name'), phone = g('phone');
-        if (!name || !phone) {
-          msg.textContent = 'Add your name and phone number so we can reach you.';
-          document.getElementById(!name ? 'name' : 'phone').focus();
-          return;
+        const g = (k, multi) => clean(d.get(k), multi);
+
+        const name = g('name');
+        if (!name) return fail('name', 'Add your name so we know who to ask for.');
+        if (name.length > LIMITS.name) return fail('name', 'Please keep your name under ' + LIMITS.name + ' characters.');
+
+        const phoneRaw = g('phone');
+        if (!phoneRaw) return fail('phone', 'Add your phone number so we can reach you.');
+        if (phoneRaw.length > LIMITS.phone) return fail('phone', 'That phone number is too long.');
+        const phone = normalisePhone(phoneRaw);
+        if (!phone) return fail('phone', 'Enter a valid phone number, e.g. 071 234 5678 or +94 71 234 5678.');
+
+        const email = g('email');
+        if (email && (email.length > LIMITS.email || !EMAIL.test(email)))
+          return fail('email', 'That email address doesn’t look right — check it or leave it blank.');
+
+        const pick = id => {
+          const v = g(id);
+          return v && allowed(id).includes(v) ? v : '';
+        };
+        const vehicle = pick('vehicle'), interest = pick('interest'), count = pick('count');
+
+        const area = g('area');
+        if (area.length > LIMITS.area) return fail('area', 'Please keep the area under ' + LIMITS.area + ' characters.');
+
+        const date = g('date');
+        if (date) {
+          const valid = /^\d{4}-\d{2}-\d{2}$/.test(date) && !isNaN(Date.parse(date + 'T00:00:00'));
+          if (!valid) return fail('date', 'Choose a valid date.');
+          if (date < todayLocal()) return fail('date', 'Choose today or a later date.');
         }
+
+        const notes = g('msg', true);
+        if (notes.length > LIMITS.msg) return fail('msg', 'Please keep your notes under ' + LIMITS.msg + ' characters.');
+
         const lines = [
           'Hello ShaloTrack — I would like to request a GPS tracking installation or quote.', '',
           'Name: ' + name,
           'Phone: ' + phone,
-          g('email') && 'Email: ' + g('email'),
-          g('vehicle') && 'Vehicle: ' + g('vehicle'),
-          g('interest') && 'Interested in: ' + g('interest'),
-          g('count') && 'Vehicles: ' + g('count'),
-          g('area') && 'Area: ' + g('area'),
-          g('date') && 'Preferred date: ' + g('date'),
-          g('msg') && 'Notes: ' + g('msg')
+          email && 'Email: ' + email,
+          vehicle && 'Vehicle: ' + vehicle,
+          interest && 'Interested in: ' + interest,
+          count && 'Vehicles: ' + count,
+          area && 'Area: ' + area,
+          date && 'Preferred date: ' + date,
+          notes && 'Notes: ' + notes
         ].filter(Boolean);
-        msg.textContent = '';
-        open('https://wa.me/94716553852?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+        const text = encodeURIComponent(lines.join('\n'));
+        if (text.length > MAX_URL_TEXT)
+          return fail('msg', 'Your request is too long to send through WhatsApp — please shorten the notes.');
+        msg.textContent = 'Opening WhatsApp… if nothing opens, message us on +94 71 655 3852.';
+        open('https://wa.me/94716553852?text=' + text, '_blank', 'noopener');
       });
     })();
   </script>
