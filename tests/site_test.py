@@ -267,6 +267,42 @@ def main():
         else:
             bad("Empty form blocked with a message", str(fr))
 
+        # Form validation / sanitising. Each case fills the form, submits with
+        # window.open stubbed, and reports whether WhatsApp would have opened
+        # and with what text.
+        def submit_form(values):
+            return page.evaluate("""(values) => {
+              const f = document.getElementById('form');
+              f.reset();
+              for (const [id, v] of Object.entries(values)) document.getElementById(id).value = v;
+              let url = null; const real = window.open; window.open = u => { url = u; };
+              f.dispatchEvent(new Event('submit', {cancelable: true, bubbles: true}));
+              window.open = real;
+              const text = url ? decodeURIComponent(url.split('?text=')[1]) : null;
+              return {opened: !!url, text, msg: document.getElementById('formMsg').textContent};
+            }""", values)
+
+        base = {"name": "Nimal Perera", "phone": "071 234 5678"}
+        cases = [
+            ("Valid SL mobile accepted + normalised to +94", base, True, "Phone: +94712345678"),
+            ("+94 and 0094 formats accepted", {**base, "phone": "+94 (71) 234-5678"}, True, "Phone: +94712345678"),
+            ("Garbage phone rejected", {**base, "phone": "asdf"}, False, None),
+            ("Too-short phone rejected", {**base, "phone": "0712"}, False, None),
+            ("Bad email rejected", {**base, "email": "foo"}, False, None),
+            ("Good email accepted", {**base, "email": "a@b.lk"}, True, "Email: a@b.lk"),
+            ("Past date rejected", {**base, "date": "2000-01-01"}, False, None),
+            ("Unknown select value dropped", {**base, "interest": "<script>"}, True, None),
+            ("Over-long notes rejected", {**base, "msg": "x" * 501}, False, None),
+            ("Control / bidi characters stripped", {**base, "name": "Ni‮mal\u0000 ​Perera"}, True, "Name: Nimal Perera"),
+            ("Sinhala text (with ZWJ) preserved", {**base, "name": "ශ්‍රී ලංකා"}, True, "ශ්‍රී ලංකා"),
+        ]
+        for label, vals, should_open, needle in cases:
+            r = submit_form(vals)
+            good = r["opened"] == should_open and (needle is None or (r["text"] and needle in r["text"]))
+            if label.startswith("Unknown select"):
+                good = good and "<script>" not in (r["text"] or "")
+            ok(label) if good else bad(label, str(r))
+
         a = page.evaluate("""() => ({
           h1: document.querySelectorAll('h1').length,
           noAlt: [...document.images].filter(i => !i.hasAttribute('alt')).length,
